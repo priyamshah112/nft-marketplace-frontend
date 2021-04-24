@@ -4,6 +4,7 @@ import Navbar from './Components/Navbar';
 import Browse from './Components/Browse';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Profile from './Components/Profile';
+import Settings from './Components/Settings';
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
                     <Route path="/login" component={Login} />
                     <Route path="/browse" component={Browse} />
                     <Route path="/profile" component={Profile} />
+                    <Route path="/settings" component={Settings}/>
                 </Switch>
             </div>
         </Router>
