@@ -8,3 +8,8 @@ a{
 a:hover{
     text-decoration: none;
 }
+
+.toggleCheckBox:checked ~ .toggle {
+    transform: translateX(100%);
+    background-color: #48bb78;
+  }
