@@ -19,29 +19,23 @@ const Navbar = ()=>{
                     </div> 
                 </div>
                 <div>
-                <a href="/browse" class="block mt-4 px-4 sm:inline-block sm:mt-0 text-white hover:text-white mr-4">
-                    Browse
-                </a>
-                    <a
-                    href="#"
-                    class="block mt-4 px-4 sm:inline-block sm:mt-0 text-white hover:text-white mr-4"
-                    >
-                   Leaderboard
+                    <a href="/browse" class="block mt-4 px-4 sm:inline-block sm:mt-0 text-white hover:text-white mr-4">
+                        Browse
                     </a>
-                    <a
-                    href="#"
-                    class="block mt-4 px-4 mr-5 sm:inline-block sm:mt-0 text-white hover:text-white"
-                    >
-                    Create
+                    <a href="#" class="block mt-4 px-4 sm:inline-block sm:mt-0 text-white hover:text-white mr-4">
+                        Leaderboard
+                    </a>
+                    <a href="#" class="block mt-4 px-4 mr-5 sm:inline-block sm:mt-0 text-white hover:text-white">
+                        Create
                     </a>
                 </div>
                 <div className="group">
-                    <a href="#login" className="inline-block text-sm px-4 py-2 leading-none rounded text-white mt-4 md:mt-0">
+                    <a href="/login" className="inline-block text-sm px-4 py-2 leading-none rounded text-white mt-4 md:mt-0">
                         <i class="fas fa-user-circle fa-2x"></i>
                     </a>
                     <ul className="absolute shadow-xl right-10 hidden text-black-700 pt-2 group-hover:block">
                         <li>
-                            <a href="#" className="rounded-t w-42 bg-gray-50 hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap">
+                            <a href="/login" className="rounded-t w-42 bg-gray-50 hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap">
                                 <i class="far fa-address-card text-lg px-2 pr-4"></i>
                                 <span className="text-lg">My Profile</span>
                             </a>
