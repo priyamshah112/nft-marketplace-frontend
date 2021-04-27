@@ -1,7 +1,7 @@
 import React,{useState,useEffect,lazy} from 'react';
 import Card from './Card';
-import InsightsIcon from '@material-ui/icons/Insights';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+// import InsightsIcon from '@material-ui/icons/Insights';
+// import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 // const importIcon = iconName => lazy(() => import(`@material-ui/icons/${iconName}`));
 
 
@@ -25,13 +25,14 @@ const CardsList = (props) => {
             {/* <!-- head --> */}
             <div className="border-b-2 pb-2 flex justify-between">
                 <div className="pb-2 flex">
-                    <InsightsIcon />
+                    {/* <InsightsIcon /> */}
                     {/* {cards.icon} */}
+                    <i class="fas fa-chart-line"></i>
                     <span className="block uppercase font-bold">&nbsp; {cards.title} </span>
                 </div>
                 <div className="flex cursor-pointer">
                     <span className="uppercase font-bold">View All</span>
-                    <ArrowForwardIosIcon />
+                    {/* <ArrowForwardIosIcon /> */}
                 </div>
             </div>
             <div className="mt-10 grid grid-flow-col overflow-auto">

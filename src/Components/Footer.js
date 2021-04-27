@@ -1,10 +1,10 @@
 import React from 'react';
 import FOOTER_LINKS from '../Mock_Api/footer_links.json';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import RedditIcon from '@material-ui/icons/Reddit';
-import TelegramIcon from '@material-ui/icons/Telegram';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
+// import InstagramIcon from '@material-ui/icons/Instagram';
+// import FacebookIcon from '@material-ui/icons/Facebook';
+// import RedditIcon from '@material-ui/icons/Reddit';
+// import TelegramIcon from '@material-ui/icons/Telegram';
+// import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 
 const Links = ({title,links}) => {
@@ -43,17 +43,17 @@ const Footer = () => {
                                 <div className="flex flex-wrap justify-center">
                                     <a href="#" className="ml-2">
                                         <div className="p-3 rounded" style={{backgroundColor : "#2081e2"}}>
-                                            <InstagramIcon />
+                                            {/* <InstagramIcon /> */}
                                         </div>
                                     </a>
                                     <a href="#" className="ml-2">
                                         <div className="p-3 rounded" style={{backgroundColor : "#2081e2"}}>
-                                            <FacebookIcon />
+                                            {/* <FacebookIcon /> */}
                                         </div>
                                     </a>
                                     <a href="#" className="ml-2">
                                         <div className="p-3 rounded" style={{backgroundColor : "#2081e2"}}>
-                                            <RedditIcon />
+                                            {/* <RedditIcon /> */}
                                         </div>
                                     </a>
                                 </div>

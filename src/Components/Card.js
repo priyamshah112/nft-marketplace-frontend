@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+// import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 
 const Card = (props) => {
@@ -11,7 +11,8 @@ const Card = (props) => {
     return (
         <div style={{  width: "328px", } } className="mb-4 p-4 bg-white rounded-md shadow-md border transform hover:-translate-y-1.5 hover:shadow-2xl duration-150 mr-5">
             <div className="flex flex-row justify-end p-1.5">
-                <FavoriteBorderIcon className="hover:text-red-500" />
+                {/* <FavoriteBorderIcon className="hover:text-red-500" /> */}
+                <i class="far fa-heart hover:text-red-500"></i>
             <span className="pl-1">{likes}</span>
             </div>
             <div className="relative">
