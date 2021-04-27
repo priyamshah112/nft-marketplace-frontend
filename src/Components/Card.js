@@ -9,7 +9,7 @@ const Card = (props) => {
     const [isLoaded,setLoaded] = useState(false);
 
     return (
-        <div style={{  width: "328px", } } className="mb-4 p-4 bg-white rounded-md shadow-md border transform hover:-translate-y-1.5 hover:shadow-2xl duration-150 mr-5">
+        <div style={{  width: "328px", } } className="mb-4 p-4 bg-white rounded-md shadow-md border transform hover:-translate-y-1.5 hover:shadow-2xl duration-150 mx-2">
             <div className="flex flex-row justify-end p-1.5">
                 {/* <FavoriteBorderIcon className="hover:text-red-500" /> */}
                 <i class="far fa-heart hover:text-red-500"></i>
@@ -26,7 +26,10 @@ const Card = (props) => {
                         </div>
                         <div>
                         <span className="block text-gray-400">Price</span>
-                        <span className="font-bold">Ξ{price}</span>
+                            <div className="flex flex-row flex-nowrap items-center justify-evenly">
+                                <span className="font-bold">Ξ</span>
+                                <span className="font-bold">{price}</span>
+                            </div>
                         </div>
                     </div>
             </div>
