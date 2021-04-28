@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../tailwind.css';
 import profile_img from '../Images/profile.PNG'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
 
 const Product_card = (props) => {
@@ -24,6 +30,7 @@ const Product_card = (props) => {
 const Assets = () => {
     return (
         <div class="flex flex-col m-5 my-2">
+            <Link to="/createAsset"><button class="bg-blue-400 font-bold w-32 px-3 py-2  rounded m-3" style={{ color: "white" }}>Add Assets</button></Link>
             <div class="flex border-grey-light border ">
                 <input class="w-full rounded ml-1" type="text" placeholder="Search..." />
                 <button class="bg-grey-lightest border-grey border-l shadow hover:bg-grey-lightest">
