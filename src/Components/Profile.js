@@ -36,7 +36,7 @@ const Assets = () => {
             </div>
 
 
-            <div class="flex flex-wrap gap-5 mx-auto">
+            <div class="flex flex-wrap gap-5 mx-auto justify-evenly">
                 <Product_card name="ssm2" like="2" />
                 <Product_card name="ssm2" like="3" />
                 <Product_card name="ssm2" like="5" />
@@ -50,6 +50,44 @@ const Assets = () => {
             </div>
 
         </div>
+    )
+}
+
+
+const Activity = () => {
+    return (
+        // <div class="m-5 ">
+
+        <table class="table-auto m-5 p-5 bg-gray-50">
+            <thead>
+                <tr className="bg-gray-200">
+                    <th>Event</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {/* <tr>
+                    <td>Intro to CSS</td>
+                    <td>Adam</td>
+                    <td>858</td>
+                </tr>
+                <tr class="bg-emerald-200">
+                    <td>A Long and Winding Tour of the History of UI Frameworks and Tools and the Impact on Design</td>
+                    <td>Adam</td>
+                    <td>112</td>
+                </tr>
+                <tr>
+                    <td>Intro to JavaScript</td>
+                    <td>Chris</td>
+                    <td>1,280</td>
+                </tr> */}
+            </tbody>
+        </table>
+        // </div>
     )
 }
 
@@ -74,9 +112,12 @@ const Profile = () => {
 
     const toggleChange = (e) => {
         console.log(e);
-        e.target.classList.add('bg-gray-100');
-        setselectedTab(e.target.id);
-        document.getElementById(selectedTab).classList.remove('bg-gray-100');
+        if (e.target.id != selectedTab) {
+            e.target.classList.add('bg-gray-100');
+            setselectedTab(e.target.id);
+            document.getElementById(selectedTab).classList.remove('bg-gray-100');
+        }
+
     }
 
 
@@ -133,7 +174,12 @@ const Profile = () => {
                 </div>
             </div>
             <hr />
-            <Assets />
+            {
+                selectedTab == 0 ? <Assets /> : null
+
+            }
+            {selectedTab == 1 ? <Activity /> : null}
+            {/* <Assets /> */}
         </div>
     )
 }
