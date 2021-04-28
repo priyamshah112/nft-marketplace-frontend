@@ -6,7 +6,7 @@ import Home from './Components/Home';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Profile from './Components/Profile';
 import Settings from './Components/Settings';
-import EditAsset from './Components/CreateAsset';
+import CreateAsset from './Components/CreateAsset';
 
 const App = () => {
     return (
@@ -19,7 +19,7 @@ const App = () => {
                     <Route path="/browse" component={Browse} />
                     <Route path="/profile" component={Profile} />
                     <Route path="/settings" component={Settings} />
-                    <Route path="/createAsset" component={EditAsset} />
+                    <Route path="/createAsset" component={CreateAsset} />
                 </Switch>
             </div>
         </Router>

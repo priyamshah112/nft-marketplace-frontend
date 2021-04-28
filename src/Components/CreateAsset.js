@@ -41,7 +41,7 @@ const ModalForm = () => {
 }
 
 
-const EditAsset = () => {
+const CreateAsset = () => {
     const [unlockableContent, setunlockableContent] = useState(-1)
     return (
         <div className="m-10 ml-96 mr-96">
@@ -131,4 +131,4 @@ const EditAsset = () => {
     )
 }
 
-export default EditAsset
+export default CreateAsset
