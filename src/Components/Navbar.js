@@ -6,9 +6,9 @@ const Navbar = ()=>{
     return(
         <div>
             <nav class="flex items-center justify-between flex-wrap bg-gray-800 py-2 px-6">
-                <div class="flex items-center flex-shrink-0 text-white mr-6">
-                <span class="font-bold text-xl">ArtXchange</span>
-                </div>
+                <a href="/" class="flex items-center flex-shrink-0 text-white mr-6 hover:cursor-pointer">
+                    <span class="font-bold text-xl">NFT Original</span>
+                </a>
                 <div class="w-full block flex-grow sm:flex sm:items-center sm:w-auto">
                 <div class="text-md sm:flex-grow">
                     <div class="mx-28 shadow flex rounded-full">
@@ -33,7 +33,7 @@ const Navbar = ()=>{
                     <a href="/login" className="inline-block text-sm px-4 py-2 leading-none rounded text-white mt-4 md:mt-0">
                         <i class="fas fa-user-circle fa-2x"></i>
                     </a>
-                    <ul className="absolute shadow-xl right-10 hidden text-black-700 pt-2 group-hover:block">
+                    <ul className="absolute z-40 shadow-xl right-10 hidden text-black-700 pt-2 group-hover:block">
                         <li>
                             <a href="/login" className="rounded-t w-42 bg-gray-50 hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap">
                                 <i class="far fa-address-card text-lg px-2 pr-4"></i>
@@ -53,7 +53,7 @@ const Navbar = ()=>{
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="rounded-t w-42 bg-gray-50 hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap">
+                            <a href="/settings" className="rounded-t w-42 bg-gray-50 hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap">
                                 <i class="fas fa-user-cog text-lg px-2 pr-4"></i>
                                 <span className="text-lg">Account Settings</span>
                             </a>

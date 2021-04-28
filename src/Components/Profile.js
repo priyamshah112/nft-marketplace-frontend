@@ -9,15 +9,13 @@ const Product_card = (props) => {
             <div class="flex flex-row-reverse m-5 items-center gap-1">
                 {props.like}
                 <i class="far fa-heart"></i>
-
-
             </div>
             <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains" />
             <div class="mx-6 my-4">
                 <div class="font-bold text-xl ">{props.name}</div>
                 <p class="text-grey-darker text-base">
                     Lorem ipsum dolor
-    </p>
+                </p>
             </div>
 
         </div>)
