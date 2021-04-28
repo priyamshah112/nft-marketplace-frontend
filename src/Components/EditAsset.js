@@ -4,10 +4,16 @@ import Popup1 from './Popup';
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
-const CreateAsset = () => {
+const EditAsset = () => {
     const [unlockableContent, setunlockableContent] = useState(-1)
     const [buffer, setBuffer] = useState(null)
-    const [ipfsHash, setIPFSHash] = useState("")
+    const [ipfsHash, setIPFSHash] = useState(null)
+    let data = {}
+    useEffect(() => {
+        fetch('https://nft-api-1.herokuapp.com/api/assets')
+        .then((result) => result.json())
+        .then((data) => console.log(data))
+    }, [])
 
     const uploadImage = (event) => {
         event.preventDefault()
@@ -27,9 +33,10 @@ const CreateAsset = () => {
             setIPFSHash(res.path)
         })
     }
+
     return (
         <div className="m-10 ml-96 mr-96">
-            <h1 className="text-3xl mt-10">Create new item</h1>
+            <h1 className="text-3xl mt-10">Edit Asset</h1>
             <form>
                 <p className="mt-2 font-bold">Image, Video, Audio, or 3D Model</p>
                 <p className="mt-1 text-gray-400">File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB, GLTF. Max size: 40 MB</p>
@@ -103,7 +110,8 @@ const CreateAsset = () => {
                 <input value="1" className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
                 <hr className="mt-4" />
                 <div className="w-full mt-8">
-                    <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Create" onClick={handleSubmit}></input>
+                    <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Submit" onClick={handleSubmit}></input>
+                    <input type="Submit" className="bg-red-500 text-white p-4 rounded-md float-right hover:bg-red-600 hover:shadow-lg" value="Delete Item"></input>
                 </div>
             </form>
 
@@ -111,4 +119,4 @@ const CreateAsset = () => {
     )
 }
 
-export default CreateAsset
+export default EditAsset
