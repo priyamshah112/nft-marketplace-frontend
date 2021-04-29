@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import Card from './Card';
+import assets from '../Mock_Api/assets'
 import '../tailwind.css';
 
 
@@ -39,24 +40,47 @@ const FilterBar = ()=>{
     )
 }
 
+// const DisplayCard = ()=>{
+//     const [cards,setCards] = useState({});
+//     useEffect(() => {
+//         const fetchData = async () => {
+//             const response = await fetch(`/c_1.json`);
+//             const data = await response.json();
+//             console.log(data);
+//             // const Icon = await importIcon(data.iconName);
+//             setCards({...data});
+//         }
+//         fetchData();
+//     },[]);
+//     return(
+//         <div className="mt-10 grid grid-flow-row auto-cols-auto grid-cols-4 gap-3">
+//             {cards.assets && cards.assets.length > 0 && cards.assets.map((asset,assetIdx) => (<Card data={asset} />))}
+//         </div>
+//     )
+// }
+
+// CARD WITH OUR BACKEND API
 const DisplayCard = ()=>{
-    const [cards,setCards] = useState({});
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(`/c_1.json`);
-            const data = await response.json();
-            console.log(data);
-            // const Icon = await importIcon(data.iconName);
-            setCards({...data});
+    const [cards,setCards] = useState([]);
+    useEffect(()=>{
+        const fetchAssets = async () =>{
+            
+            const response = assets.get('/assets');
+            const data = (await response).data
+            const assetData = (await response).data.data
+            console.log(assetData);
+            setCards(assetData);
         }
-        fetchData();
+        fetchAssets();
+        console.log(cards);
     },[]);
     return(
         <div className="mt-10 grid grid-flow-row auto-cols-auto grid-cols-4 gap-3">
-            {cards.assets && cards.assets.length > 0 && cards.assets.map((asset,assetIdx) => (<Card data={asset} />))}
+            {cards && cards.length > 0 && cards.map((asset,assetIdx) => (<Card data={asset} />))}
         </div>
     )
 }
+
 
 
 const Browse = ()=>{

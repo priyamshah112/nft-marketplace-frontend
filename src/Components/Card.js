@@ -2,10 +2,12 @@ import React,{useState} from "react";
 // import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 
-const Card = (props) => {
-
-
-    const {imageUrl,likes,title,price} = props.data; 
+const Card = ({data}) => {
+    const imageUrl = "https://robohash.org/evenietipsafuga.png?size=200x300&set=set1"
+    const price = 4
+    console.log(data.likes)
+    // const[likes,name]=data;
+    // const {imageUrl,likes,title,price} = props.data; 
     const [isLoaded,setLoaded] = useState(false);
 
     return (
@@ -13,7 +15,8 @@ const Card = (props) => {
             <div className="flex flex-row justify-end p-1.5">
                 {/* <FavoriteBorderIcon className="hover:text-red-500" /> */}
                 <i class="far fa-heart hover:text-red-500"></i>
-            <span className="pl-1">{likes}</span>
+            <span className="pl-1">{data.likes}</span>
+            {/* <span className="pl-1">4</span> */}
             </div>
             <div className="relative">
                 <img className="rounded w-full h-64 object-contain" src={imageUrl} onLoad={setLoaded} />
@@ -22,13 +25,15 @@ const Card = (props) => {
                     <div className="flex justify-between mt-2">
                         <div>
                         <span className="block text-gray-400">Sperman</span>
-                        <span>{title}</span>
+                        <span>{data.name}</span>
+                        {/* <span>Title</span> */}
                         </div>
                         <div>
                         <span className="block text-gray-400">Price</span>
                             <div className="flex flex-row flex-nowrap items-center justify-evenly">
                                 <span className="font-bold">Ξ</span>
                                 <span className="font-bold">{price}</span>
+                                
                             </div>
                         </div>
                     </div>
