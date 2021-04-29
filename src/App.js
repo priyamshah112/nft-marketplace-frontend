@@ -6,6 +6,8 @@ import Home from './Components/Home';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Profile from './Components/Profile';
 import Settings from './Components/Settings';
+import CreateAsset from './Components/CreateAsset';
+import EditAsset from './Components/EditAsset';
 
 const App = () => {
     return (
@@ -13,11 +15,13 @@ const App = () => {
             <div>
                 <Navbar />
                 <Switch>
-                    <Route path = "/" exact component={Home} />
+                    <Route path="/" exact component={Home} />
                     <Route path="/login" component={Login} />
                     <Route path="/browse" component={Browse} />
                     <Route path="/profile" component={Profile} />
-                    <Route path="/settings" component={Settings}/>
+                    <Route path="/settings" component={Settings} />
+                    <Route path="/createAsset" component={CreateAsset} />
+                    <Route path='/editAsset' component={EditAsset}/>
                 </Switch>
             </div>
         </Router>
