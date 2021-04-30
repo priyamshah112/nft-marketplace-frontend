@@ -7,12 +7,12 @@ const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 const EditAsset = () => {
     const [unlockableContent, setunlockableContent] = useState(-1)
     const [buffer, setBuffer] = useState(null)
-    const [ipfsHash, setIPFSHash] = useState(null)
+    const [ipfsHash, setIPFSHash] = useState("QmViUFY5g6JzKCa2HA9dYtY864YsHqFQaryAJhm2NijUti")
     let data = {}
     useEffect(() => {
         fetch('https://nft-api-1.herokuapp.com/api/assets')
-        .then((result) => result.json())
-        .then((data) => console.log(data))
+            .then((result) => result.json())
+            .then((data) => console.log(data))
     }, [])
 
     const uploadImage = (event) => {
@@ -25,13 +25,17 @@ const EditAsset = () => {
         }
     }
 
+    useEffect(() => {
+        if (buffer != null)
+            ipfs.add(buffer).then((res) => {
+                console.log(res)
+                setIPFSHash(res.path)
+            })
+    }, [buffer])
+
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log(buffer)
-        const res = ipfs.add(buffer).then((res) => {
-            console.log(res)
-            setIPFSHash(res.path)
-        })
+
     }
 
     return (
@@ -42,7 +46,7 @@ const EditAsset = () => {
                 <p className="mt-1 text-gray-400">File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB, GLTF. Max size: 40 MB</p>
                 <label className="cursor-pointer" for="upload-asset">
                     <div className="border-2 border-gray-200 w-96 h-60 mt-2 rounded-md border-dashed">
-                        <img className="m-2 w-11/12 self-center" src={"https://ipfs.io/ipfs/" + ipfsHash }/>
+                        <img className="m-2 w-11/12 self-center" src={"https://ipfs.io/ipfs/" + ipfsHash} />
                     </div>
                 </label>
                 <input className="opacity-0 absolute -z-10" id="upload-asset" type="file" onChange={uploadImage}></input>

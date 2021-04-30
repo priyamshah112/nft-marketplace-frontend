@@ -16,8 +16,17 @@ const PropertyType1 = (props) => {
         // }
     }
 
-    console.log(props.count);
+    const handleChange = (e) => {
+        var id = String(e.target.id)[0];
+        // document.getElementById(id + 'name').value
+
+
+    }
+
+
+
     const items = []
+
     for (var i = 0; i < props.count; i++) {
 
         items.push(
@@ -28,16 +37,17 @@ const PropertyType1 = (props) => {
                     </button>
                 </td>
                 <td >
-                    <input className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
+                    <input onChange={handleChange} id={i + "name"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
 
                 </td>
                 <td>
-                    <input className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
+                    <input onChange={handleChange} id={i + "value"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
 
-                </td>
-            </tr>)
+                </td >
+            </tr >)
 
     }
+    // item.push(</form>)
     return items
 }
 
@@ -53,7 +63,6 @@ const PropertyType2 = (props) => {
         // }
     }
 
-    console.log(props.count);
     const items = []
     for (var i = 0; i < props.count; i++) {
 
@@ -65,11 +74,11 @@ const PropertyType2 = (props) => {
                     </button>
                 </td>
                 <td >
-                    <input className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
+                    <input id={i + "name"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
 
                 </td>
                 <td >
-                    <input className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
+                    <input id={i + "from"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
 
                 </td>
                 <td>
@@ -78,7 +87,7 @@ const PropertyType2 = (props) => {
                 </td>
 
                 <td>
-                    <input className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
+                    <input id={i + "to"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
 
                 </td>
             </tr>)
@@ -97,6 +106,40 @@ const Popup1 = (props) => {
         setnumberProperty(numberProperty + 1);
         console.log(numberProperty);
     }
+    const handleSubmit = () => {
+
+        if (props.choice == 1) {
+            console.log({ 'Props choice1 =': numberProperty })
+            for (var i = 0; i < numberProperty; i++) {
+                var name = document.getElementById(i + 'name').value;
+                var value = document.getElementById(i + 'value').value;
+                // console.log()
+                var propss = props.properties;
+                propss.push({ name: name, value: value })
+
+                props.setproperties([propss])
+
+                // console.log(propss)
+            }
+        }
+        else {
+            console.log({ 'Props choice2 =': numberProperty })
+            for (var i = 0; i < numberProperty; i++) {
+                var name = document.getElementById(i + 'name').value;
+                var from = document.getElementById(i + 'from').value;
+                var to = document.getElementById(i + 'to').value;
+                // props.properties.push()
+                var propss = props.properties;
+                propss.push({ name: name, from: from, to: to })
+
+                props.setproperties([propss])
+            }
+        }
+        document.getElementById('closebutton').click()
+        // console.log(button)
+    }
+
+
 
 
     return (
@@ -110,7 +153,7 @@ const Popup1 = (props) => {
                 <div class=" flex flex-col mx-8 my-5" >
                     <div className="modal">
                         <div class="flex flex-row-reverse">
-                            <button style={{ outline: "none" }} className="close m-2" onClick={close}><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <button id="closebutton" style={{ outline: "none" }} className="close m-2" onClick={close}><i class="fa fa-times" aria-hidden="true"></i></button>
                         </div>
                         <div class="flex justify-center">
                             <h3 className="text-xl font-thin mt-2">Add Properties</h3>
@@ -151,7 +194,7 @@ const Popup1 = (props) => {
 
                                 </tr> */}
                                 {props.choice == 1 ?
-                                    <PropertyType1 count={numberProperty} setting={(value) => setnumberProperty(value)} /> : null}
+                                    <PropertyType1 id="property1" count={numberProperty} setting={(value) => setnumberProperty(value)} /> : null}
                                 {props.choice != 1 ?
                                     <PropertyType2 count={numberProperty} setting={(value) => setnumberProperty(value)} /> : null}
 
@@ -167,7 +210,7 @@ const Popup1 = (props) => {
                                 <button onClick={addproperty} class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>Add More</button>
                             </div>
                             <div class="flex justify-center">
-                                <button class="bg-blue-400 font-bold w-32 px-3 py-2  rounded m-3" style={{ color: "white", outline: "none" }}>Save</button>
+                                <button onClick={handleSubmit} class="bg-blue-400 font-bold w-32 px-3 py-2  rounded m-3" style={{ color: "white", outline: "none" }}>Save</button>
                             </div>
                         </div>
                     </div>
