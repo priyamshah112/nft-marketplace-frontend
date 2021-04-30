@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Popup1 from './Popup';
 import axios from 'axios';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { render } from '@testing-library/react';
+
 
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
@@ -9,7 +18,7 @@ const CreateAsset = () => {
     const [unlockableContent, setunlockableContent] = useState(-1)
     const [buffer, setBuffer] = useState(null)
     const [ipfsHash, setIPFSHash] = useState("QmViUFY5g6JzKCa2HA9dYtY864YsHqFQaryAJhm2NijUti")
-
+    const [redirect, setredirect] = useState(null)
 
     const [name, setname] = useState("")
     const [externallink, setexternallink] = useState("")
@@ -58,6 +67,10 @@ const CreateAsset = () => {
         // updatePropertyTag()
 
     }, [properties, stats, level])
+
+    useEffect(() => {
+        return <Redirect to={redirect} />
+    }, [redirect])
 
     const updatePropertyTag = () => {
         if (properties.length != 0) {
@@ -152,7 +165,12 @@ const CreateAsset = () => {
                 "ownerId": "6087765dfc13ae34e4000064"
             }
 
+
+
         ).then((err, res) => {
+
+            setredirect('/profile')
+
             if (err) {
                 console.log(err)
             }
@@ -165,7 +183,9 @@ const CreateAsset = () => {
         // console.log(buffer)
 
     }
+
     return (
+
         <div className="m-10 ml-96 mr-96">
             <h1 className="text-3xl mt-10">Create new item</h1>
             <form>
