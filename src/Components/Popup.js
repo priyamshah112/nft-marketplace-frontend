@@ -100,13 +100,22 @@ const PropertyType2 = (props) => {
 const Popup1 = (props) => {
 
 
+
     const [numberProperty, setnumberProperty] = useState(1);
+
+    // useEffect(() => {
+    //     console.log(numberProperty)
+    //     setnumberProperty(1)
+    //     props.setproperties([])
+    // }, [])
 
     const addproperty = () => {
         setnumberProperty(numberProperty + 1);
         console.log(numberProperty);
     }
     const handleSubmit = () => {
+        // setnumberProperty(1)
+
 
         if (props.choice == 1) {
             console.log({ 'Props choice1 =': numberProperty })
@@ -114,7 +123,12 @@ const Popup1 = (props) => {
                 var name = document.getElementById(i + 'name').value;
                 var value = document.getElementById(i + 'value').value;
                 // console.log()
-                var propss = props.properties;
+                if (i == 0) {
+                    var propss = [];
+                }
+                else {
+                    var propss = props.properties;
+                }
                 propss.push({ name: name, value: value })
 
                 props.setproperties([propss])
@@ -129,7 +143,12 @@ const Popup1 = (props) => {
                 var from = document.getElementById(i + 'from').value;
                 var to = document.getElementById(i + 'to').value;
                 // props.properties.push()
-                var propss = props.properties;
+                if (i == 0) {
+                    var propss = [];
+                }
+                else {
+                    var propss = props.properties;
+                }
                 propss.push({ name: name, from: from, to: to })
 
                 props.setproperties([propss])

@@ -60,16 +60,49 @@ const CreateAsset = () => {
     }, [properties, stats, level])
 
     const updatePropertyTag = () => {
-        var tag = [];
-        properties.map(
-            data => {
-                console.log(data[0]);
+        if (properties.length != 0) {
+            var tag = [];
+            var data = properties[0];
+            console.log({ "length": data.length })
+            for (var i = 0; i < data.length; i++) {
+                // var data = properties[i];
+                // console.log(data);
                 tag.push(
-                    <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[0].name}:{data[0].value}</button>
+                    <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].value}</button>
                 )
             }
-        )
-        return tag
+            return tag
+        }
+    }
+    const updateLevelTag = () => {
+        if (level.length != 0) {
+            var tag = [];
+            var data = level[0];
+            console.log({ "length": data.length })
+            for (var i = 0; i < data.length; i++) {
+                // var data = properties[i];
+                // console.log(data);
+                tag.push(
+                    <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].from} to {data[i].to}</button>
+                )
+            }
+            return tag
+        }
+    }
+    const updateStatsTag = () => {
+        if (stats.length != 0) {
+            var tag = [];
+            var data = stats[0];
+            console.log({ "length": data.length })
+            for (var i = 0; i < data.length; i++) {
+                // var data = properties[i];
+                // console.log(data);
+                tag.push(
+                    <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].from} to {data[i].to}</button>
+                )
+            }
+            return tag
+        }
     }
 
     const handleSubmit = (event) => {
@@ -182,7 +215,7 @@ const CreateAsset = () => {
                     </button>
                 </div>
                 {
-                    level.map(data => { console.log(data); return (<button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data.name}:{data.from} to {data.to}</button>) })
+                    updateLevelTag()
                 }
                 <hr className="mt-4" />
                 <div className="mt-2 flex flex-column w-full">
@@ -196,7 +229,7 @@ const CreateAsset = () => {
                     </button>
                 </div>
                 {
-                    stats.map(data => { console.log(data); return (<button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data.name}:{data.from} to {data.to}</button>) })
+                    updateStatsTag()
                 }
 
                 <label className="block mt-4 font-bold">Unlockable content</label>
