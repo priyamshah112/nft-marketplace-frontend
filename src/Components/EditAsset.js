@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Popup1 from './Popup';
 import axios from 'axios';
+import { useParams } from 'react-router';
 
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
-const EditAsset = () => {
+const EditAsset = (props) => {
     const [unlockableContent, setunlockableContent] = useState(-1)
     const [buffer, setBuffer] = useState(null)
     const [ipfsHash, setIPFSHash] = useState("")
@@ -13,7 +14,8 @@ const EditAsset = () => {
     const [level, setlevel] = useState([])
     const [stats, setstats] = useState([])
     const [assetData, setAssetData] = useState([])
-    let assetId = "608a3f444131a70015517ade"
+    let { id } = useParams()
+    let assetId = id != null ? id : ""
 
     const uploadImage = (event) => {
         event.preventDefault()
