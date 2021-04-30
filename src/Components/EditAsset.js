@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Popup1 from './Popup';
 import axios from 'axios';
 import { useParams } from 'react-router';
+import { Link } from "react-router-dom";
 
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
@@ -15,7 +16,7 @@ const EditAsset = (props) => {
     const [stats, setstats] = useState([])
     const [assetData, setAssetData] = useState([])
     let { id } = useParams()
-    let assetId = id != null ? id : ""
+    const assetId = id != null ? id : ""
 
     const uploadImage = (event) => {
         event.preventDefault()
@@ -35,11 +36,28 @@ const EditAsset = (props) => {
             })
     }, [buffer])
 
+
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log("P:",properties[0])
         console.log("L:",level[0])
         console.log("S:",stats[0])
+        console.log({
+            "ownerId": assetData['ownerId'],
+            "assetId": assetData['meta']['assetId'],
+            "asset": {
+                "assetUrl": "https://ipfs.io/ipfs/" + ipfsHash,
+                "assetMime": "image/png",
+                "name": event.target.form[1].value,
+                "description": event.target.form[3].value,
+                "private": false,
+                "category": "art",
+                "properties": properties.length == 0 ? [] : typeof(properties[0]) === 'object' ? properties : properties[0],
+                "levels": level.length == 0 ? [] : level[0],
+                "stats": stats.length == 0 ? [] : stats[0]
+            }
+        })
+        
         axios.put('https://nft-api-1.herokuapp.com/api/assets',{
             "ownerId": assetData['ownerId'],
             "assetId": assetData['meta']['assetId'],
@@ -50,7 +68,7 @@ const EditAsset = (props) => {
                 "description": event.target.form[3].value,
                 "private": false,
                 "category": "art",
-                "properties": properties.length == 0 ? [] : properties[0],
+                "properties": properties.length == 0 ? [] : typeof(properties[0]) === 'object' ? properties : properties[0],
                 "levels": level.length == 0 ? [] : level[0],
                 "stats": stats.length == 0 ? [] : stats[0]
 
@@ -59,7 +77,23 @@ const EditAsset = (props) => {
         .catch((error) => {
          throw console.log(error);
         })
-      
+    }
+
+    const handleDelete = (event) => {
+        event.preventDefault()
+        console.log({
+            "ownerId": assetData['ownerId'],
+            "assetId": assetData['meta']['assetId']
+        })
+        axios.delete('https://nft-api-1.herokuapp.com/api/assets',{
+            data:{
+                "ownerId": assetData['ownerId'],
+                "assetId": assetData['meta']['assetId']
+            }
+        }).then((result) => console.log(result.data))
+        .catch((error) => {
+         throw console.log(error);
+        })
     }
 
     useEffect(() => { 
@@ -68,6 +102,7 @@ const EditAsset = (props) => {
                         setAssetData(response['data']['data'])
                         setIPFSHash(response['data']['data']['assetUrl'].split('/')[4])
                         setproperties(response['data']['data']['meta']['properties'])
+                        console.log(response['data']['data']['meta']['properties'])
                         setlevel(response['data']['data']['meta']['levels'])
                         setstats(response['data']['data']['meta']['stats'])
                     })
@@ -150,7 +185,7 @@ const EditAsset = (props) => {
                 <hr className="mt-4" />
                 <div className="w-full mt-8">
                     <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Submit" onClick={handleSubmit}></input>
-                    <input type="Submit" className="bg-red-500 text-white p-4 rounded-md float-right hover:bg-red-600 hover:shadow-lg" value="Delete Item"></input>
+                    <input type="Submit" className="bg-red-500 text-white p-4 rounded-md float-right hover:bg-red-600 hover:shadow-lg" value="Delete Item" onClick={handleDelete}></input>
                 </div>
             </form>
 
