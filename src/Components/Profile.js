@@ -7,27 +7,63 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import axios from 'axios';
 
 
 const Product_card = (props) => {
     return (
-        <div class="w-60 rounded shadow-lg my-2">
+        <div class="w-60 rounded flex flex-col justify-between shadow-lg my-2">
             <div class="flex flex-row-reverse m-5 items-center gap-1">
                 {props.like}
                 <i class="far fa-heart"></i>
             </div>
-            <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains" />
+            <img class="w-full" src={props.imageurl} alt="Sunset in the mountains" />
             <div class="mx-6 my-4">
                 <div class="font-bold text-xl ">{props.name}</div>
                 <p class="text-grey-darker text-base">
-                    Lorem ipsum dolor
+                    {props.descr}
                 </p>
             </div>
 
-        </div>)
+        </div>
+
+
+
+
+
+    )
 }
 
 const Assets = () => {
+
+    const [assets, setassets] = useState([])
+
+    const getAsset = () => {
+        {
+            axios.get('https://nft-api-1.herokuapp.com/api/assets/').then((res, err) => {
+                if (err) {
+                    console.log(err);
+
+                }
+                var data = res.data.data;
+                console.log({ "asdas": res })
+                var item = []
+                data.map(asset => {
+                    item.push(<Product_card name={asset.name} like={asset.likes} descr={asset.description} imageurl={asset.assetUrl} />)
+                })
+                setassets(item);
+
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+    }
+
+    useEffect(() => {
+        getAsset()
+    }, [])
+
+
     return (
         <div class="flex flex-col m-5 my-2">
             <Link to="/createAsset"><button class="bg-blue-400 font-bold w-32 px-3 py-2  rounded m-3" style={{ color: "white" }}>Add Assets</button></Link>
@@ -42,16 +78,10 @@ const Assets = () => {
 
 
             <div class="flex flex-wrap gap-5 mx-auto justify-evenly">
-                <Product_card name="ssm2" like="2" />
-                <Product_card name="ssm2" like="3" />
-                <Product_card name="ssm2" like="5" />
-                <Product_card name="ssm2" like="1" />
-                <Product_card name="ssm2" like="2" />
-                <Product_card name="ssm2" like="2" />
-                <Product_card name="ssm2" like="2" />
-                <Product_card name="ssm2" like="2" />
-                <Product_card name="ssm2" like="2" />
-                <Product_card name="ssm2" like="2" />
+                {assets}
+
+
+
             </div>
 
         </div>
