@@ -37,11 +37,11 @@ const PropertyType1 = (props) => {
                     </button>
                 </td>
                 <td >
-                    <input onChange={handleChange} id={i + "name"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
+                    <input onChange={handleChange} id={i + "name"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['name']: null}></input>
 
                 </td>
                 <td>
-                    <input onChange={handleChange} id={i + "value"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
+                    <input onChange={handleChange} id={i + "value"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['value']: null}></input>
 
                 </td >
             </tr >)
@@ -62,10 +62,8 @@ const PropertyType2 = (props) => {
         // props.setting(1);
         // }
     }
-
     const items = []
     for (var i = 0; i < props.count; i++) {
-
         items.push(
             <tr className="w-full m-3 ">
                 <td>
@@ -74,11 +72,11 @@ const PropertyType2 = (props) => {
                     </button>
                 </td>
                 <td >
-                    <input id={i + "name"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
+                    <input id={i + "name"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['name']: null}></input>
 
                 </td>
                 <td >
-                    <input id={i + "from"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
+                    <input id={i + "from"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['value']: null}></input>
 
                 </td>
                 <td>
@@ -87,7 +85,7 @@ const PropertyType2 = (props) => {
                 </td>
 
                 <td>
-                    <input id={i + "to"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
+                    <input id={i + "to"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['max']: null}></input>
 
                 </td>
             </tr>)
@@ -98,10 +96,11 @@ const PropertyType2 = (props) => {
 
 
 const Popup1 = (props) => {
-
-
-
-    const [numberProperty, setnumberProperty] = useState(1);
+    let numbers = 1;
+    if(props.properties.length > 1)
+        numbers = props.properties.length
+    
+        const [numberProperty, setnumberProperty] = useState(numbers);
 
     // useEffect(() => {
     //     console.log(numberProperty)
@@ -149,7 +148,7 @@ const Popup1 = (props) => {
                 else {
                     var propss = props.properties;
                 }
-                propss.push({ name: name, from: from, to: to })
+                propss.push({ name: name, value: from, max: to })
 
                 props.setproperties([propss])
             }
@@ -213,9 +212,9 @@ const Popup1 = (props) => {
 
                                 </tr> */}
                                 {props.choice == 1 ?
-                                    <PropertyType1 id="property1" count={numberProperty} setting={(value) => setnumberProperty(value)} /> : null}
+                                    <PropertyType1 id="property1" properties={props.properties} count={numberProperty} setting={(value) => setnumberProperty(value)} /> : null}
                                 {props.choice != 1 ?
-                                    <PropertyType2 count={numberProperty} setting={(value) => setnumberProperty(value)} /> : null}
+                                    <PropertyType2 count={numberProperty} properties={props.properties} setting={(value) => setnumberProperty(value)} /> : null}
 
 
 
