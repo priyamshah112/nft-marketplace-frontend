@@ -100,7 +100,7 @@ const Activity = () => {
 
 
 
-const Profile = () => {
+const Profile = ({account}) => {
     let fileSelector = null;
 
 
@@ -154,6 +154,7 @@ const Profile = () => {
                     <div class=" ">
                         Unnamed
                     </div>
+                    <h2>{account}</h2>
                 </div>
             </div>
             <div class="flex flex-row flex-wrap gap-10 m-10 font-light" style={{ fontSize: "16px" }}>
