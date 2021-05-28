@@ -29,6 +29,7 @@ const Login = () => {
         // const response = verifyUser.post(`/auth/verifyUser/${account}`);
         // const data = (await response).data.data;
         // console.log(data);
+        
         verifyUser.post(`/auth/verifyUser/${account}`)
             .then(response=>{
                 const data = response.data.data
