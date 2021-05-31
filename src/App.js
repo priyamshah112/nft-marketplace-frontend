@@ -8,6 +8,7 @@ import Profile from './Components/Profile';
 import Settings from './Components/Settings';
 import CreateAsset from './Components/CreateAsset';
 import EditAsset from './Components/EditAsset';
+import Asset from './Components/Asset';
 
 const App = () => {
     return (
@@ -20,8 +21,9 @@ const App = () => {
                     <Route path="/browse" component={Browse} />
                     <Route path="/profile" component={Profile} />
                     <Route path="/settings" component={Settings} />
+                    <Route path="/asset" component={Asset} />
                     <Route path="/createAsset" component={CreateAsset} />
-                    <Route path='/editAsset/:id' component={EditAsset}/>
+                    <Route path='/editAsset/:id' component={EditAsset} />
                 </Switch>
             </div>
         </Router>
