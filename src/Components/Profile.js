@@ -132,10 +132,10 @@ const Activity = () => {
 
 
 
-const Profile = ({account}) => {
+const Profile = (props) => {
     let fileSelector = null;
 
-
+    let account = props.location.accountAd;
 
 
     const [selectedTab, setselectedTab] = useState(0);
@@ -182,9 +182,6 @@ const Profile = ({account}) => {
                     {/* <i className="far fa-user-circle" style={{ fontSize: "60px" }}></i> */}
                     <div className="rounded-full h-32 w-32 flex items-center justify-center" style={{ backgroundImage: "url(" + profile_img + ")" }} >
                         {/* <img src={profile_img}></img> */}
-                    </div>
-                    <div className=" ">
-                        Unnamed
                     </div>
                     <h2>{account}</h2>
                 </div>

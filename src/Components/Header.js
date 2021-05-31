@@ -18,8 +18,12 @@ const Header = () => {
                 <div className="ml-8 mt-8">
                     <div className="text-7xl text-white" style={{lineHeight:'5rem'}}>Discover<br></br> rare digital art<br></br> and collect NFTs</div>
                     <div className="flex mt-8">
-                        <div className="py-1 px-8 bg-blue-400 text-white font-semibold rounded-md mr-4 cursor-pointer hover:bg-white hover:text-blue-400 btn1">Explore</div>
-                        <div className="py-1 px-8 bg-white border border-blue-400 text-blue-400 font-semibold rounded-md cursor-pointer hover:bg-blue-400 hover:text-white">Create</div>
+                        <a href="/browse" className="py-1 px-8 bg-blue-400 text-white font-semibold rounded-md mr-4 cursor-pointer hover:bg-white hover:text-blue-400 btn1">
+                            Explore
+                        </a>
+                        <a href="/createAsset" className="py-1 px-8 bg-white border border-blue-400 text-blue-400 font-semibold rounded-md cursor-pointer hover:bg-blue-400 hover:text-white">
+                            Create
+                        </a>
                     </div>
                 </div>
                 

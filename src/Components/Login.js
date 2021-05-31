@@ -5,8 +5,7 @@ import Metamask from '../Images/metamask.png'
 import '../tailwind.css';
 import verifyUser from '../Mock_Api/verifyUser';
 import { trackPromise } from 'react-promise-tracker';
-import  { Redirect } from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 
 
 
@@ -15,7 +14,7 @@ const Login = () => {
     let signInText = "Get a MetaMask"
     let selector = false
     const[loading,setLoading]=useState(true)
-    const[accountAd,setAccountAd]=useState(" ")
+    const[accountAd,setAccountAd]=useState("")
     console.log(window.ethereum)
     if (typeof window.ethereum !== 'undefined') {
         signInText = "Sign In"
@@ -61,10 +60,9 @@ const Login = () => {
                 <div className="text-3xl font-bold py-3 w-1/3 mx-auto">You need an Ethereum wallet to use ArtChange.</div>
                 <img className="mx-auto mb-4 py-4" src={Metamask} alt="MetaMask" width="150px" height="150px"></img>
                 <button id="sign-in" onClick={() => selector ? enableEthereum() : getHref()} className="bg-blue-500 hover:bg-blue-700 text-lg text-white font-bold py-2 px-4 rounded">
-                    {signInText}
+                    {signInText === "Sign In" && loading == false ? <Link to={{ pathname: "/profile",  accountAd }}>{signInText}</Link> : signInText}
                 </button>
             </div>
-            {loading?<LoadingIndicator/>:<Redirect to="/profile" account={accountAd}/>}
         </div>
         
     )
