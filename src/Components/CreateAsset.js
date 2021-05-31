@@ -96,7 +96,7 @@ const CreateAsset = () => {
                 // var data = properties[i];
                 // console.log(data);
                 tag.push(
-                    <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].from} to {data[i].to}</button>
+                    <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].value} to {data[i].max}</button>
                 )
             }
             return tag
@@ -111,7 +111,7 @@ const CreateAsset = () => {
                 // var data = properties[i];
                 // console.log(data);
                 tag.push(
-                    <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].from} to {data[i].to}</button>
+                    <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].value} to {data[i].max}</button>
                 )
             }
             return tag

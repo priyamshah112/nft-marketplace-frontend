@@ -21,7 +21,7 @@ const App = () => {
                     <Route path="/profile" component={Profile} />
                     <Route path="/settings" component={Settings} />
                     <Route path="/createAsset" component={CreateAsset} />
-                    <Route path='/editAsset' component={EditAsset}/>
+                    <Route path='/editAsset/:id' component={EditAsset}/>
                 </Switch>
             </div>
         </Router>
