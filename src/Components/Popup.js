@@ -123,12 +123,12 @@ const Popup1 = (props) => {
                 var name = document.getElementById(i + 'name').value;
                 var value = document.getElementById(i + 'value').value;
                 // console.log()
-                if (i == 0) {
-                    var propss = [];
-                }
-                else {
-                    var propss = props.properties;
-                }
+                // if (i == 0) {
+                //     var propss = [];
+                // }
+                // else {
+                var propss = props.properties;
+                // }
                 propss.push({ name: name, value: value })
 
                 props.setproperties([propss])
