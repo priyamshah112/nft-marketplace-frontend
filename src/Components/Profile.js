@@ -8,6 +8,7 @@ import {
     Link
 } from "react-router-dom";
 import axios from 'axios';
+import verifyUser from '../Mock_Api/verifyUser';
 
 const Product_card = (props) => {
     return (
@@ -28,11 +29,6 @@ const Product_card = (props) => {
             </div>
 
         </div>
-
-
-
-
-
     )
 }
 
@@ -132,19 +128,56 @@ const Activity = () => {
 
 
 
-const Profile = (props) => {
+const Profile = () => {
+
+    const [accountAd, setaccountAd] = useState("")
+
+    const VerifyUser = async (account)=>{
+        verifyUser.post(`/auth/verifyUser/${account}`)
+            .then(response=>{ 
+                //console.log(response.data.data) 
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    }
+    
+    async function enableEthereum() {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const account = accounts[0];
+        setaccountAd(account);
+        VerifyUser(account);
+        console.log(account);
+    }
+    
+    function login() {
+        if(typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
+            enableEthereum()
+            window.ethereum.on('accountsChanged', function (accounts) {
+                window.location.reload()
+            })
+        }
+        else {
+            alert("This application requires MetaMask. Get MetaMask ?");
+            window.location.href = "https://metamask.io/download.html";
+        }
+    }
+
+    useEffect(() => { 
+        //console.log(accountAd);
+    }, [accountAd])
+
+
+
     let fileSelector = null;
-
-    let account = props.location.accountAd;
-
-
     const [selectedTab, setselectedTab] = useState(0);
     const fileSelectedHandler = (e) => {
         console.log(e.target.files[0]);
     }
 
     useEffect(() => {
-        document.getElementById(selectedTab).classList.add('bg-gray-100')
+        if(document.getElementById(selectedTab) !== null)
+            document.getElementById(selectedTab).classList.add('bg-gray-100')
     })
 
     const toggleChange = (e) => {
@@ -157,65 +190,70 @@ const Profile = (props) => {
 
     }
 
+    login();
+    console.log(accountAd)
+    if(accountAd){
+        console.log(accountAd)
+        return (
+            <div className="flex flex-col">
+                <div className="flex flex-row-reverse  bg-gray-100 h-52 " id="background">
 
-    return (
-        <div className="flex flex-col">
-            <div className="flex flex-row-reverse  bg-gray-100 h-52 " id="background">
+                    <div className="pr-3 py-4">
 
-                <div className="pr-3 py-4">
+                        <i className="fas fa-pen-square" onClick={(e) => document.getElementById('myInput').click()} style={{ fontSize: "40px" }}></i>
+                        <input
+                            id="myInput"
+                            style={{ display: 'none' }}
+                            type={"file"}
+                            onChange={fileSelectedHandler}
 
-                    <i className="fas fa-pen-square" onClick={(e) => document.getElementById('myInput').click()} style={{ fontSize: "40px" }}></i>
-                    <input
-                        id="myInput"
-                        style={{ display: 'none' }}
-                        type={"file"}
-                        onChange={fileSelectedHandler}
-
-                    />
-                </div>
-
-            </div>
-            <div className="flex flex-row-reverse gap-5 pr-5 py-4 relative">
-                <i className="fas fa-cog" style={{ fontSize: "40px" }}></i>
-                <i className="fas fa-share-alt-square" style={{ fontSize: "40px" }}></i>
-                <div className="absolute flex flex-col bottom-4 right-1/2 justify-center items-center">
-                    {/* <i className="far fa-user-circle" style={{ fontSize: "60px" }}></i> */}
-                    <div className="rounded-full h-32 w-32 flex items-center justify-center" style={{ backgroundImage: "url(" + profile_img + ")" }} >
-                        {/* <img src={profile_img}></img> */}
+                        />
                     </div>
-                    <h2>{account}</h2>
-                </div>
-            </div>
-            <div className="flex flex-row flex-wrap gap-10 m-10 font-light" style={{ fontSize: "16px" }}>
-                <div className="flex flex-row px-5 py-2 hover rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="0">
-                    <i className="fas fa-tag"></i>
-                    Assets
-                </div>
-                <div className="flex flex-row px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="1">
-                    <i className="fas fa-history"></i>
-                    Activity
-                </div>
-                <div className="flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="2">
-                    <i className="fas fa-gift"></i>
-                    Offer
-                </div>
-                <div className="flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="3">
-                    <i className="far fa-heart"></i>
-                    Favourite
-                </div>
-                <div className="flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="4">
-                    <i className="fas fa-dollar-sign"></i>
-                    Referrals
-                </div>
-            </div>
-            <hr />
-            {
-                selectedTab == 0 ? <Assets /> : null
 
-            }
-            {selectedTab == 1 ? <Activity /> : null}
-            {/* <Assets /> */}
-        </div>
-    )
+                </div>
+                <div className="flex flex-row-reverse gap-5 pr-5 py-4 relative">
+                    <i className="fas fa-cog" style={{ fontSize: "40px" }}></i>
+                    <i className="fas fa-share-alt-square" style={{ fontSize: "40px" }}></i>
+                    <div className="absolute flex flex-col bottom-4 right-1/2 justify-center items-center">
+                        {/* <i className="far fa-user-circle" style={{ fontSize: "60px" }}></i> */}
+                        <div className="rounded-full h-32 w-32 flex items-center justify-center" style={{ backgroundImage: "url(" + profile_img + ")" }} >
+                            {/* <img src={profile_img}></img> */}
+                        </div>
+                        <h2>{accountAd}</h2>
+                    </div>
+                </div>
+                <div className="flex flex-row flex-wrap gap-10 m-10 font-light" style={{ fontSize: "16px" }}>
+                    <div className="flex flex-row px-5 py-2 hover rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="0">
+                        <i className="fas fa-tag"></i>
+                        Assets
+                    </div>
+                    <div className="flex flex-row px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="1">
+                        <i className="fas fa-history"></i>
+                        Activity
+                    </div>
+                    <div className="flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="2">
+                        <i className="fas fa-gift"></i>
+                        Offer
+                    </div>
+                    <div className="flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="3">
+                        <i className="far fa-heart"></i>
+                        Favourite
+                    </div>
+                    <div className="flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="4">
+                        <i className="fas fa-dollar-sign"></i>
+                        Referrals
+                    </div>
+                </div>
+                <hr />
+                {
+                    selectedTab == 0 ? <Assets /> : null
+
+                }
+                {selectedTab == 1 ? <Activity /> : null}
+                {/* <Assets /> */}
+            </div>
+        )
+    }
+    return <div className="flex h-screen justify-center items-center"><h1 className="text-center text-3xl">Please Sign in to MetaMask</h1></div>;
 }
 export default Profile;
