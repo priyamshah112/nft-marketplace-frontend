@@ -42,6 +42,41 @@ const Property_Card = (props) => {
     )
 }
 
+const Listing_Entry = (props) => {
+    return (
+        <tr className="bg-blue-50">
+            <td className="p-4">{props.from}</td>
+            <td className="p-4">{props.price} ETH</td>
+            <td className="p-4">{props.expiry}</td>
+            <td className="p-4">
+                    <button className="rounded-md p-2 border-2 border-green-400 bg-white text-green-400 hover:shadow-lg">{props.transact}</button>
+            </td>
+        </tr>
+    )
+}
+
+const Offer_Entry = (props) => {
+    return (
+        <tr className="bg-blue-50">
+            <td className="p-4">{props.from}</td>
+            <td className="p-4">{props.price} ETH</td>
+            <td className="p-4">{props.expiry}</td>
+        </tr>
+    )
+}
+
+const Trading_Entry = (props) => {
+    return (
+        <tr className="bg-blue-50">
+            <td className="p-4">{props.event}</td>
+            <td className="p-4">{props.price} ETH</td>
+            <td className="p-4">{props.from}</td>
+            <td className="p-4">{props.to}</td>
+            <td className="p-4">{props.date}</td>
+        </tr>
+    )
+}
+
 const Asset = () => {
     return (
         <div className = "w-11/12 m-10 pb-10">
@@ -174,8 +209,18 @@ const Asset = () => {
                                     <i className="fas fa-caret-down text-2xl"></i>
                                 </div>
                             </div>
-                            <div className="bg-blue-50 w-full p-8">
-                                
+                            <hr/>
+                            <div className="listingContent">
+                                <table className="w-full">
+                                    <tr className="bg-white">
+                                        <td className="p-4">From</td>
+                                        <td className="p-4">Price</td>
+                                        <td className="p-4">Expiration</td>
+                                        <td className="p-4">Buy/Sell</td>
+                                    </tr>
+                                    <Listing_Entry from={"ApeLife"} price={"0.12"} expiry={"03/08/2021"} transact={"Buy"} />
+                                    <Listing_Entry from={"ApeLife"} price={"0.12"} expiry={"03/08/2021"} transact={"Buy"}/>
+                                </table>
                             </div>
                         </div>
                         <hr/>
@@ -188,8 +233,22 @@ const Asset = () => {
                                     <i className="fas fa-caret-down text-2xl"></i>
                                 </div>
                             </div>
-                            <div className="bg-blue-50 w-full p-8">
-                                
+                            <hr/>
+                            <div className="offerContent">
+                                <table className="w-full">
+                                    <tr className="bg-white">
+                                        <td className="p-4">From</td>
+                                        <td className="p-4">Price</td>
+                                        <td className="p-4">Expiration</td>
+                                    </tr>
+                                    <Offer_Entry from={"ApeLife"} price={"0.12"} expiry={"03/08/2021"} />
+                                    <Offer_Entry from={"ApeLife"} price={"0.12"} expiry={"03/08/2021"} />
+                                </table>
+                                <hr/>
+                                <div className="bg-blue-50 p-4">
+                                    <button className = "bg-white rounded-md border-blue-500 border-2 px-8 py-4 text-blue-500 font-bold hover:shadow-lg">Make Offer</button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -204,8 +263,31 @@ const Asset = () => {
                         <i className="fas fa-caret-down text-2xl"></i>
                     </div>
                 </div>
-                <div className="bg-blue-50 w-full rounded-b-lg p-8 border-2">
-                    
+                <hr/>
+                <div className="tradingHistoryContent border-2 rounded-b-md">
+                    <div className="tradingFilter bg-blue-50 p-4">
+                        <select name="filters" className="w-full p-4 text-lg bg-white focus:outline-none">
+                            <option selected value="Filter">Filter</option>
+                            <option value="Listings">Listings</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Bids">Bids</option>
+                            <option value="Transfers">Transfers</option>
+                        </select>
+                    </div>
+                    <hr/>
+                    <div>
+                        <table className="w-full">
+                            <tr className="bg-white">
+                                <td className="p-4">Event</td>
+                                <td className="p-4">Price</td>
+                                <td className="p-4">From</td>
+                                <td className="p-4">To</td>
+                                <td className="p-4">Date</td>
+                            </tr>
+                            <Trading_Entry event={"Created"} from={"ApeLife"} to={"LazerViking"} price={"0.12"} date={"03/08/2021"} />
+                            <Trading_Entry event={"Created"} from={"ApeLife"} to={"LazerViking"} price={"0.12"} date={"03/08/2021"} />
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
