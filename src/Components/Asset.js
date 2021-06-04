@@ -44,7 +44,7 @@ const Property_Card = (props) => {
 
 const Asset = () => {
     return (
-        <div className = "w-11/12 m-10 pb-10">
+        <div className="w-11/12 m-10 pb-10">
             <div className=" flex gap-8">
                 <div className="flex flex-col mt-15 w-1/3">
                     <div className="image">
@@ -77,7 +77,7 @@ const Asset = () => {
                                 </div>
                             </div>
                         </div>
-                        <hr/>
+                        <hr />
                         <div className="about">
                             <div className="flex flex-row">
                                 <div className="bg-white w-full p-8 text-lg font-bold">
@@ -89,14 +89,14 @@ const Asset = () => {
                             </div>
                             <div className="bg-blue-50 w-full p-8">
                                 <div className="flex flex-row flex-wrap">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
                                 </div>
                             </div>
                         </div>
-                        <hr/>
+                        <hr />
                         <div className="details">
                             <div className="flex flex-row">
                                 <div className="bg-white w-full p-8 text-lg font-bold">
@@ -148,7 +148,7 @@ const Asset = () => {
                     </div>
                     <div className="message">
                         <MessageExampleAttached />
-                        
+
                     </div>
                     <div className="assetOffers my-7">
                         <div className="priceHistory mb-4 rounded-lg border-2">
@@ -161,10 +161,10 @@ const Asset = () => {
                                 </div>
                             </div>
                             <div className="bg-blue-50 w-full p-8">
-                                
+
                             </div>
                         </div>
-                        <hr/>
+                        <hr />
                         <div className="listings mb-4 rounded-lg border-2">
                             <div className="flex flex-row">
                                 <div className="bg-white w-full p-8 text-lg font-bold">
@@ -175,10 +175,10 @@ const Asset = () => {
                                 </div>
                             </div>
                             <div className="bg-blue-50 w-full p-8">
-                                
+
                             </div>
                         </div>
-                        <hr/>
+                        <hr />
                         <div className="offers mb-4 rounded-lg border-2">
                             <div className="flex flex-row">
                                 <div className="bg-white w-full p-8 text-lg font-bold">
@@ -189,7 +189,7 @@ const Asset = () => {
                                 </div>
                             </div>
                             <div className="bg-blue-50 w-full p-8">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -205,7 +205,7 @@ const Asset = () => {
                     </div>
                 </div>
                 <div className="bg-blue-50 w-full rounded-b-lg p-8 border-2">
-                    
+
                 </div>
             </div>
         </div>
