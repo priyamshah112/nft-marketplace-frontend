@@ -30,12 +30,12 @@ const Navbar = () => {
                     </a>
                     </div>
                     <div className="group">
-                        <a href="/login" className="inline-block text-sm px-4 py-2 leading-none rounded text-white mt-4 md:mt-0">
+                        <a href="#" className="inline-block text-sm px-4 py-2 leading-none rounded text-white mt-4 md:mt-0">
                             <i class="fas fa-user-circle fa-2x"></i>
                         </a>
                         <ul className="absolute z-40 shadow-xl right-10 hidden text-black-700 pt-2 group-hover:block">
                             <li>
-                                <a href="/login" className="rounded-t w-42 bg-gray-50 hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap">
+                                <a href="/profile" className="rounded-t w-42 bg-gray-50 hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap">
                                     <i class="far fa-address-card text-lg px-2 pr-4"></i>
                                     <span className="text-lg">My Profile</span>
                                 </a>

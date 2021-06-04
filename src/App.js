@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from './Components/Login';
+// import Login from './Components/Login';
 import Navbar from './Components/Navbar';
 import Browse from './Components/Browse';
 import Home from './Components/Home';
@@ -18,7 +18,7 @@ const App = () => {
                 <Navbar />
                 <Switch>
                     <Route path="/" exact component={Home} />
-                    <Route path="/login" component={Login} />
+                    {/* <Route path="/login" component={Login} /> */}
                     <Route path="/browse" component={Browse} />
                     <Route path="/profile" component={Profile} />
                     <Route path="/settings" component={Settings} />
