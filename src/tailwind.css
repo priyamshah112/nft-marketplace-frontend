@@ -32157,6 +32157,41 @@ a:hover{
   background-color: #48bb78;
 }
 
+.tab-content {
+  max-height: 0;
+  transition: max-height .35s;
+}
+
+.tab input:checked ~ .tab-content {
+  max-height: 100vh;
+}
+
+.tab label::after {
+  float:right;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5;
+  font-size: 1.25rem;
+  text-align: center;
+  transition: all .35s;
+}
+
+.tab input[type=checkbox] + label::after {
+  content: "+";
+  font-weight:bold;
+  border-width: 1px;
+  border-radius: 9999px;
+  border-color: #b8c2cc;
+}
+
+.tab input[type=checkbox]:checked + label::after {
+  -webkit-transform: rotate(315deg);
+          transform: rotate(315deg);
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -189236,3 +189271,5 @@ a:hover{
     --tw-backdrop-sepia: sepia(100%);
   }
 }
+
+  

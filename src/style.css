@@ -12,4 +12,44 @@ a:hover{
 .toggleCheckBox:checked ~ .toggle {
     transform: translateX(100%);
     background-color: #48bb78;
-  }
+}
+
+.tab-content {
+    max-height: 0;
+    -webkit-transition: max-height .35s;
+    -o-transition: max-height .35s;
+    transition: max-height .35s;
+}
+
+.tab input:checked ~ .tab-content {
+    max-height: 100vh;
+}
+
+.tab label::after {
+    float:right;
+    right: 0;
+    top: 0;
+    display: block;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5;
+    font-size: 1.25rem;
+    text-align: center;
+    -webkit-transition: all .35s;
+    -o-transition: all .35s;
+    transition: all .35s;
+}
+
+.tab input[type=checkbox] + label::after {
+    content: "+";
+    font-weight:bold;
+    border-width: 1px;
+    border-radius: 9999px; 
+    border-color: #b8c2cc; 
+}
+
+.tab input[type=checkbox]:checked + label::after {
+    transform: rotate(315deg);
+}
+
+  
