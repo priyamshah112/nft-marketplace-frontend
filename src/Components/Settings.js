@@ -1,4 +1,5 @@
-import React,{useState} from 'react';
+import React, { useState, useEffect } from 'react';
+import verifyUser from '../Mock_Api/verifyUser';
 
 const GeneralSettings = () => {
     return (
@@ -53,8 +54,8 @@ const NotificationSettings = () => {
     )
 }
 
-const WalletSettings = () => {
-    let walletId = "ksndvlfrnvl594906kdfn"
+const WalletSettings = (props) => {
+
     return (
         <div className = "ml-32 mt-20 border-2 rounded-md h-full w-1/2">
             <div className = "p-5 text-lg">
@@ -64,12 +65,12 @@ const WalletSettings = () => {
             <div className = "p-5 bg-gray-50">
                 <p>Your Wallet Address</p>
                 <div className="flex flex-row justify-between mt-5 bg-gray-200 p-2 rounded-md border-2 border-gray-300">
-                    <div >{walletId}</div>
+                    <div >{props.accountAd}</div>
                     <div className="justify-self-end text-blue-500 cursor-pointer">Copy</div>
                 </div>
                 <div className="flex flex-row">
                     <button className="block bg-blue-500 hover:bg-blue-700 text-lg text-white font-light py-2 px-4 rounded cursor-pointer mt-5 mb-2">Add Funds</button>
-                    <button className="block border-2 border-blue-500 text-blue-500 hover:shadow-lg text-lg text-white font-light py-2 px-4 rounded cursor-pointer mt-5 mb-2 ml-5">Log Out</button>
+                    {/* <button className="block border-2 border-blue-500 text-blue-500 hover:shadow-lg text-lg text-white font-light py-2 px-4 rounded cursor-pointer mt-5 mb-2 ml-5">Log Out</button> */}
                 </div>
             </div>
         </div>
@@ -77,6 +78,43 @@ const WalletSettings = () => {
 }
 
 const Settings = () => {
+
+    const [accountAd, setaccountAd] = useState("")
+
+    const VerifyUser = async (account)=>{
+        verifyUser.post(`/auth/verifyUser/${account}`)
+            .then(response=>{ 
+                //console.log(response.data.data) 
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    }
+    
+    async function enableEthereum() {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const account = accounts[0];
+        setaccountAd(account);
+        VerifyUser(account);
+        console.log(account);
+    }
+    
+    function login() {
+        if(typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
+            enableEthereum()
+            window.ethereum.on('accountsChanged', function (accounts) {
+                window.location.reload()
+            })
+        }
+        else {
+            alert("This application requires MetaMask. Get MetaMask ?");
+            window.location.href = "https://metamask.io/download.html";
+        }
+    }
+
+    useEffect(() => {  }, [accountAd])
+
+
     const [selectedOption, setSelectedOption] = useState("General")
     let handleClick = (e) => {
         let option = e.target.id
@@ -87,40 +125,44 @@ const Settings = () => {
         else
             setSelectedOption("Wallet")
     }
-    let walletId = "ksndvlfrnvl594906kdfn"
-    return (
-            <div className="flex flex-row h-full">
-                <div id="sidebar" className="shadow-lg w-1/4 h-screen">
-                    <div>
-                        <div className="p-5 text-base text-gray-500 font-bold">
-                            <i className="fas fa-wallet mr-3"></i>My Wallet
+    
+    login();
+    if(accountAd){
+        return (
+                <div className="flex flex-row h-full">
+                    <div id="sidebar" className="shadow-lg w-1/4 h-screen">
+                        <div>
+                            <div className="p-5 text-base text-gray-500 font-bold">
+                                <i className="fas fa-wallet mr-3"></i>My Wallet
+                            </div>
+                            <hr/>
+                            <div id="Wallet" className={"p-5 px-10 text-base text-gray-500 font-bold " + (selectedOption === "Wallet" ? "bg-blue-50":"bg-gray-100") + " hover:text-black cursor-pointer"}
+                                onClick={(e) => {handleClick(e)}}>
+                                {accountAd}
+                            </div>
+                            <hr/>
+                        </div>
+                        <div id="General" className={"p-5 text-base text-gray-500 font-bold " + (selectedOption === "General" ? "bg-blue-50":"") + " hover:text-black cursor-pointer"}
+                            onClick={handleClick}>
+                            <i className="fas fa-cog mr-3"></i>General
                         </div>
                         <hr/>
-                        <div id="Wallet" className={"p-5 px-10 text-base text-gray-500 font-bold " + (selectedOption === "Wallet" ? "bg-blue-50":"bg-gray-100") + " hover:text-black cursor-pointer"}
-                             onClick={(e) => {handleClick(e)}}>
-                            {walletId}
+                        <div id="Notifications" className={"p-5 text-base text-gray-500 font-bold " + (selectedOption === "Notifications" ? "bg-blue-50":"") + " hover:text-black cursor-pointer"}
+                            onClick={handleClick}>
+                            <i className="fas fa-bell mr-5"></i>Notifications
                         </div>
                         <hr/>
                     </div>
-                    <div id="General" className={"p-5 text-base text-gray-500 font-bold " + (selectedOption === "General" ? "bg-blue-50":"") + " hover:text-black cursor-pointer"}
-                         onClick={handleClick}>
-                        <i className="fas fa-cog mr-3"></i>General
-                    </div>
-                    <hr/>
-                    <div id="Notifications" className={"p-5 text-base text-gray-500 font-bold " + (selectedOption === "Notifications" ? "bg-blue-50":"") + " hover:text-black cursor-pointer"}
-                         onClick={handleClick}>
-                        <i className="fas fa-bell mr-5"></i>Notifications
-                    </div>
-                    <hr/>
+                    {selectedOption === "General"
+                        ? <GeneralSettings />
+                        : selectedOption === "Notifications" 
+                            ? <NotificationSettings />
+                            : <WalletSettings accountAd={accountAd}/>
+                    }
                 </div>
-                {selectedOption === "General"
-                    ? <GeneralSettings />
-                    : selectedOption === "Notifications" 
-                        ? <NotificationSettings />
-                        : <WalletSettings/>
-                }
-            </div>
-    )
+        )
+    }
+    return <div className="flex h-screen justify-center items-center"><h1 className="text-center text-3xl">Please Sign in to MetaMask</h1></div>;
 }
 
 export default Settings
