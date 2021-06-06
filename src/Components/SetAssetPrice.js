@@ -7,8 +7,13 @@ import '../CSS/createasset.css';
 
 
 const Property_Card = (props) => {
+    let selected = props.priceType == 0 && props.type == "Set Price" ? 
+                    "border-blue-400 bg-blue-50" :
+                    props.priceType == 1 && props.type == "Heighest Price" ?
+                    "border-blue-400 bg-blue-50" : "border-gray-200 bg-white"
+    console.log(selected, props.priceType, props.type)
     return (
-        <div className="bg-white rounded-lg border-2 border-gray-200 px-6 py-3 w-1/4" onClick={props.onClick}>
+        <div className={"rounded-lg border-2 px-6 py-3 cursor-pointer w-1/4 " + selected} onClick={props.onClick}>
             <div className="text-blue-600 text-center" style={{ fontWeight: "bold" }}>{props.type}</div>
             <div className="text-center" style={{ color: "rgb(158, 158, 158)" }}>{props.name}</div>
         </div>
@@ -39,8 +44,8 @@ const SetPriceAsset = () => {
                             Select your sell method
                 </div>
                         <div class="flex flex-row row2 gap-5">
-                            <Property_Card type="Set Price" name="Sell at a fixed or declining price" onClick={() => setpriceType(0)}></Property_Card>
-                            <Property_Card type="Highest Price" name="Auction to the highest bidder" onClick={() => setpriceType(1)}></Property_Card>
+                            <Property_Card type="Set Price" name="Sell at a fixed or declining price" priceType={priceType} onClick={() => setpriceType(0)}></Property_Card>
+                            <Property_Card type="Heighest Price" name="Auction to the highest bidder" priceType={priceType} onClick={() => setpriceType(1)}></Property_Card>
                         </div>
                         {priceType == 0 ? (
                             <div class="flex flex-col gap-9">
@@ -59,9 +64,9 @@ const SetPriceAsset = () => {
                                     </div>
                                 </div>
                                 <div style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "10px" }}>
-                                    <label className="block mt-4 font-bold">Unlockable content</label>
+                                    <label className="block mt-4 font-bold">Privacy</label>
                                     <div class="flex flex-row justify-between align-items-center" style={{ alignItems: "center" }}>
-                                        <p className="mt-1 text-gray-400">Include unlockable content that can only be revealed by the owner of the item.</p>
+                                        <p className="mt-1 text-gray-400">You can keep your listing public, or your can specify one address that's allowed to buy it.</p>
                                         <form>
 
                                             <label className="flex items-center cursor-pointer mt-5">
@@ -74,7 +79,7 @@ const SetPriceAsset = () => {
                                         </form>
 
                                     </div>
-                                    {unlockableContent == 1 ? <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text"></textarea> : null}
+                                    {unlockableContent == 1 ? <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" placeholder="Enter Buyer address" type="text"></textarea> : null}
 
                                 </div>
                             </div>) : (
@@ -160,8 +165,38 @@ const SetPriceAsset = () => {
                                     <p>To OpenSea</p>
                                     <p>2.5%</p>
                                 </div>
+                                <div class="flex flex-row justify-between font-bold">
+                                    <p>Total</p>
+                                    <p>2.5%</p>
+                                </div>
                             </div>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="max-w-5xl mx-32 p-10">
+                <div className="about tab w-full overflow-hidden border-2 border-gray-200 rounded-md">
+                    <input className="absolute opacity-0 margin-auto margin-r-0" id="tab-about" type="checkbox" name="tabs"></input>
+                    <label className="block p-8 leading-normal cursor-pointer text-xl" for="tab-about"><i className="fas fa-th mr-6 text-xl"></i>Instructions</label>
+                    <div className="propertiesContent px-4 tab-content overflow-hidden bg-blue-50 w-full leading-normal">
+                        <div className="flex flex-row flex-wrap p-4">
+                            <p>
+                               Our platform is decentralized, so we never escrow your items. As a result, if this is your first time 
+                               selling a crypto asset, you need to complete 2 free transactions:
+                            </p>
+                            <ol className = "list-decimal mx-8 mb-4">
+                                <li>To initialize your account for making sell orders, which only needs to be done once for your account.</li>
+                                <li>To allow us to access your item when a sale occurs.</li>
+                            </ol>
+                            <p>
+                                After those, you'll see a signature request to finalize your listing. In the future, as long as the item 
+                                was approved in step 2 above, you won't have any transactions at all, only a signature! This is how we can 
+                                (almost) achieve gas-free listings.
+                            </p>
+                            <p>
+                                Note that you can always decrease the price of your listing for free, without making a transaction or paying gas. 
+                            </p>
                         </div>
                     </div>
                 </div>
