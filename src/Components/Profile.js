@@ -16,11 +16,7 @@ const Product_card = (props) => {
             <div className="flex flex-row-reverse m-5 items-center gap-1">
                 {props.like}
                 <i className="far fa-heart"></i>
-                <Link to= {{ pathname: '/editAsset/', state:{
-                    accountAd:props.accountAd,
-                    assetId:props.assetId
-                }
-                }}>
+                <Link to= {'/editAsset/' + props.assetId.toString()}>
                     <button className="mr-2"><i className="fas fa-edit"></i></button>
                 </Link>
             </div>
@@ -43,10 +39,9 @@ const Assets = (props) => {
     const getAsset = () => {
         console.log(props.accountAd)
         {
-            axios.get('https://nft-api-1.herokuapp.com/api/assets/user/' + "6087765dfc13ae34e4000064").then((res, err) => {
+            axios.get('https://nft-api-1.herokuapp.com/api/assets/user/' + props.accountAd).then((res, err) => {
                 if (err) {
                     console.log(err);
-
                 }
                 var data = res.data.data;
                 console.log({ "asdas": res })
