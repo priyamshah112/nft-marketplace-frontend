@@ -32,13 +32,14 @@ const Product_card = (props) => {
     )
 }
 
-const Assets = () => {
+const Assets = (props) => {
 
     const [assets, setassets] = useState([])
 
     const getAsset = () => {
+        console.log(props.accountAd)
         {
-            axios.get('https://nft-api-1.herokuapp.com/api/assets/').then((res, err) => {
+            axios.get('https://nft-api-1.herokuapp.com/api/assets/user/' + props.accountAd).then((res, err) => {
                 if (err) {
                     console.log(err);
 
@@ -64,7 +65,7 @@ const Assets = () => {
 
     return (
         <div className="flex flex-col m-5 my-2">
-            <Link to="/createAsset"><button className="bg-blue-400 font-bold w-32 px-3 py-2  rounded m-3" style={{ color: "white" }}>Add Assets</button></Link>
+            <Link to={'/createAsset/' + props.accountAd.toString()}><button className="bg-blue-400 font-bold w-32 px-3 py-2  rounded m-3" style={{ color: "white" }}>Add Assets</button></Link>
             <div className="flex border-grey-light border ">
                 <input className="w-full rounded ml-1" type="text" placeholder="Search..." />
                 <button className="bg-grey-lightest border-grey border-l shadow hover:bg-grey-lightest">
@@ -246,7 +247,7 @@ const Profile = () => {
                 </div>
                 <hr />
                 {
-                    selectedTab == 0 ? <Assets /> : null
+                    selectedTab == 0 ? <Assets accountAd={ accountAd }/> : null
 
                 }
                 {selectedTab == 1 ? <Activity /> : null}
