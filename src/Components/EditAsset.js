@@ -15,7 +15,9 @@ const EditAsset = (props) => {
     const [level, setlevel] = useState([])
     const [stats, setstats] = useState([])
     const [assetData, setAssetData] = useState([])
-    let { id } = useParams()
+    let id = props.location.state.assetId
+    let ethId = props.location.state.accountAd
+    console.log(ethId)
     const assetId = id != null ? id : ""
 
     const uploadImage = (event) => {

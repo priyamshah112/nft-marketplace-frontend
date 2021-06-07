@@ -16,7 +16,11 @@ const Product_card = (props) => {
             <div className="flex flex-row-reverse m-5 items-center gap-1">
                 {props.like}
                 <i className="far fa-heart"></i>
-                <Link to= {'/editAsset/' + props.assetId.toString()}>
+                <Link to= {{ pathname: '/editAsset/', state:{
+                    accountAd:props.accountAd,
+                    assetId:props.assetId
+                }
+                }}>
                     <button className="mr-2"><i className="fas fa-edit"></i></button>
                 </Link>
             </div>
@@ -39,7 +43,7 @@ const Assets = (props) => {
     const getAsset = () => {
         console.log(props.accountAd)
         {
-            axios.get('https://nft-api-1.herokuapp.com/api/assets/user/' + props.accountAd).then((res, err) => {
+            axios.get('https://nft-api-1.herokuapp.com/api/assets/user/' + "6087765dfc13ae34e4000064").then((res, err) => {
                 if (err) {
                     console.log(err);
 
@@ -48,7 +52,7 @@ const Assets = (props) => {
                 console.log({ "asdas": res })
                 var item = []
                 data.map(asset => {
-                    item.push(<Product_card assetId={asset.meta.assetId} name={asset.name} like={asset.likes} descr={asset.description} imageurl={asset.assetUrl} />)
+                    item.push(<Product_card assetId={asset.meta.assetId} accountAd={props.accountAd} name={asset.name} like={asset.likes} descr={asset.description} imageurl={asset.assetUrl} />)
                 })
                 setassets(item);
 
@@ -65,7 +69,7 @@ const Assets = (props) => {
 
     return (
         <div className="flex flex-col m-5 my-2">
-            <Link to={'/createAsset/' + props.accountAd.toString()}><button className="bg-blue-400 font-bold w-32 px-3 py-2  rounded m-3" style={{ color: "white" }}>Add Assets</button></Link>
+            <Link to={'/createAsset/'}><button className="bg-blue-400 font-bold w-32 px-3 py-2  rounded m-3" style={{ color: "white" }}>Add Assets</button></Link>
             <div className="flex border-grey-light border ">
                 <input className="w-full rounded ml-1" type="text" placeholder="Search..." />
                 <button className="bg-grey-lightest border-grey border-l shadow hover:bg-grey-lightest">

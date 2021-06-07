@@ -21,9 +21,6 @@ const CreateAsset = () => {
     const [properties, setproperties] = useState([])
     const [level, setlevel] = useState([])
     const [stats, setstats] = useState([])
-    let { id } = useParams()
-    const accountId = id != null ? id : ""
-    console.log(accountId)
 
     const uploadImage = (event) => {
         event.preventDefault()
@@ -137,7 +134,7 @@ const CreateAsset = () => {
                 "stats": stats
 
             },
-            "ownerId": accountId.toString()
+            "ownerId": "6087765dfc13ae34e4000064"
         })
 
         axios.post('https://nft-api-1.herokuapp.com/api/assets/',
@@ -154,7 +151,7 @@ const CreateAsset = () => {
                     "stats": stats.length == 0 ? [] : stats[0]
 
                 },
-                "ownerId": accountId.toString()
+                "ownerId": "6087765dfc13ae34e4000064"
             }
 
 

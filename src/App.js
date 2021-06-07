@@ -24,8 +24,8 @@ const App = () => {
                     <Route path="/settings" component={Settings} />
                     <Route path="/asset" component={Asset} />
                     <Route path="/setassetprice" component={SetPriceAsset} />
-                    <Route path="/createAsset/:id" component={CreateAsset} />
-                    <Route path='/editAsset/:id' component={EditAsset} />
+                    <Route path="/createAsset/" component={CreateAsset} />
+                    <Route path='/editAsset/' component={EditAsset} />
                 </Switch>
             </div>
         </Router>
