@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useParams } from 'react-router';
 import { Redirect } from "react-router-dom";
 import { render } from '@testing-library/react';
-
+import verifyUser from '../Mock_Api/verifyUser';
 
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
@@ -22,6 +22,41 @@ const CreateAsset = () => {
     const [level, setlevel] = useState([])
     const [stats, setstats] = useState([])
 
+    //LOGIN  ==============================
+    
+    const [accountAd, setaccountAd] = useState("")
+
+    const VerifyUser = async (account)=>{
+        verifyUser.post(`/auth/verifyUser/${account}`)
+            .then(response=>{ 
+                //console.log(response.data.data) 
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    }
+    
+    async function enableEthereum() {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const account = accounts[0];
+        setaccountAd(account);
+        VerifyUser(account);
+        console.log(account);
+    }
+    
+    function login() {
+        if(typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
+            enableEthereum()
+            window.ethereum.on('accountsChanged', function (accounts) {
+                window.location.reload()
+            })
+        }
+    }
+
+    useEffect(() => {  }, [accountAd])
+
+    //=====================================
+    
     const uploadImage = (event) => {
         event.preventDefault()
 
@@ -156,7 +191,7 @@ const CreateAsset = () => {
 
 
 
-        ).then((err, res) => {
+        ).then((res, err) => {
 
             setredirect('/profile')
 
@@ -171,6 +206,18 @@ const CreateAsset = () => {
 
         // console.log(buffer)
 
+    }
+    
+    const getMetaMask = (event) => {
+        event.preventDefault()
+        if(typeof window.ethereum == 'undefined' || !window.ethereum.isMetaMask) {
+            alert("This application requires MetaMask. Get MetaMask ?");
+            window.location.href = "https://metamask.io/download.html";
+        }
+        else {
+            alert("Please log in to MetaMask");
+            window.location.reload()
+        }
     }
 
     return (
@@ -261,9 +308,16 @@ const CreateAsset = () => {
                 <p className="mt-1 text-gray-400">The number of copies that can be minted. No gas cost to you! Quantities above one coming soon.</p>
                 <input value="1" className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
                 <hr className="mt-4" />
-                <div className="w-full mt-8">
-                    <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Create" onClick={handleSubmit}></input>
-                </div>
+                {login()}
+                { accountAd ?
+                        <div className="w-full mt-8">
+                            <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Create" onClick={handleSubmit}></input>
+                        </div>
+                    :
+                        <div className="w-full mt-8">
+                            <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Create" onClick={getMetaMask}></input>
+                        </div>
+                }
             </form>
 
         </div>
