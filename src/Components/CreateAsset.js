@@ -169,7 +169,7 @@ const CreateAsset = () => {
                 "stats": stats
 
             },
-            "ownerId": "6087765dfc13ae34e4000064"
+            "ownerId": accountAd
         })
 
         axios.post('https://nft-api-1.herokuapp.com/api/assets/',
@@ -186,10 +186,10 @@ const CreateAsset = () => {
                     "stats": stats.length == 0 ? [] : stats[0]
 
                 },
-                "ownerId": "6087765dfc13ae34e4000064"
+                "ownerId": accountAd
             }
 
-
+        // Replace above line by: "ownerId": "6087765dfc13ae34e4000064" for testing 
 
         ).then((res, err) => {
 
@@ -199,12 +199,11 @@ const CreateAsset = () => {
                 console.log(err)
             }
             console.log(res);
+            window.location.href = "/profile"
 
         }).catch((err) => {
             console.log(err)
         })
-
-        // console.log(buffer)
 
     }
     
@@ -318,6 +317,7 @@ const CreateAsset = () => {
                             <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Create" onClick={getMetaMask}></input>
                         </div>
                 }
+                <br /><br />
             </form>
 
         </div>

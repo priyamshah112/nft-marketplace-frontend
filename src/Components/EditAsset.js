@@ -114,7 +114,10 @@ const EditAsset = (props) => {
                 "stats": stats.length == 0 ? [] : stats[0]
 
             }
-        }).then((result) => console.log(result.data))
+        }).then((result) => {
+            console.log(result.data);
+            window.location.href = "/profile";
+        })
         .catch((error) => {
          throw console.log(error);
         })
@@ -131,7 +134,10 @@ const EditAsset = (props) => {
                 "ownerId": assetData['ownerId'],
                 "assetId": assetData['meta']['assetId']
             }
-        }).then((result) => console.log(result.data))
+        }).then((result) => {
+            console.log(result.data);
+            window.location.href = "/profile";
+        })
         .catch((error) => {
          throw console.log(error);
         })
