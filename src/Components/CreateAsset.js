@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Popup1 from './Popup';
 import axios from 'axios';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import { useParams } from 'react-router';
 import { Redirect } from "react-router-dom";
 import { render } from '@testing-library/react';
-
+import verifyUser from '../Mock_Api/verifyUser';
 
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
@@ -28,12 +23,41 @@ const CreateAsset = () => {
     const [stats, setstats] = useState([])
     const [category, setcategory] = useState("Art")
 
+    //LOGIN  ==============================
+    
+    const [accountAd, setaccountAd] = useState("")
 
+    const VerifyUser = async (account)=>{
+        verifyUser.post(`/auth/verifyUser/${account}`)
+            .then(response=>{ 
+                //console.log(response.data.data) 
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    }
+    
+    async function enableEthereum() {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const account = accounts[0];
+        setaccountAd(account);
+        VerifyUser(account);
+        console.log(account);
+    }
+    
+    function login() {
+        if(typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
+            enableEthereum()
+            window.ethereum.on('accountsChanged', function (accounts) {
+                window.location.reload()
+            })
+        }
+    }
 
+    useEffect(() => {  }, [accountAd])
 
-
-
-
+    //=====================================
+    
     const uploadImage = (event) => {
         event.preventDefault()
 
@@ -144,47 +168,62 @@ const CreateAsset = () => {
                 "properties": properties,
                 "levels": level,
                 "stats": stats
-
             },
-            "ownerId": "6087765dfc13ae34e4000064"
+            "ownerId": accountAd
         })
+        console.log()
+        if(event.target.form[1].value.length > 2 && event.target.form[1].value.length < 20){
+            axios.post('https://nft-api-1.herokuapp.com/api/assets/',
+                {
+                    "asset": {
+                        "assetUrl": "https://ipfs.io/ipfs/" + ipfsHash,
+                        "assetMime": "image/png",
+                        "name": event.target.form[1].value,
+                        "description": event.target.form[3].value,
+                        "private": false,
+                        "category": "art",
+                        "properties": properties.length == 0 ? [] : properties[0],
+                        "levels": level.length == 0 ? [] : level[0],
+                        "stats": stats.length == 0 ? [] : stats[0]
 
-        axios.post('https://nft-api-1.herokuapp.com/api/assets/',
-            {
-                "asset": {
-                    "assetUrl": "https://ipfs.io/ipfs/" + ipfsHash,
-                    "assetMime": "image/png",
-                    "name": event.target.form[1].value,
-                    "description": event.target.form[3].value,
-                    "private": false,
-                    "category": "art",
-                    "properties": properties.length == 0 ? [] : properties[0],
-                    "levels": level.length == 0 ? [] : level[0],
-                    "stats": stats.length == 0 ? [] : stats[0]
+                    },
+                    "ownerId": accountAd
+                }
 
-                },
-                "ownerId": "6087765dfc13ae34e4000064"
-            }
+            // Replace above line by: "ownerId": "6087765dfc13ae34e4000064" for testing 
 
+            ).then((res, err) => {
 
+                setredirect('/profile')
 
-        ).then((err, res) => {
+                if (err) {
+                    console.log(err)
+                }
+                console.log(res);
+                window.location.href = "/profile"
 
-            setredirect('/profile')
-
-            if (err) {
+            }).catch((err) => {
                 console.log(err)
-            }
-            console.log(res);
-
-        }).catch((err) => {
-            console.log(err)
-        })
-
-        // console.log(buffer)
+            })
+        }
+        else{
+            console.log("Invalid asset name entry")
+        }
 
     }
-
+    
+    const getMetaMask = (event) => {
+        event.preventDefault()
+        if(typeof window.ethereum == 'undefined' || !window.ethereum.isMetaMask) {
+            alert("This application requires MetaMask. Get MetaMask ?");
+            window.location.href = "https://metamask.io/download.html";
+        }
+        else {
+            alert("Please log in to MetaMask");
+            window.location.reload()
+        }
+    }
+    const [assetName, setAssetName] = useState(null)
     return (
 
         <div className="m-10 ml-96 mr-96">
@@ -199,7 +238,8 @@ const CreateAsset = () => {
                 </label>
                 <input className="opacity-0 absolute -z-10" id="upload-asset" type="file" onChange={uploadImage}></input>
                 <label className="block mt-4 font-bold">Name *</label>
-                <input className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
+                <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (assetName == null ? "border-gray-200": assetName.length > 2 && assetName.length < 20 ? "border-gray-200" : "border-red-500") } type="text" onChange={(event) => setAssetName(event.target.value)}></input>
+                <div className={"mt-1 text-red-500 text-sm " + (assetName == null ? "hidden" : assetName.length > 2 && assetName.length < 20 ? "hidden" : "")}>Length of name should be from 3 to 19</div>
                 <label className="block mt-4 font-bold">External Link</label>
                 <p className="mt-1 text-gray-400">We will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</p>
                 <input className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
@@ -301,9 +341,17 @@ const CreateAsset = () => {
                 <p className="mt-1 text-gray-400">The number of copies that can be minted. No gas cost to you! Quantities above one coming soon.</p>
                 <input value="1" className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
                 <hr className="mt-4" />
-                <div className="w-full mt-8">
-                    <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Create" onClick={handleSubmit}></input>
-                </div>
+                {login()}
+                { accountAd ?
+                        <div className="w-full mt-8">
+                            <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Create" onClick={(event)=>handleSubmit(event)}></input>
+                        </div>
+                    :
+                        <div className="w-full mt-8">
+                            <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Create" onClick={getMetaMask}></input>
+                        </div>
+                }
+                <br /><br />
             </form>
 
         </div>
