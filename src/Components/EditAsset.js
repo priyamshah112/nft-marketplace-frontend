@@ -20,21 +20,21 @@ const EditAsset = (props) => {
     const assetId = id != null ? id : ""
     const [category, setcategory] = useState("Art")
 
-    
+
     //LOGIN  ==============================
 
     const [accountAd, setaccountAd] = useState("")
 
-    const VerifyUser = async (account)=>{
+    const VerifyUser = async (account) => {
         verifyUser.post(`/auth/verifyUser/${account}`)
-            .then(response=>{ 
+            .then(response => {
                 //console.log(response.data.data) 
             })
-            .catch(err=>{
+            .catch(err => {
                 console.log(err)
             })
     }
-    
+
     async function enableEthereum() {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];
@@ -42,9 +42,9 @@ const EditAsset = (props) => {
         VerifyUser(account);
         console.log(account);
     }
-    
+
     function login() {
-        if(typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
+        if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
             enableEthereum()
             window.ethereum.on('accountsChanged', function (accounts) {
                 window.location.reload()
@@ -56,7 +56,7 @@ const EditAsset = (props) => {
         }
     }
 
-    useEffect(() => {  }, [accountAd])
+    useEffect(() => { }, [accountAd])
 
     //=====================================
 
@@ -99,30 +99,8 @@ const EditAsset = (props) => {
                 "stats": stats.length == 0 ? [] : stats[0]
             }
         })
-<<<<<<< HEAD
-
-        axios.put('https://nft-api-1.herokuapp.com/api/assets', {
-            "ownerId": assetData['ownerId'],
-            "assetId": assetData['meta']['assetId'],
-            "asset": {
-                "assetUrl": "https://ipfs.io/ipfs/" + ipfsHash,
-                "assetMime": "image/png",
-                "name": event.target.form[1].value,
-                "description": event.target.form[3].value,
-                "private": false,
-                "category": category,
-                "properties": properties.length == 0 ? [] : typeof (properties[0]) === 'object' ? properties : properties[0],
-                "levels": level.length == 0 ? [] : level[0],
-                "stats": stats.length == 0 ? [] : stats[0]
-
-            }
-        }).then((result) => console.log(result.data))
-            .catch((error) => {
-                throw console.log(error);
-            })
-=======
-        if(event.target.form[1].value.length > 2 && event.target.form[1].value.length < 20){
-            axios.put('https://nft-api-1.herokuapp.com/api/assets',{
+        if (event.target.form[1].value.length > 2 && event.target.form[1].value.length < 20) {
+            axios.put('https://nft-api-1.herokuapp.com/api/assets', {
                 "ownerId": assetData['ownerId'],
                 "assetId": assetData['meta']['assetId'],
                 "asset": {
@@ -132,7 +110,7 @@ const EditAsset = (props) => {
                     "description": event.target.form[3].value,
                     "private": false,
                     "category": "art",
-                    "properties": properties.length == 0 ? [] : typeof(properties[0]) === 'object' ? properties : properties[0],
+                    "properties": properties.length == 0 ? [] : typeof (properties[0]) === 'object' ? properties : properties[0],
                     "levels": level.length == 0 ? [] : level[0],
                     "stats": stats.length == 0 ? [] : stats[0]
 
@@ -141,14 +119,13 @@ const EditAsset = (props) => {
                 console.log(result.data);
                 window.location.href = "/profile";
             })
-            .catch((error) => {
-            throw console.log(error);
-            })
+                .catch((error) => {
+                    throw console.log(error);
+                })
         }
-        else{
+        else {
             console.log("Invalid asset name entry")
         }
->>>>>>> c1cac8d6381a4105fe73d20041e36be334d28ee9
     }
 
     const handleDelete = (event) => {
@@ -162,20 +139,13 @@ const EditAsset = (props) => {
                 "ownerId": assetData['ownerId'],
                 "assetId": assetData['meta']['assetId']
             }
-<<<<<<< HEAD
-        }).then((result) => console.log(result.data))
-            .catch((error) => {
-                throw console.log(error);
-            })
-=======
         }).then((result) => {
             console.log(result.data);
             window.location.href = "/profile";
         })
-        .catch((error) => {
-         throw console.log(error);
-        })
->>>>>>> c1cac8d6381a4105fe73d20041e36be334d28ee9
+            .catch((error) => {
+                throw console.log(error);
+            })
     }
 
     useEffect(() => {
@@ -192,7 +162,7 @@ const EditAsset = (props) => {
     console.log(assetData)
     const [assetName, setAssetName] = useState(assetData['name'])
     login();
-    if(accountAd === assetData['ownerId']){
+    if (accountAd === assetData['ownerId']) {
         return (
             <div className="m-10 ml-96 mr-96">
                 <h1 className="text-3xl mt-10">Edit Asset</h1>
@@ -206,7 +176,7 @@ const EditAsset = (props) => {
                     </label>
                     <input className="opacity-0 absolute -z-10" id="upload-asset" type="file" onChange={uploadImage}></input>
                     <label className="block mt-4 font-bold">Name *</label>
-                    <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (assetName == null ? "border-gray-200": assetName.length > 2 && assetName.length < 20 ? "border-gray-200" : "border-red-500") } type="text" defaultValue={assetData['name']} onChange={(event) => setAssetName(event.target.value)}></input>
+                    <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (assetName == null ? "border-gray-200" : assetName.length > 2 && assetName.length < 20 ? "border-gray-200" : "border-red-500")} type="text" defaultValue={assetData['name']} onChange={(event) => setAssetName(event.target.value)}></input>
                     <div className={"mt-1 text-red-500 text-sm " + (assetName == null ? "hidden" : assetName.length > 2 && assetName.length < 20 ? "hidden" : "")}>Length of name should be from 3 to 19</div>
                     <label className="block mt-4 font-bold">External Link</label>
                     <p className="mt-1 text-gray-400">We will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</p>
@@ -214,6 +184,33 @@ const EditAsset = (props) => {
                     <label className="block mt-4 font-bold">Description</label>
                     <p className="mt-1 text-gray-400">The description will be included on the item's detail page underneath its image.</p>
                     <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={assetData['description']}></textarea>
+                    <div class="flex flex-row py-4 price justify-between" >
+                        <div class="flex flex-col gap-5">
+                            <div class="heading" style={{ fontWeight: "bold" }}>
+                                Category
+
+
+                            </div>
+                            <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
+                                Select category of your asset
+                            </div>
+
+                        </div>
+                        <div class="input">
+                            {/* <input  placeholder="Amount"></input> */}
+                            <select className="p-3 rounded-md bg-gray-50 border-2" id="cars" value={category} onChange={(e) => { setcategory(e.target.value); }}>
+                                <option value="Art">Art</option>
+                                <option value="Music">Music</option>
+                                <option value="Domain Name">Domain Name</option>
+                                <option value="Sport">Sport</option>
+                                <option value="Virtual Card">Virtual Card</option>
+                                <option value="Trading Card">Trading Card</option>
+                                <option value="Collectibles">Collectibles</option>
+                                <option value="GIFS">GIFS</option>
+                                <option value="Memes">Memes</option>
+                            </select>
+                        </div>
+                    </div>
                     <div className="mt-2 flex flex-column w-full">
                         <i className="p-1 mt-2 fas fa-list-ul"></i>
                         <div>
@@ -221,7 +218,7 @@ const EditAsset = (props) => {
                             <p className="mt-1 ml-4 font-light">Textual traits</p>
                         </div>
                         <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
-                            <Popup1 choice={1} properties={properties} setproperties={(value) => setproperties(value)}/>
+                            <Popup1 choice={1} properties={properties} setproperties={(value) => setproperties(value)} />
                         </button>
 
 
@@ -234,111 +231,9 @@ const EditAsset = (props) => {
                             <p className="mt-1 ml-4 font-light">Numerical traits that show as progress bars</p>
                         </div>
                         <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
-                            <Popup1 choice={2} properties={level} setproperties={(value) => setlevel(value)}/>
+                            <Popup1 choice={2} properties={level} setproperties={(value) => setlevel(value)} />
                         </button>
                     </div>
-<<<<<<< HEAD
-                </label>
-                <input className="opacity-0 absolute -z-10" id="upload-asset" type="file" onChange={uploadImage}></input>
-                <label className="block mt-4 font-bold">Name *</label>
-                <input className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={assetData['name']}></input>
-                <label className="block mt-4 font-bold">External Link</label>
-                <p className="mt-1 text-gray-400">We will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</p>
-                <input className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={assetData['assetUrl']}></input>
-                <label className="block mt-4 font-bold">Description</label>
-                <p className="mt-1 text-gray-400">The description will be included on the item's detail page underneath its image.</p>
-                <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={assetData['description']}></textarea>
-                <div class="flex flex-row py-4 price justify-between" >
-                    <div class="flex flex-col gap-5">
-                        <div class="heading" style={{ fontWeight: "bold" }}>
-                            Category
-
-
-                        </div>
-                        <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
-                            Select category of your asset
-                        </div>
-
-                    </div>
-                    <div class="input">
-                        {/* <input  placeholder="Amount"></input> */}
-                        <select className="p-3 rounded-md bg-gray-50 border-2" id="cars" value={category} onChange={(e) => { setcategory(e.target.value); }}>
-                            <option value="Art">Art</option>
-                            <option value="Music">Music</option>
-                            <option value="Domain Name">Domain Name</option>
-                            <option value="Sport">Sport</option>
-                            <option value="Virtual Card">Virtual Card</option>
-                            <option value="Trading Card">Trading Card</option>
-                            <option value="Collectibles">Collectibles</option>
-                            <option value="GIFS">GIFS</option>
-                            <option value="Memes">Memes</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="mt-2 flex flex-column w-full">
-                    <i className="p-1 mt-2 fas fa-list-ul"></i>
-                    <div>
-                        <p className="ml-4 font-bold">Properties</p>
-                        <p className="mt-1 ml-4 font-light">Textual traits</p>
-                    </div>
-                    <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
-                        <Popup1 choice={1} properties={properties} setproperties={(value) => setproperties(value)} />
-                    </button>
-
-
-                </div>
-                <hr className="mt-4" />
-                <div className="mt-2 flex flex-column w-full">
-                    <i className="p-1 mt-2 fas fa-star"></i>
-                    <div>
-                        <p className="ml-4 font-bold">Levels</p>
-                        <p className="mt-1 ml-4 font-light">Numerical traits that show as progress bars</p>
-                    </div>
-                    <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
-                        <Popup1 choice={2} properties={level} setproperties={(value) => setlevel(value)} />
-                    </button>
-                </div>
-                <hr className="mt-4" />
-                <div className="mt-2 flex flex-column w-full">
-                    <i className="p-1 mt-2 fas fa-signal"></i>
-                    <div>
-                        <p className="ml-4 font-bold">Stats</p>
-                        <p className="mt-1 ml-4 font-light">Numerical traits that show as numbers</p>
-                    </div>
-                    <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
-                        <Popup1 choice={3} properties={stats} setproperties={(value) => setstats(value)} />
-                    </button>
-                </div>
-
-                <label className="block mt-4 font-bold">Unlockable content</label>
-                <div class="flex flex-row justify-between align-items-center" style={{ alignItems: "center" }}>
-                    <p className="mt-1 text-gray-400">Include unlockable content that can only be revealed by the owner of the item.</p>
-                    <form>
-
-                        <label className="flex items-center cursor-pointer mt-5">
-                            <div className="relative">
-                                <input type="checkbox" id="notificationToggle" className="sr-only toggleCheckBox" onChange={() => { setunlockableContent(unlockableContent * (-1)) }} />
-                                <div className={"block w-14 h-8 rounded-full " + (unlockableContent == -1 ? 'bg-gray-600' : 'bg-gray-200')}></div>
-                                <div className="toggle absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
-                            </div>
-                        </label>
-                    </form>
-                </div>
-                {unlockableContent == 1 ? <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text"></textarea> : null}
-                <label className="block mt-4 font-bold">Supply *</label>
-
-                <p className="mt-1 text-gray-400">The number of copies that can be minted. No gas cost to you! Quantities above one coming soon.</p>
-                <input value="1" className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
-                <hr className="mt-4" />
-                <div className="w-full mt-8">
-                    <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Submit" onClick={handleSubmit}></input>
-                    <input type="Submit" className="bg-red-500 text-white p-4 rounded-md float-right hover:bg-red-600 hover:shadow-lg" value="Delete Item" onClick={handleDelete}></input>
-                </div>
-            </form>
-
-        </div>
-    )
-=======
                     <hr className="mt-4" />
                     <div className="mt-2 flex flex-column w-full">
                         <i className="p-1 mt-2 fas fa-signal"></i>
@@ -347,7 +242,7 @@ const EditAsset = (props) => {
                             <p className="mt-1 ml-4 font-light">Numerical traits that show as numbers</p>
                         </div>
                         <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
-                            <Popup1 choice={3} properties={stats} setproperties={(value) => setstats(value)}/>
+                            <Popup1 choice={3} properties={stats} setproperties={(value) => setstats(value)} />
                         </button>
                     </div>
 
@@ -380,7 +275,6 @@ const EditAsset = (props) => {
         )
     }
     return <div className="flex h-screen justify-center items-center"><h1 className="text-center text-3xl">Please Sign in to MetaMask</h1></div>;
->>>>>>> c1cac8d6381a4105fe73d20041e36be334d28ee9
 }
 
 export default EditAsset
