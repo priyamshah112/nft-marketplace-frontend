@@ -49,7 +49,7 @@ const Listing_Entry = (props) => {
             <td className="p-4">{props.price} ETH</td>
             <td className="p-4">{props.expiry}</td>
             <td className="p-4">
-                    <button className="rounded-md p-2 border-2 border-green-400 bg-white text-green-400 hover:shadow-lg">{props.transact}</button>
+                <button className="rounded-md p-2 border-2 border-green-400 bg-white text-green-400 hover:shadow-lg">{props.transact}</button>
             </td>
         </tr>
     )
@@ -209,11 +209,7 @@ const Asset = () => {
                                     <i className="fas fa-caret-down text-2xl"></i>
                                 </div>
                             </div>
-<<<<<<< HEAD
-                            <div className="bg-blue-50 w-full p-8">
-
-=======
-                            <hr/>
+                            <hr />
                             <div className="listingContent">
                                 <table className="w-full">
                                     <tr className="bg-white">
@@ -223,9 +219,8 @@ const Asset = () => {
                                         <td className="p-4">Buy/Sell</td>
                                     </tr>
                                     <Listing_Entry from={"ApeLife"} price={"0.12"} expiry={"03/08/2021"} transact={"Buy"} />
-                                    <Listing_Entry from={"ApeLife"} price={"0.12"} expiry={"03/08/2021"} transact={"Buy"}/>
+                                    <Listing_Entry from={"ApeLife"} price={"0.12"} expiry={"03/08/2021"} transact={"Buy"} />
                                 </table>
->>>>>>> 0a45f5cd5c8f664b5237909ae09e62a5332fe3a7
                             </div>
                         </div>
                         <hr />
@@ -238,10 +233,7 @@ const Asset = () => {
                                     <i className="fas fa-caret-down text-2xl"></i>
                                 </div>
                             </div>
-<<<<<<< HEAD
-                            <div className="bg-blue-50 w-full p-8">
-=======
-                            <hr/>
+                            <hr />
                             <div className="offerContent">
                                 <table className="w-full">
                                     <tr className="bg-white">
@@ -252,11 +244,10 @@ const Asset = () => {
                                     <Offer_Entry from={"ApeLife"} price={"0.12"} expiry={"03/08/2021"} />
                                     <Offer_Entry from={"ApeLife"} price={"0.12"} expiry={"03/08/2021"} />
                                 </table>
-                                <hr/>
+                                <hr />
                                 <div className="bg-blue-50 p-4">
-                                    <button className = "bg-white rounded-md border-blue-500 border-2 px-8 py-4 text-blue-500 font-bold hover:shadow-lg">Make Offer</button>
+                                    <button className="bg-white rounded-md border-blue-500 border-2 px-8 py-4 text-blue-500 font-bold hover:shadow-lg">Make Offer</button>
                                 </div>
->>>>>>> 0a45f5cd5c8f664b5237909ae09e62a5332fe3a7
 
                             </div>
                         </div>
@@ -272,11 +263,7 @@ const Asset = () => {
                         <i className="fas fa-caret-down text-2xl"></i>
                     </div>
                 </div>
-<<<<<<< HEAD
-                <div className="bg-blue-50 w-full rounded-b-lg p-8 border-2">
-
-=======
-                <hr/>
+                <hr />
                 <div className="tradingHistoryContent border-2 rounded-b-md">
                     <div className="tradingFilter bg-blue-50 p-4">
                         <select name="filters" className="w-full p-4 text-lg bg-white focus:outline-none">
@@ -287,7 +274,7 @@ const Asset = () => {
                             <option value="Transfers">Transfers</option>
                         </select>
                     </div>
-                    <hr/>
+                    <hr />
                     <div>
                         <table className="w-full">
                             <tr className="bg-white">
@@ -301,7 +288,6 @@ const Asset = () => {
                             <Trading_Entry event={"Created"} from={"ApeLife"} to={"LazerViking"} price={"0.12"} date={"03/08/2021"} />
                         </table>
                     </div>
->>>>>>> 0a45f5cd5c8f664b5237909ae09e62a5332fe3a7
                 </div>
             </div>
         </div>

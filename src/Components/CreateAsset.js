@@ -26,6 +26,7 @@ const CreateAsset = () => {
     const [properties, setproperties] = useState([])
     const [level, setlevel] = useState([])
     const [stats, setstats] = useState([])
+    const [category, setcategory] = useState("Art")
 
 
 
@@ -138,7 +139,7 @@ const CreateAsset = () => {
                 "name": event.target.form[1].value,
                 "description": event.target.form[3].value,
                 "private": false,
-                "category": "art",
+                "category": category,
 
                 "properties": properties,
                 "levels": level,
@@ -205,6 +206,33 @@ const CreateAsset = () => {
                 <label className="block mt-4 font-bold">Description</label>
                 <p className="mt-1 text-gray-400">The description will be included on the item's detail page underneath its image.</p>
                 <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text"></textarea>
+                <div class="flex flex-row py-4 price justify-between" >
+                    <div class="flex flex-col gap-5">
+                        <div class="heading" style={{ fontWeight: "bold" }}>
+                            Category
+
+
+                        </div>
+                        <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
+                            Select category of your asset
+                        </div>
+
+                    </div>
+                    <div class="input">
+                        {/* <input  placeholder="Amount"></input> */}
+                        <select className="p-3 rounded-md bg-gray-50 border-2" id="cars" value={category} onChange={(e) => { setcategory(e.target.value); }}>
+                            <option value="Art">Art</option>
+                            <option value="Music">Music</option>
+                            <option value="Domain Name">Domain Name</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Virtual Card">Virtual Card</option>
+                            <option value="Trading Card">Trading Card</option>
+                            <option value="Collectibles">Collectibles</option>
+                            <option value="GIFS">GIFS</option>
+                            <option value="Memes">Memes</option>
+                        </select>
+                    </div>
+                </div>
                 <div className="mt-2 flex flex-column w-full">
                     <i className="p-1 mt-2 fas fa-list-ul"></i>
                     <div>
@@ -217,6 +245,7 @@ const CreateAsset = () => {
 
 
                 </div>
+
                 {/* <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>Ass</button> */}
 
                 {

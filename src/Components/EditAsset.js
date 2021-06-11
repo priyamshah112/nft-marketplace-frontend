@@ -17,6 +17,7 @@ const EditAsset = (props) => {
     const [assetData, setAssetData] = useState([])
     let { id } = useParams()
     const assetId = id != null ? id : ""
+    const [category, setcategory] = useState("Art")
 
     const uploadImage = (event) => {
         event.preventDefault()
@@ -39,9 +40,9 @@ const EditAsset = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log("P:",properties[0])
-        console.log("L:",level[0])
-        console.log("S:",stats[0])
+        console.log("P:", properties[0])
+        console.log("L:", level[0])
+        console.log("S:", stats[0])
         console.log({
             "ownerId": assetData['ownerId'],
             "assetId": assetData['meta']['assetId'],
@@ -51,14 +52,14 @@ const EditAsset = (props) => {
                 "name": event.target.form[1].value,
                 "description": event.target.form[3].value,
                 "private": false,
-                "category": "art",
-                "properties": properties.length == 0 ? [] : typeof(properties[0]) === 'object' ? properties : properties[0],
+                "category": category,
+                "properties": properties.length == 0 ? [] : typeof (properties[0]) === 'object' ? properties : properties[0],
                 "levels": level.length == 0 ? [] : level[0],
                 "stats": stats.length == 0 ? [] : stats[0]
             }
         })
-        
-        axios.put('https://nft-api-1.herokuapp.com/api/assets',{
+
+        axios.put('https://nft-api-1.herokuapp.com/api/assets', {
             "ownerId": assetData['ownerId'],
             "assetId": assetData['meta']['assetId'],
             "asset": {
@@ -67,16 +68,16 @@ const EditAsset = (props) => {
                 "name": event.target.form[1].value,
                 "description": event.target.form[3].value,
                 "private": false,
-                "category": "art",
-                "properties": properties.length == 0 ? [] : typeof(properties[0]) === 'object' ? properties : properties[0],
+                "category": category,
+                "properties": properties.length == 0 ? [] : typeof (properties[0]) === 'object' ? properties : properties[0],
                 "levels": level.length == 0 ? [] : level[0],
                 "stats": stats.length == 0 ? [] : stats[0]
 
             }
         }).then((result) => console.log(result.data))
-        .catch((error) => {
-         throw console.log(error);
-        })
+            .catch((error) => {
+                throw console.log(error);
+            })
     }
 
     const handleDelete = (event) => {
@@ -85,28 +86,28 @@ const EditAsset = (props) => {
             "ownerId": assetData['ownerId'],
             "assetId": assetData['meta']['assetId']
         })
-        axios.delete('https://nft-api-1.herokuapp.com/api/assets',{
-            data:{
+        axios.delete('https://nft-api-1.herokuapp.com/api/assets', {
+            data: {
                 "ownerId": assetData['ownerId'],
                 "assetId": assetData['meta']['assetId']
             }
         }).then((result) => console.log(result.data))
-        .catch((error) => {
-         throw console.log(error);
-        })
+            .catch((error) => {
+                throw console.log(error);
+            })
     }
 
-    useEffect(() => { 
+    useEffect(() => {
         axios.get('https://nft-api-1.herokuapp.com/api/assets/' + assetId.toString())
-                    .then(response => {
-                        setAssetData(response['data']['data'])
-                        setIPFSHash(response['data']['data']['assetUrl'].split('/')[4])
-                        setproperties(response['data']['data']['meta']['properties'])
-                        console.log(response['data']['data']['meta']['properties'])
-                        setlevel(response['data']['data']['meta']['levels'])
-                        setstats(response['data']['data']['meta']['stats'])
-                    })
-    },[])
+            .then(response => {
+                setAssetData(response['data']['data'])
+                setIPFSHash(response['data']['data']['assetUrl'].split('/')[4])
+                setproperties(response['data']['data']['meta']['properties'])
+                console.log(response['data']['data']['meta']['properties'])
+                setlevel(response['data']['data']['meta']['levels'])
+                setstats(response['data']['data']['meta']['stats'])
+            })
+    }, [])
     console.log(assetData)
     return (
         <div className="m-10 ml-96 mr-96">
@@ -128,6 +129,33 @@ const EditAsset = (props) => {
                 <label className="block mt-4 font-bold">Description</label>
                 <p className="mt-1 text-gray-400">The description will be included on the item's detail page underneath its image.</p>
                 <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={assetData['description']}></textarea>
+                <div class="flex flex-row py-4 price justify-between" >
+                    <div class="flex flex-col gap-5">
+                        <div class="heading" style={{ fontWeight: "bold" }}>
+                            Category
+
+
+                        </div>
+                        <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
+                            Select category of your asset
+                        </div>
+
+                    </div>
+                    <div class="input">
+                        {/* <input  placeholder="Amount"></input> */}
+                        <select className="p-3 rounded-md bg-gray-50 border-2" id="cars" value={category} onChange={(e) => { setcategory(e.target.value); }}>
+                            <option value="Art">Art</option>
+                            <option value="Music">Music</option>
+                            <option value="Domain Name">Domain Name</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Virtual Card">Virtual Card</option>
+                            <option value="Trading Card">Trading Card</option>
+                            <option value="Collectibles">Collectibles</option>
+                            <option value="GIFS">GIFS</option>
+                            <option value="Memes">Memes</option>
+                        </select>
+                    </div>
+                </div>
                 <div className="mt-2 flex flex-column w-full">
                     <i className="p-1 mt-2 fas fa-list-ul"></i>
                     <div>
@@ -135,7 +163,7 @@ const EditAsset = (props) => {
                         <p className="mt-1 ml-4 font-light">Textual traits</p>
                     </div>
                     <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
-                        <Popup1 choice={1} properties={properties} setproperties={(value) => setproperties(value)}/>
+                        <Popup1 choice={1} properties={properties} setproperties={(value) => setproperties(value)} />
                     </button>
 
 
@@ -148,7 +176,7 @@ const EditAsset = (props) => {
                         <p className="mt-1 ml-4 font-light">Numerical traits that show as progress bars</p>
                     </div>
                     <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
-                        <Popup1 choice={2} properties={level} setproperties={(value) => setlevel(value)}/>
+                        <Popup1 choice={2} properties={level} setproperties={(value) => setlevel(value)} />
                     </button>
                 </div>
                 <hr className="mt-4" />
@@ -159,7 +187,7 @@ const EditAsset = (props) => {
                         <p className="mt-1 ml-4 font-light">Numerical traits that show as numbers</p>
                     </div>
                     <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
-                        <Popup1 choice={3} properties={stats} setproperties={(value) => setstats(value)}/>
+                        <Popup1 choice={3} properties={stats} setproperties={(value) => setstats(value)} />
                     </button>
                 </div>
 
