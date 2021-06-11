@@ -98,29 +98,33 @@ const EditAsset = (props) => {
                 "stats": stats.length == 0 ? [] : stats[0]
             }
         })
-        
-        axios.put('https://nft-api-1.herokuapp.com/api/assets',{
-            "ownerId": assetData['ownerId'],
-            "assetId": assetData['meta']['assetId'],
-            "asset": {
-                "assetUrl": "https://ipfs.io/ipfs/" + ipfsHash,
-                "assetMime": "image/png",
-                "name": event.target.form[1].value,
-                "description": event.target.form[3].value,
-                "private": false,
-                "category": "art",
-                "properties": properties.length == 0 ? [] : typeof(properties[0]) === 'object' ? properties : properties[0],
-                "levels": level.length == 0 ? [] : level[0],
-                "stats": stats.length == 0 ? [] : stats[0]
+        if(event.target.form[1].value.length > 2 && event.target.form[1].value.length < 20){
+            axios.put('https://nft-api-1.herokuapp.com/api/assets',{
+                "ownerId": assetData['ownerId'],
+                "assetId": assetData['meta']['assetId'],
+                "asset": {
+                    "assetUrl": "https://ipfs.io/ipfs/" + ipfsHash,
+                    "assetMime": "image/png",
+                    "name": event.target.form[1].value,
+                    "description": event.target.form[3].value,
+                    "private": false,
+                    "category": "art",
+                    "properties": properties.length == 0 ? [] : typeof(properties[0]) === 'object' ? properties : properties[0],
+                    "levels": level.length == 0 ? [] : level[0],
+                    "stats": stats.length == 0 ? [] : stats[0]
 
-            }
-        }).then((result) => {
-            console.log(result.data);
-            window.location.href = "/profile";
-        })
-        .catch((error) => {
-         throw console.log(error);
-        })
+                }
+            }).then((result) => {
+                console.log(result.data);
+                window.location.href = "/profile";
+            })
+            .catch((error) => {
+            throw console.log(error);
+            })
+        }
+        else{
+            console.log("Invalid asset name entry")
+        }
     }
 
     const handleDelete = (event) => {
@@ -155,7 +159,7 @@ const EditAsset = (props) => {
                     })
     },[])
     console.log(assetData)
-
+    const [assetName, setAssetName] = useState(assetData['name'])
     login();
     if(accountAd === assetData['ownerId']){
         return (
@@ -171,7 +175,8 @@ const EditAsset = (props) => {
                     </label>
                     <input className="opacity-0 absolute -z-10" id="upload-asset" type="file" onChange={uploadImage}></input>
                     <label className="block mt-4 font-bold">Name *</label>
-                    <input className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={assetData['name']}></input>
+                    <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (assetName == null ? "border-gray-200": assetName.length > 2 && assetName.length < 20 ? "border-gray-200" : "border-red-500") } type="text" defaultValue={assetData['name']} onChange={(event) => setAssetName(event.target.value)}></input>
+                    <div className={"mt-1 text-red-500 text-sm " + (assetName == null ? "hidden" : assetName.length > 2 && assetName.length < 20 ? "hidden" : "")}>Length of name should be from 3 to 19</div>
                     <label className="block mt-4 font-bold">External Link</label>
                     <p className="mt-1 text-gray-400">We will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</p>
                     <input className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={assetData['assetUrl']}></input>
@@ -217,7 +222,6 @@ const EditAsset = (props) => {
                     <div class="flex flex-row justify-between align-items-center" style={{ alignItems: "center" }}>
                         <p className="mt-1 text-gray-400">Include unlockable content that can only be revealed by the owner of the item.</p>
                         <form>
-
                             <label className="flex items-center cursor-pointer mt-5">
                                 <div className="relative">
                                     <input type="checkbox" id="notificationToggle" className="sr-only toggleCheckBox" onChange={() => { setunlockableContent(unlockableContent * (-1)) }} />
