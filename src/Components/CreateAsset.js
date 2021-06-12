@@ -172,7 +172,7 @@ const CreateAsset = () => {
             "ownerId": accountAd
         })
         console.log()
-        if(event.target.form[1].value.length > 2 && event.target.form[1].value.length < 20){
+        if(event.target.form[1].value.length > 2 && event.target.form[1].value.length < 20 && event.target.form[2].value.length > 2 && event.target.form[2].value.length < 20){
             axios.post('https://nft-api-1.herokuapp.com/api/assets/',
                 {
                     "asset": {
@@ -207,7 +207,7 @@ const CreateAsset = () => {
             })
         }
         else{
-            console.log("Invalid asset name entry")
+            console.log("Invalid asset/creator name entry")
         }
 
     }
@@ -224,6 +224,7 @@ const CreateAsset = () => {
         }
     }
     const [assetName, setAssetName] = useState(null)
+    const [creatorName, setCreatorName] = useState(null)
     return (
 
         <div className="m-10 ml-96 mr-96">
@@ -239,7 +240,10 @@ const CreateAsset = () => {
                 <input className="opacity-0 absolute -z-10" id="upload-asset" type="file" onChange={uploadImage}></input>
                 <label className="block mt-4 font-bold">Name *</label>
                 <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (assetName == null ? "border-gray-200": assetName.length > 2 && assetName.length < 20 ? "border-gray-200" : "border-red-500") } type="text" onChange={(event) => setAssetName(event.target.value)}></input>
-                <div className={"mt-1 text-red-500 text-sm " + (assetName == null ? "hidden" : assetName.length > 2 && assetName.length < 20 ? "hidden" : "")}>Length of name should be from 3 to 19</div>
+                <div className={"mt-1 text-red-500 text-sm " + (assetName == null ? "hidden" : assetName.length > 2 && assetName.length < 20 ? "hidden" : "")}>Length of asset name should be from 3 to 19</div>
+                <label className="block mt-4 font-bold">Creator Name *</label>
+                <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (creatorName == null ? "border-gray-200": creatorName.length > 2 && creatorName.length < 20 ? "border-gray-200" : "border-red-500") } type="text" onChange={(event) => setCreatorName(event.target.value)}></input>
+                <div className={"mt-1 text-red-500 text-sm " + (creatorName == null ? "hidden" : creatorName.length > 2 && creatorName.length < 20 ? "hidden" : "")}>Length of creator name should be from 3 to 19</div>
                 <label className="block mt-4 font-bold">External Link</label>
                 <p className="mt-1 text-gray-400">We will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</p>
                 <input className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
