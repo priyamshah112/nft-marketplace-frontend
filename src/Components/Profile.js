@@ -13,14 +13,26 @@ const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
 const Product_card = (props) => {
+    function deleteAsset(ownerId, assetId){
+        console.log(ownerId, assetId)
+        axios.delete('http://localhost:5000/api/assets',{
+            data:{
+                "assetId": assetId,
+                "ownerId": ownerId
+            }
+        }).then((result) => {
+            console.log(result.data);
+            window.location.href = "/profile";
+        }).catch((error) => {
+            throw console.log(error);
+        })
+    }
     return (
         <div className="w-60 rounded flex flex-col justify-between shadow-lg my-2">
             <div className="flex flex-row-reverse m-5 items-center gap-1">
                 {props.like}
                 <i className="far fa-heart"></i>
-                <Link to={'/editAsset/' + props.assetId.toString()}>
-                    <button className="mr-2"><i className="fas fa-edit"></i></button>
-                </Link>
+                <button className="mr-2" onClick={() => deleteAsset(props.ownerId, props.assetId)}><i className="fas fa-trash"></i></button>
             </div>
             <img className="w-full" src={props.imageurl} alt="Sunset in the mountains" />
             <div className="mx-6 my-4">
@@ -41,7 +53,7 @@ const Assets = (props) => {
     const getAsset = () => {
         console.log(props.accountAd)
         {
-            axios.get('https://nft-api-1.herokuapp.com/api/assets/user/' + props.accountAd).then((res, err) => {
+            axios.get('http://localhost:5000/api/assets/user/' + props.accountAd).then((res, err) => {
                 if (err) {
                     console.log(err);
                 }
@@ -49,7 +61,7 @@ const Assets = (props) => {
                 console.log({ "asdas": res })
                 var item = []
                 data.map(asset => {
-                    item.push(<Product_card assetId={asset.meta.assetId} accountAd={props.accountAd} name={asset.name} like={asset.likes} descr={asset.description} imageurl={asset.assetUrl} />)
+                    item.push(<Product_card ownerId={asset.ownerId.account_address[0]} assetId={asset.meta.assetId} accountAd={props.accountAd} name={asset.name} like={asset.likes} descr={asset.description} imageurl={asset.assetUrl} />)
                 })
                 setassets(item);
 
