@@ -13,13 +13,8 @@ const GeneralSettings = (props) => {
                     {
                         "username":event.target.form[0].value,
                         "account_address":props.accountAd,
-                        "user_type":"verified",
                         "bio":event.target.form[1].value,
-                        "email_address":event.target.form[2].value,
-                        "bg_img_url":"https://google.com/",
-                        "profile_pic_url":"https://google.com/",
-                        "is_verified":true,
-                        "is_deleted":false
+                        "email_address":event.target.form[2].value
                     }
 
                 // Replace above line by: "ownerId": "6087765dfc13ae34e4000064" for testing 
