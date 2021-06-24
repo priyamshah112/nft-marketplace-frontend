@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import axios from 'axios';
 import verifyUser from '../Mock_Api/verifyUser';
+const IPFS = require('ipfs-http-client')
+const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
 const Product_card = (props) => {
     return (
@@ -16,7 +18,7 @@ const Product_card = (props) => {
             <div className="flex flex-row-reverse m-5 items-center gap-1">
                 {props.like}
                 <i className="far fa-heart"></i>
-                <Link to= {'/editAsset/' + props.assetId.toString()}>
+                <Link to={'/editAsset/' + props.assetId.toString()}>
                     <button className="mr-2"><i className="fas fa-edit"></i></button>
                 </Link>
             </div>
@@ -131,17 +133,21 @@ const Activity = () => {
 const Profile = () => {
 
     const [accountAd, setaccountAd] = useState("")
+    const [buffer, setBuffer] = useState(null);
+    const [bgipfs, setbgipfs] = useState("");
+    const [pfipfs, setpfipfs] = useState("");
 
-    const VerifyUser = async (account)=>{
+
+    const VerifyUser = async (account) => {
         verifyUser.post(`/auth/verifyUser/${account}`)
-            .then(response=>{ 
+            .then(response => {
                 //console.log(response.data.data) 
             })
-            .catch(err=>{
+            .catch(err => {
                 console.log(err)
             })
     }
-    
+
     async function enableEthereum() {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];
@@ -149,9 +155,9 @@ const Profile = () => {
         VerifyUser(account);
         console.log(account);
     }
-    
+
     function login() {
-        if(typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
+        if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
             enableEthereum()
             window.ethereum.on('accountsChanged', function (accounts) {
                 window.location.reload()
@@ -163,20 +169,78 @@ const Profile = () => {
         }
     }
 
-    useEffect(() => { 
+    useEffect(() => {
         //console.log(accountAd);
+        if (accountAd != "") {
+            axios.get('http://localhost:5000/api/user/' + accountAd).then((res, err) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    var data = res.data.data;
+                    setbgipfs(data.bg_img_url)
+                    setpfipfs(data.profile_pic_url);
+                    console.log(data);
+                }
+            })
+        }
     }, [accountAd])
 
 
 
     let fileSelector = null;
     const [selectedTab, setselectedTab] = useState(0);
+    //Background pic handler
     const fileSelectedHandler = (e) => {
-        console.log(e.target.files[0]);
+        const file = e.target.files[0]
+        const reader = new window.FileReader()
+        reader.readAsArrayBuffer(file)
+        reader.onloadend = () => {
+            ipfs.add(Buffer(reader.result)).then((res) => {
+                setbgipfs('https://ipfs.io/ipfs/' + res.path.toString());
+                console.log(res.path);
+                axios.put('http://localhost:5000/api/user/' + accountAd,
+                    { "account_address": [accountAd], "bg_img_url": 'https://ipfs.io/ipfs/' + res.path.toString() })
+                    .then((res, err) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    }).catch((err) => {
+                        console.log(err);
+                    })
+            })
+
+        }
+
+    }
+    //Profile Pic Handler
+    const fileSelectedHandler2 = (e) => {
+        const file = e.target.files[0]
+        const reader = new window.FileReader()
+        reader.readAsArrayBuffer(file)
+        reader.onloadend = () => {
+
+            ipfs.add(Buffer(reader.result)).then((res) => {
+                setpfipfs('https://ipfs.io/ipfs/' + res.path.toString());
+                console.log(res.path);
+                axios.put('http://localhost:5000/api/user/' + accountAd,
+                    { "account_address": [accountAd], "profile_pic_url": 'https://ipfs.io/ipfs/' + res.path.toString() })
+                    .then((res, err) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    }).catch((err) => {
+                        console.log(err);
+                    })
+            })
+
+        }
+
     }
 
+    //
     useEffect(() => {
-        if(document.getElementById(selectedTab) !== null)
+        if (document.getElementById(selectedTab) !== null)
             document.getElementById(selectedTab).classList.add('bg-gray-100')
     })
 
@@ -192,11 +256,11 @@ const Profile = () => {
 
     login();
     console.log(accountAd)
-    if(accountAd){
+    if (accountAd) {
         console.log(accountAd)
         return (
             <div className="flex flex-col">
-                <div className="flex flex-row-reverse  bg-gray-100 h-52 " id="background">
+                <div className="flex flex-row-reverse  bg-gray-100 h-52 " id="background" style={{ background: "url(" + bgipfs + ")" }}>
 
                     <div className="pr-3 py-4">
 
@@ -214,10 +278,19 @@ const Profile = () => {
                 <div className="flex flex-row-reverse gap-5 pr-5 py-4 relative">
                     <i className="fas fa-cog" style={{ fontSize: "40px" }}></i>
                     <i className="fas fa-share-alt-square" style={{ fontSize: "40px" }}></i>
-                    <div className="absolute flex flex-col bottom-4 right-1/2 justify-center items-center">
-                        {/* <i className="far fa-user-circle" style={{ fontSize: "60px" }}></i> */}
-                        <div className="rounded-full h-32 w-32 flex items-center justify-center" style={{ backgroundImage: "url(" + profile_img + ")" }} >
-                            {/* <img src={profile_img}></img> */}
+                    <div className="absolute flex flex-col bottom-4 right-1/2 justify-center items-center" style={{ left: "50%" }}>
+
+                        <div className="rounded-full h-32 w-32 flex" style={{ backgroundImage: "url(" + pfipfs + ")", justifyContent: "center", alignItems: "flex-end" }} >
+                            {/* <div > */}
+                            <i onClick={(e) => document.getElementById('myInput2').click()} style={{ color: "white", fontWeight: "bold", paddingBottom: "10px" }}>Edit</i>
+                            <input
+                                id="myInput2"
+                                style={{ display: 'none' }}
+                                type={"file"}
+                                onChange={fileSelectedHandler2}
+
+                            />
+                            {/* </div> */}
                         </div>
                         <h2>{accountAd}</h2>
                     </div>
@@ -246,7 +319,7 @@ const Profile = () => {
                 </div>
                 <hr />
                 {
-                    selectedTab == 0 ? <Assets accountAd={ accountAd }/> : null
+                    selectedTab == 0 ? <Assets accountAd={accountAd} /> : null
 
                 }
                 {selectedTab == 1 ? <Activity /> : null}
