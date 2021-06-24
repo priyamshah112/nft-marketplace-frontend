@@ -157,38 +157,36 @@ const CreateAsset = () => {
         console.log(level)
 
         console.log({
-            "asset": {
-                "assetUrl": "https://ipfs.io/ipfs/" + ipfsHash,
-                "assetMime": "image/png",
-                "name": event.target.form[1].value,
-                "description": event.target.form[3].value,
-                "private": false,
-                "category": category,
-
-                "properties": properties,
-                "levels": level,
-                "stats": stats
-            },
-            "ownerId": accountAd
+            "ownerId": accountAd,
+            "asset":{
+                "assetUrl":"https://ipfs.io/ipfs/" + ipfsHash,
+                "category":event.target.form[3].value,
+                "assetName":event.target.form[1].value,
+                "assetMime":"image/png",
+                "description":event.target.form[2].value,
+                "private":false,
+                "properties":properties.length == 0 ? [] : properties[0],
+                "stats": stats.length == 0 ? [] : stats[0],
+                "levels":level.length == 0 ? [] : level[0]
+            }
         })
         console.log()
-        if (event.target.form[1].value.length > 2 && event.target.form[1].value.length < 20) {
-            axios.post('https://nft-api-1.herokuapp.com/api/assets/',
-                {
-                    "asset": {
-                        "assetUrl": "https://ipfs.io/ipfs/" + ipfsHash,
-                        "assetMime": "image/png",
-                        "name": event.target.form[1].value,
-                        "description": event.target.form[3].value,
-                        "private": false,
-                        "category": "art",
-                        "properties": properties.length == 0 ? [] : properties[0],
-                        "levels": level.length == 0 ? [] : level[0],
-                        "stats": stats.length == 0 ? [] : stats[0]
-
-                    },
-                    "ownerId": accountAd
+        if (event.target.form[1].value.length > 2 && event.target.form[1].value.length < 19) {
+            axios.post('http://localhost:5000/api/assets/',
+            {
+                "ownerId":accountAd.toString(),
+                "asset":{
+                    "assetUrl":"https://ipfs.io/ipfs/" + ipfsHash,
+                    "category":event.target.form[3].value,
+                    "assetName":event.target.form[1].value,
+                    "assetMime":"image/png",
+                    "description":event.target.form[2].value,
+                    "private":false,
+                    "properties":properties.length == 0 ? [] : properties[0],
+                    "stats":stats.length == 0 ? [] : stats[0],
+                    "levels":level.length == 0 ? [] : level[0]
                 }
+            }
 
                 // Replace above line by: "ownerId": "6087765dfc13ae34e4000064" for testing 
 
@@ -238,11 +236,8 @@ const CreateAsset = () => {
                 </label>
                 <input className="opacity-0 absolute -z-10" id="upload-asset" type="file" onChange={uploadImage}></input>
                 <label className="block mt-4 font-bold">Name *</label>
-                <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (assetName == null ? "border-gray-200" : assetName.length > 2 && assetName.length < 20 ? "border-gray-200" : "border-red-500")} type="text" onChange={(event) => setAssetName(event.target.value)}></input>
-                <div className={"mt-1 text-red-500 text-sm " + (assetName == null ? "hidden" : assetName.length > 2 && assetName.length < 20 ? "hidden" : "")}>Length of name should be from 3 to 19</div>
-                <label className="block mt-4 font-bold">External Link</label>
-                <p className="mt-1 text-gray-400">We will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</p>
-                <input className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
+                <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (assetName == null ? "border-gray-200": assetName.length > 2 && assetName.length < 19 ? "border-gray-200" : "border-red-500") } type="text" onChange={(event) => setAssetName(event.target.value)}></input>
+                <div className={"mt-1 text-red-500 text-sm " + (assetName == null ? "hidden" : assetName.length > 2 && assetName.length < 19 ? "hidden" : "")}>Length of asset name should be from 3 to 18</div>
                 <label className="block mt-4 font-bold">Description</label>
                 <p className="mt-1 text-gray-400">The description will be included on the item's detail page underneath its image.</p>
                 <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text"></textarea>
@@ -250,13 +245,13 @@ const CreateAsset = () => {
                     <div class="flex flex-col gap-5">
                         <div class="heading" style={{ fontWeight: "bold" }}>
                             Category
-
-
+    
+    
                         </div>
                         <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
                             Select category of your asset
                         </div>
-
+    
                     </div>
                     <div class="input">
                         {/* <input  placeholder="Amount"></input> */}
@@ -282,16 +277,16 @@ const CreateAsset = () => {
                     <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
                         <Popup1 choice={1} properties={properties} setproperties={(value) => setproperties(value)} />
                     </button>
-
-
+    
+    
                 </div>
-
+    
                 {/* <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>Ass</button> */}
-
+    
                 {
                     updatePropertyTag()
                 }
-
+    
                 <hr className="mt-4" />
                 <div className="mt-2 flex flex-column w-full">
                     <i className="p-1 mt-2 fas fa-star"></i>
@@ -320,12 +315,12 @@ const CreateAsset = () => {
                 {
                     updateStatsTag()
                 }
-
+    
                 <label className="block mt-4 font-bold">Unlockable content</label>
                 <div class="flex flex-row justify-between align-items-center" style={{ alignItems: "center" }}>
                     <p className="mt-1 text-gray-400">Include unlockable content that can only be revealed by the owner of the item.</p>
                     <form>
-
+    
                         <label className="flex items-center cursor-pointer mt-5">
                             <div className="relative">
                                 <input type="checkbox" id="notificationToggle" className="sr-only toggleCheckBox" onChange={() => { setunlockableContent(unlockableContent * (-1)) }} />
@@ -337,23 +332,23 @@ const CreateAsset = () => {
                 </div>
                 {unlockableContent == 1 ? <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text"></textarea> : null}
                 <label className="block mt-4 font-bold">Supply *</label>
-
+    
                 <p className="mt-1 text-gray-400">The number of copies that can be minted. No gas cost to you! Quantities above one coming soon.</p>
                 <input value="1" className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
                 <hr className="mt-4" />
                 {login()}
-                {accountAd ?
-                    <div className="w-full mt-8">
-                        <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Create" onClick={(event) => handleSubmit(event)}></input>
-                    </div>
+                { accountAd ?
+                        <div className="w-full mt-8">
+                            <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Create" onClick={(event)=>handleSubmit(event)}></input>
+                        </div>
                     :
-                    <div className="w-full mt-8">
-                        <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Create" onClick={getMetaMask}></input>
-                    </div>
+                        <div className="w-full mt-8">
+                            <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Create" onClick={getMetaMask}></input>
+                        </div>
                 }
                 <br /><br />
             </form>
-
+    
         </div>
     )
 }

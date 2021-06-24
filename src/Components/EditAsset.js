@@ -99,21 +99,37 @@ const EditAsset = (props) => {
                 "stats": stats.length == 0 ? [] : stats[0]
             }
         })
-        if (event.target.form[1].value.length > 2 && event.target.form[1].value.length < 20 && event.target.form[2].value.length > 2 && event.target.form[2].value.length < 20) {
-            axios.put('https://nft-api-1.herokuapp.com/api/assets', {
-                "ownerId": assetData['ownerId'],
-                "assetId": assetData['meta']['assetId'],
-                "asset": {
-                    "assetUrl": "https://ipfs.io/ipfs/" + ipfsHash,
-                    "assetMime": "image/png",
-                    "name": event.target.form[1].value,
-                    "description": event.target.form[3].value,
-                    "private": false,
-                    "category": "art",
-                    "properties": properties.length == 0 ? [] : typeof (properties[0]) === 'object' ? properties : properties[0],
-                    "levels": level.length == 0 ? [] : level[0],
-                    "stats": stats.length == 0 ? [] : stats[0]
 
+        console.log({
+            "ownerId":assetData['ownerId'],
+            "_id":assetData['meta']['assetId'],
+            "asset":{
+                "assetUrl":"https://ipfs.io/ipfs/" + ipfsHash,
+                "category": category,
+                "assetName":event.target.form[1].value,
+                "assetMime":"image/png",
+                "description":event.target.form[3].value,
+                "private":false,
+                "properties":properties.length == 0 ? [] : typeof (properties[0]) === 'object' ? properties : properties[0],
+                "stats":stats.length == 0 ? [] : stats[0],
+                "levels":level.length == 0 ? [] : level[0]
+            }
+        })
+
+        if (event.target.form[1].value.length > 2 && event.target.form[1].value.length < 19) {
+            axios.put('http://localhost:5000/api/assets', {
+                "ownerId":assetData['ownerId'],
+                "_id":assetData['meta']['assetId'],
+                "asset":{
+                    "assetUrl":"https://ipfs.io/ipfs/" + ipfsHash,
+                    "category": category,
+                    "assetName":event.target.form[1].value,
+                    "assetMime":"image/png",
+                    "description":event.target.form[3].value,
+                    "private":false,
+                    "properties":properties.length == 0 ? [] : typeof (properties[0]) === 'object' ? properties : properties[0],
+                    "stats":stats.length == 0 ? [] : stats[0],
+                    "levels":level.length == 0 ? [] : level[0]
                 }
             }).then((result) => {
                 console.log(result.data);
@@ -134,7 +150,7 @@ const EditAsset = (props) => {
             "ownerId": assetData['ownerId'],
             "assetId": assetData['meta']['assetId']
         })
-        axios.delete('https://nft-api-1.herokuapp.com/api/assets', {
+        axios.delete('http://localhost:5000/api/assets', {
             data: {
                 "ownerId": assetData['ownerId'],
                 "assetId": assetData['meta']['assetId']
@@ -149,7 +165,7 @@ const EditAsset = (props) => {
     }
 
     useEffect(() => {
-        axios.get('https://nft-api-1.herokuapp.com/api/assets/' + assetId.toString())
+        axios.get('https://localhost:5000/api/assets/' + assetId.toString())
             .then(response => {
                 setAssetData(response['data']['data'])
                 setIPFSHash(response['data']['data']['assetUrl'].split('/')[4])
@@ -177,14 +193,8 @@ const EditAsset = (props) => {
                     </label>
                     <input className="opacity-0 absolute -z-10" id="upload-asset" type="file" onChange={uploadImage}></input>
                     <label className="block mt-4 font-bold">Name *</label>
-                    <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (assetName == null ? "border-gray-200" : assetName.length > 2 && assetName.length < 20 ? "border-gray-200" : "border-red-500")} type="text" defaultValue={assetData['name']} onChange={(event) => setAssetName(event.target.value)}></input>
-                    <div className={"mt-1 text-red-500 text-sm " + (assetName == null ? "hidden" : assetName.length > 2 && assetName.length < 20 ? "hidden" : "")}>Length of name should be from 3 to 19</div>
-                    <label className="block mt-4 font-bold">Creator Name *</label>
-                    <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (creatorName == null ? "border-gray-200" : creatorName.length > 2 && creatorName.length < 20 ? "border-gray-200" : "border-red-500")} type="text" defaultValue={assetData['creatorName']} onChange={(event) => setCreatorName(event.target.value)}></input>
-                    <div className={"mt-1 text-red-500 text-sm " + (creatorName == null ? "hidden" : creatorName.length > 2 && creatorName.length < 20 ? "hidden" : "")}>Length of creator name should be from 3 to 19</div>
-                    <label className="block mt-4 font-bold">External Link</label>
-                    <p className="mt-1 text-gray-400">We will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</p>
-                    <input className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={assetData['assetUrl']}></input>
+                    <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (assetName == null ? "border-gray-200" : assetName.length > 2 && assetName.length < 19 ? "border-gray-200" : "border-red-500")} type="text" defaultValue={assetData['name']} onChange={(event) => setAssetName(event.target.value)}></input>
+                    <div className={"mt-1 text-red-500 text-sm " + (assetName == null ? "hidden" : assetName.length > 2 && assetName.length < 20 ? "hidden" : "")}>Length of name should be from 3 to 18</div>
                     <label className="block mt-4 font-bold">Description</label>
                     <p className="mt-1 text-gray-400">The description will be included on the item's detail page underneath its image.</p>
                     <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={assetData['description']}></textarea>
