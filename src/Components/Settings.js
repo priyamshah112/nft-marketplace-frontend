@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const GeneralSettings = (props) => {
     console.log(props)
+    const [username, setUsername] = useState(props.username)
 
     function handleSubmit(event){
         event.preventDefault()
@@ -25,11 +26,15 @@ const GeneralSettings = (props) => {
                         console.log(err)
                     }
                     console.log(res);
+                    window.location.href = "/profile"
 
                 }).catch((err) => {
                     console.log(err)
                 }
             )
+        }
+        else{
+            console.log("Invalid username")
         }
     }
 
@@ -39,7 +44,8 @@ const GeneralSettings = (props) => {
                 <p className="text-2xl font-bold">General Settings</p>
                 <form>
                     <label className="block text-gray-600 text-md font-bold mt-5 mb-2">Username</label>
-                    <input id="username" className="rounded-md border-2 border-gray-200 mt-1 pl-2 py-2 w-96 focus:shadow-lg focus:border-none focus:outline-none" placeholder="Enter Username" type="text" defaultValue={props.username}></input>
+                    <input id="username" className={"rounded-md border-2 mt-1 pl-2 py-2 w-96 " + (username == null ? "border-gray-200" : username.length > 2 && username.length < 19 ? "border-gray-200" : "border-red-700") + " focus:shadow-lg focus:border-none focus:outline-none"} placeholder="Enter Username" type="text" defaultValue={props.username} onChange={(event) => setUsername(event.target.value)}></input>
+                    <div className={"mt-1 text-red-500 text-sm " + (username == null ? "hidden" : username.length > 2 && username.length < 19 ? "hidden" : "")}>Length of username should be from 3 to 28</div>
                     <label className="block text-gray-600 text-md font-bold mt-5 mb-2">Bio</label>
                     <textarea id="bio" className="rounded-md border-2 border-gray-200 mt-1 pl-2 py-2 h-20 w-96 focus:shadow-lg focus:border-none focus:outline-none" placeholder="Enter Bio" type="text" defaultValue={props.bio}></textarea>
                     <label className="block text-gray-600 text-md font-bold mt-5 mb-2">Email</label>

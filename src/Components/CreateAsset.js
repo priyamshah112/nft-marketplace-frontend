@@ -16,8 +16,7 @@ const CreateAsset = () => {
     const [redirect, setredirect] = useState(null)
 
     const [name, setname] = useState("")
-    const [externallink, setexternallink] = useState("")
-    const [description, setdescription] = useState("")
+    const [loading, setLoading] = useState(false)
     const [properties, setproperties] = useState([])
     const [level, setlevel] = useState([])
     const [stats, setstats] = useState([])
@@ -106,7 +105,7 @@ const CreateAsset = () => {
                 // var data = properties[i];
                 // console.log(data);
                 tag.push(
-                    <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].value}</button>
+                    <button type="button" className="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].value}</button>
                 )
             }
             return tag
@@ -121,7 +120,7 @@ const CreateAsset = () => {
                 // var data = properties[i];
                 // console.log(data);
                 tag.push(
-                    <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].value} to {data[i].max}</button>
+                    <button type="button" className="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].value} to {data[i].max}</button>
                 )
             }
             return tag
@@ -136,7 +135,7 @@ const CreateAsset = () => {
                 // var data = properties[i];
                 // console.log(data);
                 tag.push(
-                    <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].value} to {data[i].max}</button>
+                    <button type="button" className="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].value} to {data[i].max}</button>
                 )
             }
             return tag
@@ -144,10 +143,8 @@ const CreateAsset = () => {
     }
 
     const handleSubmit = (event) => {
-
-
         event.preventDefault()
-
+        setLoading(true)
         console.log(properties);
         console.log(level);
         console.log(stats);
@@ -196,18 +193,20 @@ const CreateAsset = () => {
 
                 if (err) {
                     console.log(err)
+                    setLoading(false)
                 }
                 console.log(res);
                 window.location.href = "/profile"
 
             }).catch((err) => {
                 console.log(err)
+                setLoading(false)
             })
         }
         else {
             console.log("Invalid asset name entry")
+            setLoading(false)
         }
-
     }
 
     const getMetaMask = (event) => {
@@ -241,19 +240,19 @@ const CreateAsset = () => {
                 <label className="block mt-4 font-bold">Description</label>
                 <p className="mt-1 text-gray-400">The description will be included on the item's detail page underneath its image.</p>
                 <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text"></textarea>
-                <div class="flex flex-row py-4 price justify-between" >
-                    <div class="flex flex-col gap-5">
-                        <div class="heading" style={{ fontWeight: "bold" }}>
+                <div className="flex flex-row py-4 price justify-between" >
+                    <div className="flex flex-col gap-5">
+                        <div className="heading" style={{ fontWeight: "bold" }}>
                             Category
     
     
                         </div>
-                        <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
+                        <div className="normal" style={{ color: "rgb(158, 158, 158)" }}>
                             Select category of your asset
                         </div>
     
                     </div>
-                    <div class="input">
+                    <div className="input">
                         {/* <input  placeholder="Amount"></input> */}
                         <select className="p-3 rounded-md bg-gray-50 border-2" id="cars" value={category} onChange={(e) => { setcategory(e.target.value); }}>
                             <option value="Art">Art</option>
@@ -281,7 +280,7 @@ const CreateAsset = () => {
     
                 </div>
     
-                {/* <button type="button" class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>Ass</button> */}
+                {/* <button type="button" className="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>Ass</button> */}
     
                 {
                     updatePropertyTag()
@@ -317,7 +316,7 @@ const CreateAsset = () => {
                 }
     
                 <label className="block mt-4 font-bold">Unlockable content</label>
-                <div class="flex flex-row justify-between align-items-center" style={{ alignItems: "center" }}>
+                <div className="flex flex-row justify-between align-items-center" style={{ alignItems: "center" }}>
                     <p className="mt-1 text-gray-400">Include unlockable content that can only be revealed by the owner of the item.</p>
                     <form>
     
@@ -348,7 +347,24 @@ const CreateAsset = () => {
                 }
                 <br /><br />
             </form>
-    
+            
+
+            
+            <div className={loading ? "fixed z-10 inset-0 overflow-y-auto":"hidden"} aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                    <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                    <div className="inline-block align-bottom text-center bg-transparent rounded-lg transform transition-all sm:my-8 sm:align-middle">
+                        <svg className="animate-spin h-5 w-5 bg-red-500 p-5 ml-12 justify-center" viewBox="0 0 24 24">
+                            
+                        </svg>
+                        <h3>Generating Asset</h3>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     )
 }
