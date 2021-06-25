@@ -29,11 +29,21 @@ const Product_card = (props) => {
             throw console.log(error);
         })
     }
+    console.log(props)
     return (
         <div className="w-60 rounded flex flex-col justify-between shadow-lg my-2">
             <div className="flex flex-row-reverse m-5 items-center gap-1">
                 {props.like}
                 <i className="far fa-heart"></i>
+                <Link to={{ pathname: "/editAsset/"+ props.assetId,
+                            state: {
+                                ownerId: props.id.account_address[0],
+                                name: props.name,
+                                descr: props.descr
+                            }
+                        }}>
+                    <button className="mr-2"><i className="fas fa-tag"></i></button>
+                </Link>
                 <button className="mr-2" onClick={() => deleteAsset(props.ownerId, props.assetId)}><i className="fas fa-trash"></i></button>
             </div>
             <img className="w-full" src={props.imageurl} alt="Sunset in the mountains" />
@@ -63,7 +73,7 @@ const Assets = (props) => {
                 console.log({ "asdas": res })
                 var item = []
                 data.map(asset => {
-                    item.push(<Product_card loading={props.loading} setLoading={props.setLoading} ownerId={asset.ownerId.account_address[0]} assetId={asset.meta.assetId} accountAd={props.accountAd} name={asset.name} like={asset.likes} descr={asset.description} imageurl={asset.assetUrl} />)
+                    item.push(<Product_card loading={props.loading} setLoading={props.setLoading} id={asset.ownerId} ownerId={asset.ownerId.account_address[0]} assetId={asset.meta.assetId} accountAd={props.accountAd} name={asset.name} like={asset.likes} descr={asset.description} imageurl={asset.assetUrl} />)
                 })
                 setassets(item);
 

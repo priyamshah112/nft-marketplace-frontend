@@ -19,13 +19,15 @@ const EditAsset = (props) => {
     let { id } = useParams()
     const assetId = id != null ? id : ""
     const [category, setcategory] = useState("Art")
+    const [contract, setContract] = useState(null)
+    const [chain, setChain] = useState("Etheruem")
+    const [token, setToken] = useState(null)
+    const [loading, setLoading] = useState(false)
 
 
     //LOGIN  ==============================
 
     const [accountAd, setaccountAd] = useState("")
-
-
     async function enableEthereum() {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];
@@ -33,6 +35,7 @@ const EditAsset = (props) => {
         console.log(account);
     }
 
+    console.log(props.location.state)
     function login() {
         if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
             enableEthereum()
@@ -136,13 +139,14 @@ const EditAsset = (props) => {
 
     const handleDelete = (event) => {
         event.preventDefault()
+        setLoading(true)
         console.log({
-            "ownerId": assetData['ownerId'],
+            "ownerId": props.location.state.ownerId,
             "assetId": assetData['meta']['assetId']
         })
         axios.delete('http://localhost:5000/api/assets', {
             data: {
-                "ownerId": assetData['ownerId'],
+                "ownerId": props.location.state.ownerId,
                 "assetId": assetData['meta']['assetId']
             }
         }).then((result) => {
@@ -151,28 +155,34 @@ const EditAsset = (props) => {
         })
             .catch((error) => {
                 throw console.log(error);
+                setLoading(false)
             })
     }
 
     useEffect(() => {
-        axios.get('https://localhost:5000/api/assets/' + assetId.toString())
+        axios.get('http://localhost:5000/api/assets/' + assetId.toString())
             .then(response => {
+                console.log(response['data']['data']['meta']['properties'])
                 setAssetData(response['data']['data'])
                 setIPFSHash(response['data']['data']['assetUrl'].split('/')[4])
                 setproperties(response['data']['data']['meta']['properties'])
-                console.log(response['data']['data']['meta']['properties'])
+                setcategory(response['data']['data']['category'])
                 setlevel(response['data']['data']['meta']['levels'])
                 setstats(response['data']['data']['meta']['stats'])
+                setContract(response['data']['data']['chainInfo']['contract'])
+                setToken(response['data']['data']['chainInfo']['token'])
+                setChain(response['data']['data']['chainInfo']['chain'])
             })
     }, [])
     console.log(assetData)
     const [assetName, setAssetName] = useState(assetData['name'])
-    const [creatorName, setCreatorName] = useState(assetData['createrName'])
+
     login();
-    if (accountAd === assetData['ownerId']) {
+    console.log(accountAd, props.location.state.ownerId)
+    if (accountAd === props.location.state.ownerId) {
         return (
             <div className="m-10 ml-96 mr-96">
-                <h1 className="text-3xl mt-10">Edit Asset</h1>
+                <h1 className="text-3xl mt-10">View Asset</h1>
                 <form>
                     <p className="mt-2 font-bold">Image, Video, Audio, or 3D Model</p>
                     <p className="mt-1 text-gray-400">File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB, GLTF. Max size: 40 MB</p>
@@ -183,11 +193,11 @@ const EditAsset = (props) => {
                     </label>
                     <input className="opacity-0 absolute -z-10" id="upload-asset" type="file" onChange={uploadImage}></input>
                     <label className="block mt-4 font-bold">Name *</label>
-                    <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (assetName == null ? "border-gray-200" : assetName.length > 2 && assetName.length < 19 ? "border-gray-200" : "border-red-500")} type="text" defaultValue={assetData['name']} onChange={(event) => setAssetName(event.target.value)}></input>
+                    <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (assetName == null ? "border-gray-200" : assetName.length > 2 && assetName.length < 19 ? "border-gray-200" : "border-red-500")} type="text" defaultValue={props.location.state.name} onChange={(event) => setAssetName(event.target.value)}></input>
                     <div className={"mt-1 text-red-500 text-sm " + (assetName == null ? "hidden" : assetName.length > 2 && assetName.length < 20 ? "hidden" : "")}>Length of name should be from 3 to 18</div>
                     <label className="block mt-4 font-bold">Description</label>
                     <p className="mt-1 text-gray-400">The description will be included on the item's detail page underneath its image.</p>
-                    <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={assetData['description']}></textarea>
+                    <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.location.state.descr}></textarea>
                     <div class="flex flex-row py-4 price justify-between" >
                         <div class="flex flex-col gap-5">
                             <div class="heading" style={{ fontWeight: "bold" }}>
@@ -249,32 +259,31 @@ const EditAsset = (props) => {
                             <Popup1 choice={3} properties={stats} setproperties={(value) => setstats(value)} />
                         </button>
                     </div>
-
-                    <label className="block mt-4 font-bold">Unlockable content</label>
-                    <div class="flex flex-row justify-between align-items-center" style={{ alignItems: "center" }}>
-                        <p className="mt-1 text-gray-400">Include unlockable content that can only be revealed by the owner of the item.</p>
-                        <form>
-                            <label className="flex items-center cursor-pointer mt-5">
-                                <div className="relative">
-                                    <input type="checkbox" id="notificationToggle" className="sr-only toggleCheckBox" onChange={() => { setunlockableContent(unlockableContent * (-1)) }} />
-                                    <div className={"block w-14 h-8 rounded-full " + (unlockableContent == -1 ? 'bg-gray-600' : 'bg-gray-200')}></div>
-                                    <div className="toggle absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
-                                </div>
-                            </label>
-                        </form>
+                    
+                    <hr className="mt-4 mb-4" />
+                    <div>
+                        <p className="font-bold text-lg my-4">Chain Info</p>
+                        <p className="font text-md my-4">Contract: {contract}</p>
+                        <p className="font text-md my-4">Token: {token}</p>
+                        <p className="font text-md my-4">Chain: {chain}</p>
                     </div>
-                    {unlockableContent == 1 ? <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text"></textarea> : null}
-                    <label className="block mt-4 font-bold">Supply *</label>
-
-                    <p className="mt-1 text-gray-400">The number of copies that can be minted. No gas cost to you! Quantities above one coming soon.</p>
-                    <input value="1" className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" ></input>
-                    <hr className="mt-4" />
+                    <hr className="mt-4"/>
                     <div className="w-full mt-8">
-                        <input type="Submit" className="bg-blue-500 text-white px-8 py-4 rounded-md hover:bg-blue-600 hover:shadow-lg" value="Submit" onClick={handleSubmit}></input>
-                        <input type="Submit" className="bg-red-500 text-white p-4 rounded-md float-right hover:bg-red-600 hover:shadow-lg" value="Delete Item" onClick={handleDelete}></input>
+                        <input type="Submit" className="bg-red-500 text-white p-4 rounded-md float-left hover:bg-red-600 hover:shadow-lg" value="Delete Item" onClick={handleDelete}></input>
                     </div>
                 </form>
-
+                <div className={loading ? "fixed z-10 inset-0 overflow-y-auto":"hidden"} aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                        <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                        <div className="inline-block align-bottom text-center bg-transparent rounded-lg transform transition-all sm:my-8 sm:align-middle">
+                            <svg className="animate-spin h-5 w-5 bg-red-500 p-5 ml-12 justify-center" viewBox="0 0 24 24">
+                                
+                            </svg>
+                            <h3>Deleting Asset</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
