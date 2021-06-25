@@ -73,7 +73,7 @@ const Assets = (props) => {
                 console.log({ "asdas": res })
                 var item = []
                 data.map(asset => {
-                    item.push(<Product_card loading={props.loading} setLoading={props.setLoading} id={asset.ownerId} ownerId={asset.ownerId.account_address[0]} assetId={asset.meta.assetId} accountAd={props.accountAd} name={asset.name} like={asset.likes} descr={asset.description} imageurl={asset.assetUrl} />)
+                    item.push(<Product_card loading={props.loading} setLoading={props.setLoading} id={asset.ownerId} ownerId={asset.ownerId.account_address[0]} assetId={asset.meta.assetId} accountAd={props.accountAd} name={asset.assetName} like={asset.likes} descr={asset.description} imageurl={asset.assetUrl} />)
                 })
                 setassets(item);
 
