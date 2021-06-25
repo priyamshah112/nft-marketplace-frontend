@@ -1,0 +1,11 @@
+.popup-content{
+    width: 30%;
+    border-radius: 10px;
+}
+.react-time-picker__wrapper{
+    /* display: none; */
+    border-radius: 10px;
+    padding: 5px;
+    background-color:rgb(249, 250, 251) ;
+    /* border-color:r ; */
+}
