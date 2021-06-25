@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useParams } from 'react-router';
 import { Redirect } from "react-router-dom";
 import { render } from '@testing-library/react';
-import verifyUser from '../Mock_Api/verifyUser';
+
 
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
@@ -26,21 +26,11 @@ const CreateAsset = () => {
 
     const [accountAd, setaccountAd] = useState("")
 
-    const VerifyUser = async (account) => {
-        verifyUser.post(`/auth/verifyUser/${account}`)
-            .then(response => {
-                //console.log(response.data.data) 
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
 
     async function enableEthereum() {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];
         setaccountAd(account);
-        VerifyUser(account);
         console.log(account);
     }
 
