@@ -15,6 +15,7 @@ const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 const Product_card = (props) => {
     function deleteAsset(ownerId, assetId){
         console.log(ownerId, assetId)
+        props.setLoading(true)
         axios.delete('http://localhost:5000/api/assets',{
             data:{
                 "assetId": assetId,
@@ -24,6 +25,7 @@ const Product_card = (props) => {
             console.log(result.data);
             window.location.href = "/profile";
         }).catch((error) => {
+            props.setLoading(false)
             throw console.log(error);
         })
     }
@@ -61,7 +63,7 @@ const Assets = (props) => {
                 console.log({ "asdas": res })
                 var item = []
                 data.map(asset => {
-                    item.push(<Product_card ownerId={asset.ownerId.account_address[0]} assetId={asset.meta.assetId} accountAd={props.accountAd} name={asset.name} like={asset.likes} descr={asset.description} imageurl={asset.assetUrl} />)
+                    item.push(<Product_card loading={props.loading} setLoading={props.setLoading} ownerId={asset.ownerId.account_address[0]} assetId={asset.meta.assetId} accountAd={props.accountAd} name={asset.name} like={asset.likes} descr={asset.description} imageurl={asset.assetUrl} />)
                 })
                 setassets(item);
 
@@ -149,6 +151,7 @@ const Profile = () => {
     const [buffer, setBuffer] = useState(null);
     const [bgipfs, setbgipfs] = useState("");
     const [pfipfs, setpfipfs] = useState("");
+    const [loading, setLoading] = useState(false);
 
     function createUser(accAd) {
         axios.get('http://localhost:5000/api/user/' + accAd)
@@ -360,11 +363,23 @@ const Profile = () => {
                 </div>
                 <hr />
                 {
-                    selectedTab == 0 ? <Assets accountAd={accountAd} /> : null
+                    selectedTab == 0 ? <Assets loading={loading} setLoading={setLoading} accountAd={accountAd} /> : null
 
                 }
                 {selectedTab == 1 ? <Activity /> : null}
                 {/* <Assets /> */}
+                <div className={loading ? "fixed z-10 inset-0 overflow-y-auto":"hidden"} aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                        <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                        <div className="inline-block align-bottom text-center bg-transparent rounded-lg transform transition-all sm:my-8 sm:align-middle">
+                            <svg className="animate-spin h-5 w-5 bg-red-500 p-5 ml-12 justify-center" viewBox="0 0 24 24">
+                                
+                            </svg>
+                            <h3>Deleting Asset</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
