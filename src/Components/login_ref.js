@@ -30,7 +30,7 @@ const your_component = () => {
                     "user_type":"",
                     "bio":"",
                     "email_address":"",
-                    "bg_img_url":"https://ipfs.io/ipfs/QmSpr3ACDG1SoY7dLGns1wHUp94fMu6CvE8FAkvTnjzBtD",
+                    "bg_img_url":"https://ipfs.io/ipfs/QmTudZ7p5EftYP3eK9zd7dypdPCBUqLShL3o5w1SfGhnAX",
                     "profile_pic_url":"https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
                     "is_verified":true,
                     "is_deleted":false
@@ -42,7 +42,7 @@ const your_component = () => {
                         "user_type":"",
                         "bio":"",
                         "email_address":"",
-                        "bg_img_url":"https://ipfs.io/ipfs/QmSpr3ACDG1SoY7dLGns1wHUp94fMu6CvE8FAkvTnjzBtD",
+                        "bg_img_url":"https://ipfs.io/ipfs/QmTudZ7p5EftYP3eK9zd7dypdPCBUqLShL3o5w1SfGhnAX",
                         "profile_pic_url":"https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
                         "is_verified":true,
                         "is_deleted":false
