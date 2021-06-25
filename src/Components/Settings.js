@@ -116,13 +116,53 @@ const WalletSettings = (props) => {
 const Settings = () => {
 
     const [accountAd, setaccountAd] = useState("")
+    const [iscreate, setiscreate] = useState(false)
     const [user, setUser] = useState({})
 
-    
+    function createUser(accAd) {
+        axios.get('http://localhost:5000/api/user/' + accAd)
+        .then(res => {
+            console.log(res)
+            if(res.data.data === null){
+                console.log({
+                    "username":"User_" + accAd.substring(accAd.length - 5),
+                    "account_address":[accAd],
+                    "user_type":"",
+                    "bio":"",
+                    "email_address":"",
+                    "bg_img_url":"https://ipfs.io/ipfs/QmSpr3ACDG1SoY7dLGns1wHUp94fMu6CvE8FAkvTnjzBtD",
+                    "profile_pic_url":"https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+                    "is_verified":true,
+                    "is_deleted":false
+                })
+                axios.post('http://localhost:5000/api/user/',
+                    {
+                        "username":"User_" + accAd.substring(accAd.length - 5),
+                        "account_address":[accAd],
+                        "user_type":"",
+                        "bio":"",
+                        "email_address":"",
+                        "bg_img_url":"https://ipfs.io/ipfs/QmSpr3ACDG1SoY7dLGns1wHUp94fMu6CvE8FAkvTnjzBtD",
+                        "profile_pic_url":"https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+                        "is_verified":true,
+                        "is_deleted":false
+                    }
+                )
+                .then(res => {
+                    console.log(res);
+                    setiscreate(true);
+                })
+                .catch(err => {console.log(err)} );
+            }
+        })
+        .catch(err => {console.log(err)} );
+    }
+
     async function enableEthereum() {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];
         setaccountAd(account);
+        createUser(account);
         console.log(account);
     }
     
@@ -142,9 +182,27 @@ const Settings = () => {
     useEffect(() => {
         axios.get('http://localhost:5000/api/user/' + accountAd.toString())
             .then(response => {
-                setUser(response['data']['data'])
+                if (response.data.data != null) {
+                    setUser(response['data']['data'])
+                }
+                else {
+                    setUser(
+                        {
+                            "username":"User_" + accountAd.substring(accountAd.length - 5),
+                            "account_address":[accountAd],
+                            "user_type":"",
+                            "bio":"",
+                            "email_address":"",
+                            "bg_img_url":"https://ipfs.io/ipfs/QmSpr3ACDG1SoY7dLGns1wHUp94fMu6CvE8FAkvTnjzBtD",
+                            "profile_pic_url":"https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+                            "is_verified":true,
+                            "is_deleted":false
+                        }
+                    )
+                }
             })
-    }, [accountAd])
+            .catch(err => {console.log(err)} );
+    }, [accountAd, iscreate])
 
 
     const [selectedOption, setSelectedOption] = useState("General")
