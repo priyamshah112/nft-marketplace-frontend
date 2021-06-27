@@ -194,7 +194,7 @@ const Profile = () => {
     const fileSelectedHandler = (e) => {
         const file = e.target.files[0]
         const reader = new window.FileReader()
-        reader.readAsArrayBuffer(file)
+        reader.readAsArrayBuffer(e.target.files[0])
         reader.onloadend = () => {
             ipfs.add(Buffer(reader.result)).then((res) => {
                 setbgipfs('https://ipfs.io/ipfs/' + res.path.toString());
@@ -217,7 +217,7 @@ const Profile = () => {
     const fileSelectedHandler2 = (e) => {
         const file = e.target.files[0]
         const reader = new window.FileReader()
-        reader.readAsArrayBuffer(file)
+        reader.readAsArrayBuffer(e.target.files[0])
         reader.onloadend = () => {
 
             ipfs.add(Buffer(reader.result)).then((res) => {
