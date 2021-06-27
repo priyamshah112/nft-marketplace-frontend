@@ -20,7 +20,7 @@ const your_component = () => {
     // }
     
     function createUser(accAd) {
-        axios.get('http://localhost:5000/api/user/' + accAd)
+        axios.get('https://nft-api-1.herokuapp.com/api/user/' + accAd)
         .then(res => {
             console.log(res)
             if(res.data.data === null){
@@ -35,7 +35,7 @@ const your_component = () => {
                     "is_verified":true,
                     "is_deleted":false
                 })
-                axios.post('http://localhost:5000/api/user/',
+                axios.post('https://nft-api-1.herokuapp.com/api/user/',
                     {
                         "username":"User_" + accAd.substring(accAd.length - 5),
                         "account_address":[accAd],

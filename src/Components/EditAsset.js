@@ -110,7 +110,7 @@ const EditAsset = (props) => {
         })
 
         if (event.target.form[1].value.length > 2 && event.target.form[1].value.length < 19) {
-            axios.put('http://localhost:5000/api/assets', {
+            axios.put('https://nft-api-1.herokuapp.com/api/assets', {
                 "ownerId":assetData['ownerId'],
                 "_id":assetData['meta']['assetId'],
                 "asset":{
@@ -144,7 +144,7 @@ const EditAsset = (props) => {
             "ownerId": props.location.state.ownerId,
             "assetId": assetData['meta']['assetId']
         })
-        axios.delete('http://localhost:5000/api/assets', {
+        axios.delete('https://nft-api-1.herokuapp.com/api/assets', {
             data: {
                 "ownerId": props.location.state.ownerId,
                 "assetId": assetData['meta']['assetId']
@@ -160,7 +160,7 @@ const EditAsset = (props) => {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/assets/' + assetId.toString())
+        axios.get('https://nft-api-1.herokuapp.com/api/assets/' + assetId.toString())
             .then(response => {
                 console.log(response['data']['data']['meta']['properties'])
                 setAssetData(response['data']['data'])

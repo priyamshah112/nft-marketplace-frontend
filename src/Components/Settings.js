@@ -9,7 +9,7 @@ const GeneralSettings = (props) => {
     function handleSubmit(event){
         event.preventDefault()
         if(event.target.form[0].value.length > 2 && event.target.form[0].value.length < 29 && event.target.form[1] != event.target.form[2] != ""){
-            axios.put('http://localhost:5000/api/user/'+props.accountAd,
+            axios.put('https://nft-api-1.herokuapp.com/api/user/'+props.accountAd,
                     {
                         "username":event.target.form[0].value,
                         "account_address":props.accountAd,
@@ -120,7 +120,7 @@ const Settings = () => {
     const [user, setUser] = useState({})
 
     function createUser(accAd) {
-        axios.get('http://localhost:5000/api/user/' + accAd)
+        axios.get('https://nft-api-1.herokuapp.com/api/user/' + accAd)
         .then(res => {
             console.log(res)
             if(res.data.data === null){
@@ -135,7 +135,7 @@ const Settings = () => {
                     "is_verified":true,
                     "is_deleted":false
                 })
-                axios.post('http://localhost:5000/api/user/',
+                axios.post('https://nft-api-1.herokuapp.com/api/user/',
                     {
                         "username":"User_" + accAd.substring(accAd.length - 5),
                         "account_address":[accAd],
@@ -180,7 +180,7 @@ const Settings = () => {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/user/' + accountAd.toString())
+        axios.get('https://nft-api-1.herokuapp.com/api/user/' + accountAd.toString())
             .then(response => {
                 if (response.data.data != null) {
                     setUser(response['data']['data'])

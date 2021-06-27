@@ -28,7 +28,7 @@ const CreateAsset = () => {
     const [iscreate, setiscreate] = useState(false)
 
     function createUser(accAd) {
-        axios.get('http://localhost:5000/api/user/' + accAd)
+        axios.get('https://nft-api-1.herokuapp.com/api/user/' + accAd)
         .then(res => {
             console.log(res)
             if(res.data.data == null){
@@ -43,7 +43,7 @@ const CreateAsset = () => {
                     "is_verified":true,
                     "is_deleted":false
                 })
-                axios.post('http://localhost:5000/api/user/',
+                axios.post('https://nft-api-1.herokuapp.com/api/user/',
                     {
                         "username":"User_" + accAd.substring(accAd.length - 5),
                         "account_address":[accAd],
@@ -199,7 +199,7 @@ const CreateAsset = () => {
         })
         console.log()
         if (event.target.form[1].value.length > 2 && event.target.form[1].value.length < 19) {
-            axios.post('http://localhost:5000/api/assets/',
+            axios.post('https://nft-api-1.herokuapp.com/api/assets/',
             {
                 "ownerId":accountAd.toString(),
                 "asset":{

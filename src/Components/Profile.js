@@ -16,7 +16,7 @@ const Product_card = (props) => {
     function deleteAsset(ownerId, assetId){
         console.log(ownerId, assetId)
         props.setLoading(true)
-        axios.delete('http://localhost:5000/api/assets',{
+        axios.delete('https://nft-api-1.herokuapp.com/api/assets',{
             data:{
                 "assetId": assetId,
                 "ownerId": ownerId
@@ -65,7 +65,7 @@ const Assets = (props) => {
     const getAsset = () => {
         console.log(props.accountAd)
         {
-            axios.get('http://localhost:5000/api/assets/user/' + props.accountAd).then((res, err) => {
+            axios.get('https://nft-api-1.herokuapp.com/api/assets/user/' + props.accountAd).then((res, err) => {
                 if (err) {
                     console.log(err);
                 }
@@ -164,7 +164,7 @@ const Profile = () => {
     const [loading, setLoading] = useState(false);
 
     function createUser(accAd) {
-        axios.get('http://localhost:5000/api/user/' + accAd)
+        axios.get('https://nft-api-1.herokuapp.com/api/user/' + accAd)
         .then(res => {
             console.log(res)
             if(res.data.data === null){
@@ -179,7 +179,7 @@ const Profile = () => {
                     "is_verified":true,
                     "is_deleted":false
                 })
-                axios.post('http://localhost:5000/api/user/',
+                axios.post('https://nft-api-1.herokuapp.com/api/user/',
                     {
                         "username":"User_" + accAd.substring(accAd.length - 5),
                         "account_address":[accAd],
@@ -226,7 +226,7 @@ const Profile = () => {
     useEffect(() => {
         //console.log(accountAd);
         if (accountAd != "") {
-            axios.get('http://localhost:5000/api/user/' + accountAd).then((res, err) => {
+            axios.get('https://nft-api-1.herokuapp.com/api/user/' + accountAd).then((res, err) => {
                 if (err) {
                     console.log(err);
                 }
@@ -253,7 +253,7 @@ const Profile = () => {
             ipfs.add(Buffer(reader.result)).then((res) => {
                 setbgipfs('https://ipfs.io/ipfs/' + res.path.toString());
                 console.log(res.path);
-                axios.put('http://localhost:5000/api/user/' + accountAd,
+                axios.put('https://nft-api-1.herokuapp.com/api/user/' + accountAd,
                     { "account_address": [accountAd], "bg_img_url": 'https://ipfs.io/ipfs/' + res.path.toString() })
                     .then((res, err) => {
                         if (err) {
@@ -277,7 +277,7 @@ const Profile = () => {
             ipfs.add(Buffer(reader.result)).then((res) => {
                 setpfipfs('https://ipfs.io/ipfs/' + res.path.toString());
                 console.log(res.path);
-                axios.put('http://localhost:5000/api/user/' + accountAd,
+                axios.put('https://nft-api-1.herokuapp.com/api/user/' + accountAd,
                     { "account_address": [accountAd], "profile_pic_url": 'https://ipfs.io/ipfs/' + res.path.toString() })
                     .then((res, err) => {
                         if (err) {
