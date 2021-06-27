@@ -171,7 +171,17 @@ const CreateAsset = () => {
             return tag
         }
     }
-
+    const categoryType = {
+        "Art":"art",
+        "Music":"music",
+        "Domain Name": "domain_names",
+        "Sports":"sports",
+        "Virtual Card": "virtual_Worlds",
+        "Trading Card": "trading_Cards",
+        "Collectibles": "collectibles",
+        "GIFS": "gifs",
+        "Memes": "memes"
+    }
     const handleSubmit = (event) => {
         event.preventDefault()
         setLoading(true)
@@ -187,7 +197,7 @@ const CreateAsset = () => {
             "ownerId": accountAd,
             "asset": {
                 "assetUrl": "https://ipfs.io/ipfs/" + ipfsHash,
-                "category": event.target.form[3].value,
+                "category": categoryType[event.target.form[3].value],
                 "assetName": event.target.form[1].value,
                 "assetMime": "image/png",
                 "description": event.target.form[2].value,
@@ -204,7 +214,7 @@ const CreateAsset = () => {
                     "ownerId": accountAd.toString(),
                     "asset": {
                         "assetUrl": "https://ipfs.io/ipfs/" + ipfsHash,
-                        "category": event.target.form[3].value,
+                        "category": categoryType[event.target.form[3].value],
                         "assetName": event.target.form[1].value,
                         "assetMime": "image/png",
                         "description": event.target.form[2].value,
@@ -288,7 +298,7 @@ const CreateAsset = () => {
                             <option value="Art">Art</option>
                             <option value="Music">Music</option>
                             <option value="Domain Name">Domain Name</option>
-                            <option value="Sport">Sport</option>
+                            <option value="Sports">Sports</option>
                             <option value="Virtual Card">Virtual Card</option>
                             <option value="Trading Card">Trading Card</option>
                             <option value="Collectibles">Collectibles</option>
