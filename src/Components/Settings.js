@@ -101,7 +101,7 @@ const WalletSettings = (props) => {
             <div className = "p-5 bg-gray-50">
                 <p>Your Wallet Address</p>
                 <div className="flex flex-row justify-between mt-5 bg-gray-200 p-2 rounded-md border-2 border-gray-300">
-                    <div >{props.accountAd}</div>
+                    <div className="overflow-hidden">{props.accountAd}</div>
                     <div className="justify-self-end text-blue-500 cursor-pointer">Copy</div>
                 </div>
                 <div className="flex flex-row">
@@ -226,7 +226,7 @@ const Settings = () => {
                                 <i className="fas fa-wallet mr-3"></i>My Wallet
                             </div>
                             <hr/>
-                            <div id="Wallet" className={"p-5 px-10 text-base text-gray-500 font-bold " + (selectedOption === "Wallet" ? "bg-blue-50":"bg-gray-100") + " hover:text-black cursor-pointer"}
+                            <div id="Wallet" className={"p-5 px-10 text-base text-gray-500 font-bold overflow-hidden " + (selectedOption === "Wallet" ? "bg-blue-50":"bg-gray-100") + " hover:text-black cursor-pointer"}
                                 onClick={(e) => {handleClick(e)}}>
                                 {accountAd}
                             </div>
