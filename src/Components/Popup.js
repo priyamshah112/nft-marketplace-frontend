@@ -6,19 +6,13 @@ import React, { useState, useEffect } from 'react';
 
 const PropertyType1 = (props) => {
     const deleteProperty = (e) => {
-
-        // if (props.count > 1) {
-        // console.log(props.count);
         if (props.count > 1) {
             props.setting(props.count - 1);
         }
-        // props.setting(1);
-        // }
     }
 
     const handleChange = (e) => {
         var id = String(e.target.id)[0];
-        // document.getElementById(id + 'name').value
 
 
     }
@@ -28,6 +22,7 @@ const PropertyType1 = (props) => {
     const items = []
 
     for (var i = 0; i < props.count; i++) {
+        console.log(props.count);
 
         items.push(
             <tr className="w-full m-3 ">
@@ -37,11 +32,11 @@ const PropertyType1 = (props) => {
                     </button>
                 </td>
                 <td >
-                    <input onChange={handleChange} id={i + "name"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['name']: null}></input>
+                    <input onChange={handleChange} id={i + "name"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['name'] : null}></input>
 
                 </td>
                 <td>
-                    <input onChange={handleChange} id={i + "value"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['value']: null}></input>
+                    <input onChange={handleChange} id={i + "value"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['value'] : null}></input>
 
                 </td >
             </tr >)
@@ -53,14 +48,9 @@ const PropertyType1 = (props) => {
 
 const PropertyType2 = (props) => {
     const deleteProperty = (e) => {
-
-        // if (props.count > 1) {
-        // console.log(props.count);
         if (props.count > 1) {
             props.setting(props.count - 1);
         }
-        // props.setting(1);
-        // }
     }
     const items = []
     for (var i = 0; i < props.count; i++) {
@@ -72,11 +62,11 @@ const PropertyType2 = (props) => {
                     </button>
                 </td>
                 <td >
-                    <input id={i + "name"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['name']: null}></input>
+                    <input id={i + "name"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['name'] : null}></input>
 
                 </td>
                 <td >
-                    <input id={i + "from"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['value']: null}></input>
+                    <input id={i + "from"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['value'] : null}></input>
 
                 </td>
                 <td>
@@ -85,7 +75,7 @@ const PropertyType2 = (props) => {
                 </td>
 
                 <td>
-                    <input id={i + "to"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['max']: null}></input>
+                    <input id={i + "to"} className="w-full rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.properties[i] != null ? props.properties[i]['max'] : null}></input>
 
                 </td>
             </tr>)
@@ -96,69 +86,46 @@ const PropertyType2 = (props) => {
 
 
 const Popup1 = (props) => {
-    let numbers = 1;
-    if(props.properties.length > 1)
-        numbers = props.properties.length
-    
-        const [numberProperty, setnumberProperty] = useState(numbers);
 
-    // useEffect(() => {
-    //     console.log(numberProperty)
-    //     setnumberProperty(1)
-    //     props.setproperties([])
-    // }, [])
+    var [numberProperty, setnumberProperty] = useState(1);
+
+
 
     const addproperty = () => {
         setnumberProperty(numberProperty + 1);
         console.log(numberProperty);
     }
     const handleSubmit = () => {
-        // setnumberProperty(1)
-
-
         if (props.choice == 1) {
+            //Adding data for property
             console.log({ 'Props choice1 =': numberProperty })
+            //Push all data in props and lastly setproperties from props
+            var propss = [];
             for (var i = 0; i < numberProperty; i++) {
                 var name = document.getElementById(i + 'name').value;
                 var value = document.getElementById(i + 'value').value;
-                // console.log()
-                // if (i == 0) {
-                //     var propss = [];
-                // }
-                // else {
-                var propss = props.properties;
-                // }
                 propss.push({ name: name, value: value })
-
-                props.setproperties([propss])
-
-                // console.log(propss)
             }
+            props.setproperties([propss])
         }
         else {
+            //Adding data for stats and level
             console.log({ 'Props choice2 =': numberProperty })
+            //Push all data in props and lastly setproperties from props
+            var propss = [];
             for (var i = 0; i < numberProperty; i++) {
                 var name = document.getElementById(i + 'name').value;
                 var from = document.getElementById(i + 'from').value;
                 var to = document.getElementById(i + 'to').value;
-                // props.properties.push()
-                if (i == 0) {
-                    var propss = [];
-                }
-                else {
-                    var propss = props.properties;
-                }
                 propss.push({ name: name, value: from, max: to })
-
-                props.setproperties([propss])
             }
+            props.setproperties([propss])
         }
+        //When the user opens popup again so it should be reset and take all input again
+        setnumberProperty(1);
         document.getElementById('closebutton').click()
-        // console.log(button)
+
     }
-
-
-
 
     return (
         <Popup className="rounded-md"
