@@ -162,6 +162,7 @@ const Profile = () => {
     const [bgipfs, setbgipfs] = useState("");
     const [pfipfs, setpfipfs] = useState("");
     const [loading, setLoading] = useState(false);
+    const [userName, setUsername] = useState("");
 
     function createUser(accAd) {
         axios.get('https://nft-api-1.herokuapp.com/api/user/' + accAd)
@@ -197,6 +198,9 @@ const Profile = () => {
                     setiscreate(true);
                 })
                 .catch(err => {console.log(err)} );
+            }
+            else{
+                setUsername(res.data.data.username)
             }
         })
         .catch(err => {console.log(err)} );
@@ -336,7 +340,7 @@ const Profile = () => {
 
                         <div className="rounded-full h-32 w-32 flex" style={{ backgroundImage: "url(" + pfipfs + ")", justifyContent: "center", alignItems: "flex-end" }} >
                             {/* <div > */}
-                            <i onClick={(e) => document.getElementById('myInput2').click()} style={{ color: "white", fontWeight: "bold", paddingBottom: "10px" }}>Edit</i>
+                            <i className="cursor-pointer"  onClick={(e) => document.getElementById('myInput2').click()} style={{ color: "white", fontWeight: "bold", paddingBottom: "10px" }}>Edit</i>
                             <input
                                 id="myInput2"
                                 style={{ display: 'none' }}
@@ -346,7 +350,7 @@ const Profile = () => {
                             />
                             {/* </div> */}
                         </div>
-                        <h2>{accountAd}</h2>
+                        <h2>{userName}</h2>
                     </div>
                 </div>
                 <div className="flex flex-row flex-wrap gap-10 m-10 font-light" style={{ fontSize: "16px" }}>
