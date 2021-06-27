@@ -252,8 +252,9 @@ const CreateAsset = () => {
     const getMetaMask = (event) => {
         event.preventDefault()
         if (typeof window.ethereum == 'undefined' || !window.ethereum.isMetaMask) {
-            alert("This application requires MetaMask. Get MetaMask ?");
-            window.location.href = "https://metamask.io/download.html";
+            //alert("This application requires MetaMask. Get MetaMask ?");
+            //window.location.href = "https://metamask.io/download.html";
+            window.location.href = "/profile"
         }
         else {
             alert("Please log in to MetaMask");

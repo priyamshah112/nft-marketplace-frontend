@@ -3,6 +3,7 @@
 //======================================================================================
 
 // import verifyUser from '../Mock_Api/verifyUser';
+import RedirectModal from './RedirectModal';
 
 const your_component = () => {
     
@@ -86,7 +87,10 @@ const your_component = () => {
     if(accountAd){
         return (<div>Return block of your component will come here</div>)
     }
-    return <div className="flex h-screen justify-center items-center"><h1 className="text-center text-3xl">Please Sign in to MetaMask</h1></div>;
+    return  <div className="flex h-screen justify-center items-center">
+                {typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask ? null : <RedirectModal/> }
+                <h1 className="text-center text-3xl">Please Sign in to MetaMask</h1>
+            </div>;
 }
  
 export default your_component;

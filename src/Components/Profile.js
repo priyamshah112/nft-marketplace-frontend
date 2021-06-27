@@ -8,6 +8,7 @@ import {
     Link
 } from "react-router-dom";
 import axios from 'axios';
+import RedirectModal from './RedirectModal';
 
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
@@ -222,10 +223,10 @@ const Profile = () => {
                 window.location.reload()
             })
         }
-        else {
-            alert("This application requires MetaMask. Get MetaMask ?");
-            window.location.href = "https://metamask.io/download.html";
-        }
+        // else {
+        //     alert("This application requires MetaMask. Get MetaMask ?");
+        //     window.location.href = "https://metamask.io/download.html";
+        // }
     }
 
     useEffect(() => {
@@ -398,6 +399,9 @@ const Profile = () => {
             </div>
         )
     }
-    return <div className="flex h-screen justify-center items-center"><h1 className="text-center text-3xl">Please Sign in to MetaMask</h1></div>;
+    return  <div className="flex h-screen justify-center items-center">
+                {typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask ? null : <RedirectModal/> }
+                <h1 className="text-center text-3xl">Please Sign in to MetaMask</h1>
+            </div>;
 }
 export default Profile;
