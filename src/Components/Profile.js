@@ -8,19 +8,43 @@ import {
     Link
 } from "react-router-dom";
 import axios from 'axios';
-import verifyUser from '../Mock_Api/verifyUser';
+
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
 const Product_card = (props) => {
+    function deleteAsset(ownerId, assetId){
+        console.log(ownerId, assetId)
+        props.setLoading(true)
+        axios.delete('https://nft-api-1.herokuapp.com/api/assets',{
+            data:{
+                "assetId": assetId,
+                "ownerId": ownerId
+            }
+        }).then((result) => {
+            console.log(result.data);
+            window.location.href = "/profile";
+        }).catch((error) => {
+            props.setLoading(false)
+            throw console.log(error);
+        })
+    }
+    console.log(props)
     return (
         <div className="w-60 rounded flex flex-col justify-between shadow-lg my-2">
             <div className="flex flex-row-reverse m-5 items-center gap-1">
                 {props.like}
                 <i className="far fa-heart"></i>
-                <Link to={'/editAsset/' + props.assetId.toString()}>
-                    <button className="mr-2"><i className="fas fa-edit"></i></button>
+                <Link to={{ pathname: "/editAsset/"+ props.assetId,
+                            state: {
+                                ownerId: props.id.account_address[0],
+                                name: props.name,
+                                descr: props.descr
+                            }
+                        }}>
+                    <button className="mr-2"><i className="fas fa-tag"></i></button>
                 </Link>
+                <button className="mr-2" onClick={() => deleteAsset(props.ownerId, props.assetId)}><i className="fas fa-trash"></i></button>
             </div>
             <img className="w-full" src={props.imageurl} alt="Sunset in the mountains" />
             <div className="mx-6 my-4">
@@ -49,7 +73,7 @@ const Assets = (props) => {
                 console.log({ "asdas": res })
                 var item = []
                 data.map(asset => {
-                    item.push(<Product_card assetId={asset.meta.assetId} accountAd={props.accountAd} name={asset.name} like={asset.likes} descr={asset.description} imageurl={asset.assetUrl} />)
+                    item.push(<Product_card loading={props.loading} setLoading={props.setLoading} id={asset.ownerId} ownerId={asset.ownerId.account_address[0]} assetId={asset.meta.assetId} accountAd={props.accountAd} name={asset.assetName} like={asset.likes} descr={asset.description} imageurl={asset.assetUrl} />)
                 })
                 setassets(item);
 
@@ -133,26 +157,60 @@ const Activity = () => {
 const Profile = () => {
 
     const [accountAd, setaccountAd] = useState("")
+    const [iscreate, setiscreate] = useState(false)
     const [buffer, setBuffer] = useState(null);
     const [bgipfs, setbgipfs] = useState("");
     const [pfipfs, setpfipfs] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [userName, setUsername] = useState("");
 
-
-    const VerifyUser = async (account) => {
-        verifyUser.post(`/auth/verifyUser/${account}`)
-            .then(response => {
-                //console.log(response.data.data) 
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    function createUser(accAd) {
+        axios.get('https://nft-api-1.herokuapp.com/api/user/' + accAd)
+        .then(res => {
+            console.log(res)
+            if(res.data.data === null){
+                console.log({
+                    "username":"User_" + accAd.substring(accAd.length - 5),
+                    "account_address":[accAd],
+                    "user_type":"",
+                    "bio":"",
+                    "email_address":"",
+                    "bg_img_url":"https://ipfs.io/ipfs/QmTudZ7p5EftYP3eK9zd7dypdPCBUqLShL3o5w1SfGhnAX",
+                    "profile_pic_url":"https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+                    "is_verified":true,
+                    "is_deleted":false
+                })
+                axios.post('https://nft-api-1.herokuapp.com/api/user/',
+                    {
+                        "username":"User_" + accAd.substring(accAd.length - 5),
+                        "account_address":[accAd],
+                        "user_type":"",
+                        "bio":"",
+                        "email_address":"",
+                        "bg_img_url":"https://ipfs.io/ipfs/QmTudZ7p5EftYP3eK9zd7dypdPCBUqLShL3o5w1SfGhnAX",
+                        "profile_pic_url":"https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+                        "is_verified":true,
+                        "is_deleted":false
+                    }
+                )
+                .then(res => {
+                    console.log(res);
+                    setiscreate(true);
+                })
+                .catch(err => {console.log(err)} );
+            }
+            else{
+                setUsername(res.data.data.username)
+            }
+        })
+        .catch(err => {console.log(err)} );
     }
 
     async function enableEthereum() {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];
         setaccountAd(account);
-        VerifyUser(account);
+        createUser(account);
         console.log(account);
     }
 
@@ -172,11 +230,11 @@ const Profile = () => {
     useEffect(() => {
         //console.log(accountAd);
         if (accountAd != "") {
-            axios.get('http://localhost:5000/api/user/' + accountAd).then((res, err) => {
+            axios.get('https://nft-api-1.herokuapp.com/api/user/' + accountAd).then((res, err) => {
                 if (err) {
                     console.log(err);
                 }
-                else {
+                else if (res.data.data != null) {
                     var data = res.data.data;
                     setbgipfs(data.bg_img_url)
                     setpfipfs(data.profile_pic_url);
@@ -184,7 +242,7 @@ const Profile = () => {
                 }
             })
         }
-    }, [accountAd])
+    }, [accountAd, iscreate])
 
 
 
@@ -199,7 +257,7 @@ const Profile = () => {
             ipfs.add(Buffer(reader.result)).then((res) => {
                 setbgipfs('https://ipfs.io/ipfs/' + res.path.toString());
                 console.log(res.path);
-                axios.put('http://localhost:5000/api/user/' + accountAd,
+                axios.put('https://nft-api-1.herokuapp.com/api/user/' + accountAd,
                     { "account_address": [accountAd], "bg_img_url": 'https://ipfs.io/ipfs/' + res.path.toString() })
                     .then((res, err) => {
                         if (err) {
@@ -223,7 +281,7 @@ const Profile = () => {
             ipfs.add(Buffer(reader.result)).then((res) => {
                 setpfipfs('https://ipfs.io/ipfs/' + res.path.toString());
                 console.log(res.path);
-                axios.put('http://localhost:5000/api/user/' + accountAd,
+                axios.put('https://nft-api-1.herokuapp.com/api/user/' + accountAd,
                     { "account_address": [accountAd], "profile_pic_url": 'https://ipfs.io/ipfs/' + res.path.toString() })
                     .then((res, err) => {
                         if (err) {
@@ -282,7 +340,7 @@ const Profile = () => {
 
                         <div className="rounded-full h-32 w-32 flex" style={{ backgroundImage: "url(" + pfipfs + ")", justifyContent: "center", alignItems: "flex-end" }} >
                             {/* <div > */}
-                            <i onClick={(e) => document.getElementById('myInput2').click()} style={{ color: "white", fontWeight: "bold", paddingBottom: "10px" }}>Edit</i>
+                            <i className="cursor-pointer"  onClick={(e) => document.getElementById('myInput2').click()} style={{ color: "white", fontWeight: "bold", paddingBottom: "10px" }}>Edit</i>
                             <input
                                 id="myInput2"
                                 style={{ display: 'none' }}
@@ -292,7 +350,7 @@ const Profile = () => {
                             />
                             {/* </div> */}
                         </div>
-                        <h2>{accountAd}</h2>
+                        <h2>{userName}</h2>
                     </div>
                 </div>
                 <div className="flex flex-row flex-wrap gap-10 m-10 font-light" style={{ fontSize: "16px" }}>
@@ -319,11 +377,23 @@ const Profile = () => {
                 </div>
                 <hr />
                 {
-                    selectedTab == 0 ? <Assets accountAd={accountAd} /> : null
+                    selectedTab == 0 ? <Assets loading={loading} setLoading={setLoading} accountAd={accountAd} /> : null
 
                 }
                 {selectedTab == 1 ? <Activity /> : null}
                 {/* <Assets /> */}
+                <div className={loading ? "fixed z-10 inset-0 overflow-y-auto":"hidden"} aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                        <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                        <div className="inline-block align-bottom text-center bg-transparent rounded-lg transform transition-all sm:my-8 sm:align-middle">
+                            <svg className="animate-spin h-5 w-5 bg-red-500 p-5 ml-12 justify-center" viewBox="0 0 24 24">
+                                
+                            </svg>
+                            <h3>Deleting Asset</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
