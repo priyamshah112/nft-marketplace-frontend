@@ -132,7 +132,6 @@ const Popup1 = (props) => {
             trigger={<button style={{ outline: "none" }} className="button" type="button"><i className="fas fa-plus text-blue-500"></i></button>}
             modal
             nested
-
         >
             {close => (
                 <div class=" flex flex-col mx-8 my-5" >

@@ -264,7 +264,7 @@ const CreateAsset = () => {
     const [assetName, setAssetName] = useState(null)
     return (
 
-        <div className="m-10 ml-96 mr-96">
+        <div className="m-5 sm:m-10 sm:ml-96 sm:mr-96">
             <h1 className="text-3xl mt-10">Create new item</h1>
             <form>
                 <p className="mt-2 font-bold">Image, Video, Audio, or 3D Model</p>
