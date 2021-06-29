@@ -11,7 +11,7 @@ const Card = ({data}) => {
     const [isLoaded,setLoaded] = useState(false);
 
     return (
-        <div  className="mb-4 p-4 bg-white rounded-md shadow-md border transform hover:-translate-y-1.5 hover:shadow-2xl duration-150 mx-2">
+        <div className="mb-4 p-4 bg-white rounded-md shadow-md w-96 border transform hover:-translate-y-1.5 hover:shadow-2xl duration-150 mx-2">
             <div className="flex flex-row justify-end p-1.5">
                 {/* <FavoriteBorderIcon className="hover:text-red-500" /> */}
                 <i class="far fa-heart hover:text-red-500"></i>
