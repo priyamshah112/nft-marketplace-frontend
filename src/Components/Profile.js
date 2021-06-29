@@ -37,11 +37,12 @@ const Product_card = (props) => {
                 {props.like}
                 <i className="far fa-heart"></i>
                 <Link to={{
-                    pathname: "/editAsset/" + props.assetId,
+                    pathname: "/asset/",
                     state: {
                         ownerId: props.id.account_address[0],
                         name: props.name,
-                        descr: props.descr
+                        descr: props.descr,
+                        assetId: props.assetId
                     }
                 }}>
                     <button className="mr-2"><i className="fas fa-tag"></i></button>

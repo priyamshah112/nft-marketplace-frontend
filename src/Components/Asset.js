@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Form, Icon, Message } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const MessageExampleAttached = () => (
     <div className="rounded-lg">
@@ -41,6 +43,24 @@ const Property_Card = (props) => {
     )
 }
 
+const Stats_Card = (props) => {
+    return (
+        <div className="bg-blue-300 rounded-lg border-2 p-4 w-1/4 m-3">
+            <div className="text-blue-600 text-center">{props.name}</div>
+            <div className="text-black text-center">{props.value} to {props.max}</div>
+        </div>
+    )
+}
+
+const Levels_Card = (props) => {
+    return (
+        <div className="bg-blue-300 rounded-lg border-2 p-4 w-1/4 m-3">
+            <div className="text-blue-600 text-center">{props.name}</div>
+            <div className="text-black text-center">{props.value} to {props.max}</div>
+        </div>
+    )
+}
+
 const Listing_Entry = (props) => {
     return (
         <tr className="bg-blue-50">
@@ -76,13 +96,36 @@ const Trading_Entry = (props) => {
     )
 }
 
-const Asset = () => {
+const Asset = (props) => {
+    const [assetData, setAssetData] = useState([])
+    const [properties, setproperties] = useState([])
+    const [levels, setlevels] = useState([])
+    const [stats, setstats] = useState([])
+    const [contract, setContract] = useState(null)
+    const [chain, setChain] = useState("Etheruem")
+    const [token, setToken] = useState(null)
+    const [ownerId, setownerId] = useState("")
+
+    useEffect(() => {
+        axios.get('https://nft-api-1.herokuapp.com/api/assets/' + props.location.state.assetId.toString())
+            .then(response => {
+                console.log(response['data']['data'])
+                setAssetData(response['data']['data'])
+                setproperties(response['data']['data']['meta']['properties'])
+                setlevels(response['data']['data']['meta']['levels'])
+                setstats(response['data']['data']['meta']['stats'])
+                setContract(response['data']['data']['chainInfo']['contract'])
+                setChain(response['data']['data']['chainInfo']['chain'])
+                setToken(response['data']['data']['chainInfo']['token'])
+            })
+        }, [])
+
     return (
         <div className="w-11/12 m-10 pb-10">
             <div className=" flex gap-8">
                 <div className="flex flex-col mt-15 w-1/3">
                     <div className="image">
-                        <Product_card assetId={1} name="Abc" like={2} descr="Hey" imageurl={"https://ipfs.io/ipfs/QmViUFY5g6JzKCa2HA9dYtY864YsHqFQaryAJhm2NijUti"} />
+                        <Product_card assetId={props.location.state.assetId} name={assetData['assetName']} like={assetData['likes']} descr={assetData['description']} imageurl={assetData['assetUrl']} />
                         {/* <img className="rounded w-full h-64 object-contain" src={"https://ipfs.io/ipfs/QmViUFY5g6JzKCa2HA9dYtY864YsHqFQaryAJhm2NijUti"} /> */}
                     </div>
                     <div className="assetDetails my-7 rounded-lg border-2">
@@ -91,34 +134,47 @@ const Asset = () => {
                                 <i className="fas fa-bars mr-6 text-xl"></i>Description
                             </div>
                             <div className="bg-blue-50 p-8">
-                                Lorem ipsum
+                                {assetData['description']}
                             </div>
                         </div>
                         <div className="properties tab w-full overflow-hidden">
                             <input className="absolute opacity-0 margin-auto margin-r-0" id="tab-properties" type="checkbox" name="tabs"></input>
-                            <label className="block p-8 leading-normal cursor-pointer text-xl" for="tab-properties"><i className="fas fa-bookmark mr-6 text-xl"></i>Properties</label>
+                            <label className="block p-8 leading-normal cursor-pointer text-xl" for="tab-properties"><i className="fas fa-list-ul mr-6 text-xl"></i>Properties</label>
                             <div id="propertiesContent" className="propertiesContent px-4 tab-content overflow-hidden bg-blue-50 w-full leading-normal">
                                 <div className="flex flex-row flex-wrap">
-                                    <Property_Card type={"AGE"} name={"20"} />
-                                    <Property_Card type={"AGE"} name={"20"} />
-                                    <Property_Card type={"AGE"} name={"20"} />
-                                    <Property_Card type={"AGE"} name={"20"} />
-                                    <Property_Card type={"AGE"} name={"20"} />
-                                    <Property_Card type={"AGE"} name={"20"} />
-                                    <Property_Card type={"AGE"} name={"20"} />
+                                {properties.map((property,index)=>{
+                                            return <Property_Card type={property['name']} name={property['value']}/>
+                                        }
+                                    )
+                                }
                                 </div>
                             </div>
                         </div>
                         <hr />
-                        <div className="about tab w-full overflow-hidden">
-                            <input className="absolute opacity-0 margin-auto margin-r-0" id="tab-about" type="checkbox" name="tabs"></input>
-                            <label className="block p-8 leading-normal cursor-pointer text-xl" for="tab-about"><i className="fas fa-address-card mr-6 text-xl"></i>About</label>
-                            <div className="propertiesContent px-4 tab-content overflow-hidden bg-blue-50 w-full leading-normal">
-                                <div className="flex flex-row flex-wrap p-4">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        <div className="levels tab w-full overflow-hidden">
+                            <input className="absolute opacity-0 margin-auto margin-r-0" id="tab-levels" type="checkbox" name="tabs"></input>
+                            <label className="block p-8 leading-normal cursor-pointer text-xl" for="tab-levels"><i className="fas fa-star mr-6 text-xl"></i>Levels</label>
+                            <div id="levelsContent" className="levelsContent px-4 tab-content overflow-hidden bg-blue-50 w-full leading-normal">
+                                <div className="flex flex-row flex-wrap">
+                                    {levels.map((level,index)=>{
+                                                return <Levels_Card name={level['name']} value={level['value']} max={level['max']}/>
+                                            }
+                                        )
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div className="stats tab w-full overflow-hidden">
+                            <input className="absolute opacity-0 margin-auto margin-r-0" id="tab-stats" type="checkbox" name="tabs"></input>
+                            <label className="block p-8 leading-normal cursor-pointer text-xl" for="tab-stats"><i className="fas fa-signal mr-6 text-xl"></i>Stats</label>
+                            <div id="statsContent" className="statsContent px-4 tab-content overflow-hidden bg-blue-50 w-full leading-normal">
+                                <div className="flex flex-row flex-wrap">
+                                {stats.map((stat,index)=>{
+                                                return <Stats_Card name={stat['name']} value={stat['value']} max={stat['max']}/>
+                                            }
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -129,28 +185,18 @@ const Asset = () => {
                             <div className="propertiesContent px-4 tab-content overflow-hidden bg-blue-50 w-full leading-normal">
                                 <div className="bg-blue-50 w-full p-4">
                                     <div className="flex flex-col gap-4">
-                                        <div className="flex flex-row">Crypto Address: <p className="m-auto mr-0 mt-0 text-gray-400">{"0xdfb2...46df"}</p></div>
-                                        <div className="flex flex-row">Token ID: <p className="m-auto mr-0 mt-0 text-gray-400">{"27853175353..."}</p></div>
-                                        <div className="flex flex-row">Blockchain: <p className="m-auto mr-0 mt-0 text-gray-400">{"Ethereum"}</p></div>
+                                        <div className="flex flex-row">Contract: <p className="m-auto mr-0 mt-0 text-gray-400">{contract}</p></div>
+                                        <div className="flex flex-row">Token ID: <p className="m-auto mr-0 mt-0 text-gray-400">{token}</p></div>
+                                        <div className="flex flex-row">Blockchain: <p className="m-auto mr-0 mt-0 text-gray-400">{chain}</p></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="flex-grow flex-col gap-3">
-                    <div className="flex flex-row justify-between my-3">
-                        <div>
-                            Crypto Corgis ☑️
-                        </div>
-                        <div className="flex flex-row gap-2">
-                            <i className="fas fa-redo-alt"></i>
-                            <i className="fa fa-share" aria-hidden="true"></i>
-                            <i className="fas fa-ellipsis-v"></i>
-                        </div>
-                    </div>
+                <div className="flex-grow flex-col mt-4 gap-3">
                     <div className="heading mb-6">
-                        <h2>Corgi #2885</h2>
+                        <h1>{assetData['assetName']}</h1>
                     </div>
                     <div className="flex flex-row gap-8 my-4">
                         <div className="flex flex-row gap-2">
