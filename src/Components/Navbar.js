@@ -5,14 +5,16 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
     return (
         <div>
-            <nav class="flex items-center justify-between flex-wrap bg-gray-800 py-2 px-6">
-                <a href="/" class="flex items-center flex-shrink-0 text-white mr-6 hover:cursor-pointer">
-                    <span class="font-bold text-xl">NFT Original</span>
-                </a>
-                <i className="float-right fas fa-bars text-white text-lg cursor-pointer md:hidden" onClick={() => {
-                    var ele = document.getElementsByClassName('navitems')[0]
-                    ele.classList.contains("hidden") ? ele.classList.remove("hidden") : ele.classList.add("hidden")
-                }}></i>
+            <nav class="flex items-center justify-between flex-col bg-gray-800 py-2 px-6 md:flex-row">
+                <div className="flex flex-row w-full justify-between md:w-auto">
+                    <a href="/" class="flex items-center flex-shrink-0 text-white mr-6 hover:cursor-pointer">
+                        <span class="font-bold text-xl">NFT Original</span>
+                    </a>
+                    <i className="float-right fas fa-bars text-white text-lg cursor-pointer md:hidden" onClick={() => {
+                        var ele = document.getElementsByClassName('navitems')[0]
+                        ele.classList.contains("hidden") ? ele.classList.remove("hidden") : ele.classList.add("hidden")
+                    }}></i>
+                </div>
                 <div className="navitems w-11/12 hidden md:block">
                     <div class="block mt-5 flex-grow sm:flex sm:w-full sm:mt-2">
                         <div class="text-md sm:flex-grow">
@@ -35,7 +37,7 @@ const Navbar = () => {
                         </a>
                         </div>
                         <div className="group">
-                            <a href="" className="inline-block text-sm px-4 py-1 leading-none rounded text-white mt-4 md:mt-0">
+                            <a href="#" className="inline-block text-sm px-4 py-1 leading-none rounded text-white mt-4 md:mt-0">
                                 <i class="fas fa-user-circle fa-2x"></i>
                             </a>
                             <ul className="absolute z-40 shadow-xl sm:right-10 hidden text-black-700 pt-2 group-hover:block">
