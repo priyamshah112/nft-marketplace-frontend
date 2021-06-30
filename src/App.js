@@ -15,18 +15,23 @@ const App = () => {
     return (
         <Router>
             <div>
-                <Navbar />
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    {/* <Route path="/login" component={Login} /> */}
-                    <Route path="/browse" component={Browse} />
-                    <Route path="/profile" component={Profile} />
-                    <Route path="/settings" component={Settings} />
-                    <Route path="/asset" component={Asset} />
-                    <Route path="/setassetprice" component={SetPriceAsset} />
-                    <Route path="/createAsset/" component={CreateAsset} />
-                    <Route path='/editAsset/:id' component={EditAsset} />
-                </Switch>
+
+                <div class="sticky top-0 z-50">
+                    <Navbar />
+                </div>
+                <div class="relative">
+                    <Switch>
+                        <Route path="/" exact component={Home} />
+                        {/* <Route path="/login" component={Login} /> */}
+                        <Route path="/browse" component={Browse} />
+                        <Route path="/profile" component={Profile} />
+                        <Route path="/settings" component={Settings} />
+                        <Route path="/asset" component={Asset} />
+                        <Route path="/setassetprice" component={SetPriceAsset} />
+                        <Route path="/createAsset/" component={CreateAsset} />
+                        <Route path='/editAsset/:id' component={EditAsset} />
+                    </Switch>
+                </div>
             </div>
         </Router>
     )
