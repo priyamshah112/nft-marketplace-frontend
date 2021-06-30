@@ -321,7 +321,7 @@ const Profile = () => {
         console.log(accountAd)
         return (
             <div className="flex flex-col">
-                <div className="flex flex-row-reverse  bg-gray-100 h-52 " id="background" style={{ background: "url(" + bgipfs + ")", backgroundSize: 'cover' }}>
+                <div className="flex flex-row-reverse h-52 bg-cover" style={{ background: "url(" + bgipfs + ")" }}>
 
                     <div className="pr-3 py-4">
 
@@ -341,7 +341,7 @@ const Profile = () => {
                     <i className="fas fa-share-alt-square" style={{ fontSize: "40px" }}></i>
                     <div className="absolute flex flex-col bottom-4 right-1/2 justify-center items-center" style={{ left: "50%" }}>
 
-                        <div className="rounded-full h-32 w-32 flex" style={{ backgroundImage: "url(" + pfipfs + ")", justifyContent: "center", alignItems: "flex-end" }} >
+                        <div className="rounded-full h-32 w-32 flex bg-cover" style={{ backgroundImage: "url(" + pfipfs + ")", justifyContent: "center", alignItems: "flex-end" }} >
                             {/* <div > */}
                             <i className="cursor-pointer" onClick={(e) => document.getElementById('myInput2').click()} style={{ color: "white", fontWeight: "bold", paddingBottom: "10px" }}>Edit</i>
                             <input
@@ -400,9 +400,9 @@ const Profile = () => {
             </div>
         )
     }
-    return  <div className="flex h-screen justify-center items-center">
-                {typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask ? null : <RedirectModal/> }
-                <h1 className="text-center text-3xl">Please Sign in to MetaMask</h1>
-            </div>;
+    return <div className="flex h-screen justify-center items-center">
+        {typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask ? null : <RedirectModal />}
+        <h1 className="text-center text-3xl">Please Sign in to MetaMask</h1>
+    </div>;
 }
 export default Profile;
