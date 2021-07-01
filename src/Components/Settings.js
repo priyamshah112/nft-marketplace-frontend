@@ -39,16 +39,16 @@ const GeneralSettings = (props) => {
 
     return (
         <div>
-            <div className="mx-32 mt-16">
+            <div className="mx-10 mt-10 md:mx-32 md:mt-16">
                 <p className="text-2xl font-bold">General Settings</p>
                 <form>
                     <label className="block text-gray-600 text-md font-bold mt-5 mb-2">Username</label>
-                    <input id="username" className={"rounded-md border-2 mt-1 pl-2 py-2 w-96 " + (username == null ? "border-gray-200" : username.length > 2 && username.length < 19 ? "border-gray-200" : "border-red-700") + " focus:shadow-lg focus:border-none focus:outline-none"} placeholder="Enter Username" type="text" defaultValue={props.username} onChange={(event) => setUsername(event.target.value)}></input>
+                    <input id="username" className={"rounded-md border-2 mt-1 pl-2 py-2 w-60 md:w-96 " + (username == null ? "border-gray-200" : username.length > 2 && username.length < 19 ? "border-gray-200" : "border-red-700") + " focus:shadow-lg focus:border-none focus:outline-none"} placeholder="Enter Username" type="text" defaultValue={props.username} onChange={(event) => setUsername(event.target.value)}></input>
                     <div className={"mt-1 text-red-500 text-sm " + (username == null ? "hidden" : username.length > 2 && username.length < 19 ? "hidden" : "")}>Length of username should be from 3 to 28</div>
                     <label className="block text-gray-600 text-md font-bold mt-5 mb-2">Bio</label>
-                    <textarea id="bio" className="rounded-md border-2 border-gray-200 mt-1 pl-2 py-2 h-20 w-96 focus:shadow-lg focus:border-none focus:outline-none" placeholder="Enter Bio" type="text" defaultValue={props.bio}></textarea>
+                    <textarea id="bio" className="rounded-md border-2 border-gray-200 mt-1 pl-2 py-2 h-20 w-60 md:w-96 focus:shadow-lg focus:border-none focus:outline-none" placeholder="Enter Bio" type="text" defaultValue={props.bio}></textarea>
                     <label className="block text-gray-600 text-md font-bold mt-5 mb-2">Email</label>
-                    <input id="email" className="rounded-md border-2 border-gray-200 mt-1 pl-2 py-2 w-96 focus:shadow-lg focus:border-none focus:outline-none" placeholder="Enter Email address" type="text" defaultValue={props.email}></input>
+                    <input id="email" className="rounded-md border-2 border-gray-200 mt-1 pl-2 py-2 w-60 md:w-96 focus:shadow-lg focus:border-none focus:outline-none" placeholder="Enter Email address" type="text" defaultValue={props.email}></input>
                     <input className="block bg-blue-500 hover:bg-blue-700 text-lg text-white font-bold py-2 px-4 rounded cursor-pointer mt-5 mb-2" type="submit" value="Submit" onClick={(event)=>handleSubmit(event)}></input>
                 </form>
             </div>
@@ -73,7 +73,7 @@ const NotificationSettings = (props) => {
       }
     return (
         <div>
-            <div className="mx-32 mt-16">
+            <div className="mx-10 mt-10 md:mx-32 md:mt-16">
                 <p className="text-2xl font-bold">Notification Settings</p>
                 <form>
                     <label className="block text-gray-600 text-md font-bold mt-5 mb-2">Allow Notifications</label>
@@ -93,7 +93,7 @@ const NotificationSettings = (props) => {
 const WalletSettings = (props) => {
 
     return (
-        <div className = "ml-32 mt-20 border-2 rounded-md h-full w-1/2">
+        <div className = "ml-10 mt-8 border-2 rounded-md h-full w-4/6 md:mt-20 md:w-3/5 md:ml-32">
             <div className = "p-5 text-lg">
                 <i className="fas fa-cog mr-3"></i>Settings
             </div>
@@ -101,8 +101,12 @@ const WalletSettings = (props) => {
             <div className = "p-5 bg-gray-50">
                 <p>Your Wallet Address</p>
                 <div className="flex flex-row justify-between mt-5 bg-gray-200 p-2 rounded-md border-2 border-gray-300">
-                    <div className="overflow-hidden">{props.accountAd}</div>
-                    <div className="justify-self-end text-blue-500 cursor-pointer">Copy</div>
+                    <input id="accountAd" className="overflow-hidden bg-gray-200 w-full" type="text" value={props.accountAd} readOnly></input>
+                    <div className="justify-self-end text-blue-500 cursor-pointer" onClick={() => {
+                        var copyText = document.querySelector("#accountAd");
+                        copyText.select();
+                        document.execCommand("copy");                      
+                    }}>Copy</div>
                 </div>
                 <div className="flex flex-row">
                     <button className="block bg-blue-500 hover:bg-blue-700 text-lg text-white font-light py-2 px-4 rounded cursor-pointer mt-5 mb-2">Add Funds</button>
@@ -207,12 +211,13 @@ const Settings = () => {
 
     const [selectedOption, setSelectedOption] = useState("General")
     let handleClick = (e) => {
-        let option = e.target.id
-        if(option === "General")
+        let option = e.target.classList
+        console.log(option)
+        if(option.contains("General"))
             setSelectedOption("General")
-        else if(option === "Notifications")
+        else if(option.contains("Notifications"))
             setSelectedOption("Notifications")
-        else
+        else if(option.contains("Wallet"))
             setSelectedOption("Wallet")
     }
     
@@ -220,26 +225,27 @@ const Settings = () => {
     if(accountAd){
         return (
                 <div className="flex flex-row h-full">
-                    <div id="sidebar" className="shadow-lg w-1/4 h-screen">
+                    <div id="sidebar" className="shadow-lg w-1/4 h-screen max-w-min">
                         <div>
-                            <div className="p-5 text-base text-gray-500 font-bold">
-                                <i className="fas fa-wallet mr-3"></i>My Wallet
+                            <div className={"Wallet p-5 text-base text-gray-500 font-bold flex flex-row " + (selectedOption === "Wallet" ? "bg-blue-50 md:bg-white":"")}
+                                onClick={(e) => {handleClick(e)}}>
+                                <i className="Wallet fas fa-wallet mt-1" onClick={(e) => {handleClick(e)}}></i><div className="Wallet hidden ml-4 md:block" onClick={(e) => {handleClick(e)}}>My Wallet</div>
                             </div>
                             <hr/>
-                            <div id="Wallet" className={"p-5 px-10 text-base text-gray-500 font-bold overflow-hidden " + (selectedOption === "Wallet" ? "bg-blue-50":"bg-gray-100") + " hover:text-black cursor-pointer"}
+                            <div className={"Wallet p-5 text-base text-gray-500 font-bold overflow-hidden hidden md:block " + (selectedOption === "Wallet" ? "bg-blue-50":"bg-gray-100") + " hover:text-black cursor-pointer"}
                                 onClick={(e) => {handleClick(e)}}>
                                 {accountAd}
                             </div>
                             <hr/>
                         </div>
-                        <div id="General" className={"p-5 text-base text-gray-500 font-bold " + (selectedOption === "General" ? "bg-blue-50":"") + " hover:text-black cursor-pointer"}
-                            onClick={handleClick}>
-                            <i className="fas fa-cog mr-3"></i>General
+                        <div id="General" className={"General p-5 text-base text-gray-500 font-bold flex flex-row " + (selectedOption === "General" ? "bg-blue-50":"") + " hover:text-black cursor-pointer"}
+                            onClick={(e) => handleClick(e)}>
+                            <i className="General fas fa-cog mt-1" onClick={(e) => {handleClick(e)}}></i><div className="General hidden ml-4 md:block" onClick={(e) => {handleClick(e)}}>General</div>
                         </div>
                         <hr/>
-                        <div id="Notifications" className={"p-5 text-base text-gray-500 font-bold " + (selectedOption === "Notifications" ? "bg-blue-50":"") + " hover:text-black cursor-pointer"}
-                            onClick={handleClick}>
-                            <i className="fas fa-bell mr-5"></i>Notifications
+                        <div id="Notifications" className={"Notifications p-5 text-base text-gray-500 font-bold flex flex-row " + (selectedOption === "Notifications" ? "bg-blue-50":"") + " hover:text-black cursor-pointer"}
+                            onClick={(e) => handleClick(e)}>
+                            <i className="Notifications fas fa-bell mt-1" onClick={(e) => {handleClick(e)}}></i><p className="Notifications hidden ml-5 md:block" onClick={(e) => {handleClick(e)}}>Notifications</p>
                         </div>
                         <hr/>
                     </div>
