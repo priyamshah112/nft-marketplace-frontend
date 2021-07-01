@@ -14,7 +14,7 @@ const Header = () => {
                     <div className="py-1 px-8 bg-white border border-blue-400 text-blue-400 font-semibold rounded-md cursor-pointer hover:bg-blue-400 hover:text-white">Create</div>
                 </div>
             </div> */}
-            <div className="flex text-2xl flex-col w-full mb-8 bg-cover bg-no-repeat" style={{ minHeight: '100vh', backgroundImage: "url('https://cdn.shopify.com/s/files/1/1414/2472/articles/46_1300x800.png?v=1593590858')", boxShadow: "inset 0 0 0 1000px rgb(0 0 0 / 33%)" }}>
+            <div className="flex text-2xl flex-col w-full mb-8 bg-cover bg-no-repeat h-screen md:h-full md:p-10 xl:h-screen" style={{ backgroundImage: "url('https://cdn.shopify.com/s/files/1/1414/2472/articles/46_1300x800.png?v=1593590858')", boxShadow: "inset 0 0 0 1000px rgb(0 0 0 / 33%)" }}>
                 <div className="ml-8 m-auto">
                     <div className="text-7xl text-white" style={{ lineHeight: '5rem' }}>Discover<br></br> rare digital art<br></br> and collect NFTs</div>
                     <div className="flex mt-8">
