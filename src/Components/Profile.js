@@ -356,26 +356,26 @@ const Profile = () => {
                         <h2>{userName}</h2>
                     </div>
                 </div>
-                <div className="flex flex-row flex-wrap gap-10 m-10 font-light" style={{ fontSize: "16px" }}>
+                <div className="flex flex-row gap-4 md:gap-10 m-10 font-light" style={{ fontSize: "16px" }}>
                     <div className="flex flex-row px-5 py-2 hover rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="0">
                         <i className="fas fa-tag"></i>
-                        Assets
+                        <p className="hidden sm:block">Assets</p>
                     </div>
                     <div className="flex flex-row px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="1">
                         <i className="fas fa-history"></i>
-                        Activity
+                        <p className="hidden sm:block">Activity</p>
                     </div>
                     <div className="flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="2">
                         <i className="fas fa-gift"></i>
-                        Offer
+                        <p className="hidden sm:block">Offer</p>
                     </div>
                     <div className="flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="3">
                         <i className="far fa-heart"></i>
-                        Favourite
+                        <p className="hidden sm:block">Favourite</p>
                     </div>
                     <div className="flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="4">
                         <i className="fas fa-dollar-sign"></i>
-                        Referrals
+                        <p className="hidden sm:block">Referrals</p>
                     </div>
                 </div>
                 <hr />
