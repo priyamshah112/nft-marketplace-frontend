@@ -75,7 +75,7 @@ const DisplayCard = ()=>{
         console.log(cards);
     },[]);
     return(
-        <div className="mt-10 grid grid-flow-row auto-cols-auto grid-cols-1 sm:grid-cols-4 gap-3">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             {cards && cards.length > 0 && cards.map((asset,assetIdx) => (<Card data={asset} />))}
         </div>
     )
