@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const MessageExampleAttached = () => (
-    <div className="rounded-lg">
+    <div className="rounded-lg hidden">
         <Message
             attached
             header='Welcome to our site!'
@@ -37,7 +37,7 @@ const Product_card = (props) => {
 
 const Property_Card = (props) => {
     return (
-        <div className="bg-blue-300 rounded-lg border-2 p-4 w-1/4 m-3">
+        <div className="bg-blue-300 rounded-lg border-2 p-4 min-w-min w-1/4 m-3">
             <div className="text-blue-600 text-center">{props.type}</div>
             <div className="text-black text-center">{props.name}</div>
         </div>
@@ -46,7 +46,7 @@ const Property_Card = (props) => {
 
 const Stats_Card = (props) => {
     return (
-        <div className="bg-blue-300 rounded-lg border-2 p-4 w-1/4 m-3">
+        <div className="bg-blue-300 rounded-lg border-2 p-4 min-w-min w-1/4 m-3">
             <div className="text-blue-600 text-center">{props.name}</div>
             <div className="text-black text-center">{props.value} to {props.max}</div>
         </div>
@@ -55,7 +55,7 @@ const Stats_Card = (props) => {
 
 const Levels_Card = (props) => {
     return (
-        <div className="bg-blue-300 rounded-lg border-2 p-4 w-1/4 m-3">
+        <div className="bg-blue-300 rounded-lg border-2 p-4 min-w-min w-1/4 m-3">
             <div className="text-blue-600 text-center">{props.name}</div>
             <div className="text-black text-center">{props.value} to {props.max}</div>
         </div>
@@ -123,16 +123,38 @@ const Asset = (props) => {
 
     return (
         <div class="flex flex-col">
-            <div class="w-11/12 m-10 flex flex-row-reverse bg-blue-50 rounded-md py-5 pr-4">
+            <div class="md:w-11/12 m-5 md:m-10 flex flex-row-reverse bg-blue-50 rounded-md py-5 pr-4">
                 <Link to={{
                     pathname: "/setassetprice"
                 }}>
                     <button class="bg-blue-500 rounded-md py-3 px-10 text-white font-bold ">Sell</button>
                 </Link>
             </div>
-            <div className="w-11/12 m-10 pb-10">
-                <div className=" flex gap-8">
-                    <div className="flex flex-col mt-15 w-1/3">
+            <div className="md:w-11/12 m-5 md:m-10 pb-10">
+                <div className=" flex flex-col gap-8 md:flex-row">
+                    <div className="flex flex-col mt-15 md:w-1/3">
+                        <div className="flex-grow flex-col mt-4 gap-3 md:hidden ">
+                            <div className="heading mb-6">
+                                <h1>{assetData['assetName']}</h1>
+                            </div>
+                            <div className="flex flex-row gap-8 my-4">
+                                <div className="flex flex-row gap-2">
+                                    <p>Owned by HugMe</p>
+                                </div>
+
+                                <div className="flex flex-row gap-2 " style={{ "align-items": "center" }}>
+                                    <i className="far fa-eye"></i>
+                                    <p>7.8K views</p>
+                                </div>
+
+                                <div className="flex flex-row gap-2" style={{ "align-items": "center" }}>
+
+                                    <i className="fa fa-heart" aria-hidden="true"></i>
+                                    <p>60 favorites</p>
+                                </div>
+                            </div>
+                            
+                        </div>
                         <div className="image">
                             <Product_card assetId={props.location.state.assetId} name={assetData['assetName']} like={assetData['likes']} descr={assetData['description']} imageurl={assetData['assetUrl']} />
                             {/* <img className="rounded w-full h-64 object-contain" src={"https://ipfs.io/ipfs/QmViUFY5g6JzKCa2HA9dYtY864YsHqFQaryAJhm2NijUti"} /> */}
@@ -204,10 +226,10 @@ const Asset = (props) => {
                         </div>
                     </div>
                     <div className="flex-grow flex-col mt-4 gap-3">
-                        <div className="heading mb-6">
+                        <div className="heading mb-6 hidden md:block">
                             <h1>{assetData['assetName']}</h1>
                         </div>
-                        <div className="flex flex-row gap-8 my-4">
+                        <div className="flex flex-row gap-8 my-4 hidden md:flex md:flex-row">
                             <div className="flex flex-row gap-2">
                                 <p>Owned by HugMe</p>
                             </div>
