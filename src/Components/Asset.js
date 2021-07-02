@@ -127,7 +127,7 @@ const Asset = (props) => {
                 <Link to={{
                     pathname: "/setassetprice"
                 }}>
-                    <button class="bg-blue-500 rounded-md py-3 px-5 text-white font-bold ">Sell</button>
+                    <button class="bg-blue-500 rounded-md py-3 px-10 text-white font-bold ">Sell</button>
                 </Link>
             </div>
             <div className="w-11/12 m-10 pb-10">
