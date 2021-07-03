@@ -12,7 +12,9 @@ const Card = ({ imgUrl }) => {
                     <div className="shadow-lg relative">
                         <img className="rounded-md md:w-full" src={imgUrl}  />
                         <div className="invisible md:visible bg-white text-blue-500 absolute bottom-5 ml-12 p-2 pl-5 pr-5 rounded flex flex-row cursor-pointer">
-                            Explore
+                            <a href="/browse">
+                                Explore
+                            </a>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>

@@ -31,7 +31,7 @@ const CardsList = (props) => {
                     <span className="block uppercase font-bold">&nbsp; {cards.title} </span>
                 </div>
                 <div className="flex cursor-pointer">
-                    <span className="uppercase font-bold">View All</span>
+                    <span className="uppercase font-bold"><a href="/browse">View All</a></span>
                     {/* <ArrowForwardIosIcon /> */}
                 </div>
             </div>
