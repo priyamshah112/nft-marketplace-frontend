@@ -1,0 +1,74 @@
+{
+    "status": 1,
+    "message": "Success",
+    "data": {
+        "chainInfo": {
+            "contract": "0x42b67365D11fFf9ACDE7b5d6202689F15BEEF275",
+            "token": "109",
+            "chain": "Ethereum"
+        },
+        "likes": 13,
+        "views": 42,
+        "_id": "60e2b4290acaca0015b6f25a",
+        "assetUrl": "https://ipfs.io/ipfs/QmUdK3joxQnLpPoTSPKGggYMv6kg5qYRiLieuSxXmENjtU",
+        "assetMime": "image/png",
+        "assetName": "Mountain",
+        "description": "this is a mountain",
+        "private": false,
+        "category": "6",
+        "ownerId": {
+            "account_address": [
+                "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+            ],
+            "_id": "60d4590d99c9db3158dc3af8"
+        },
+        "createdAt": "2021-07-05T07:26:33.064Z",
+        "updatedAt": "2021-07-05T07:26:33.475Z",
+        "Auction_details": {
+            "Author_account_address": [
+                "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+            ],
+            "Asset_id": [
+                "60e2b4290acaca0015b6f25a"
+            ],
+            "current_Bid": 11.3,
+            "Successfull_Bidder": [],
+            "_id": "60e19d33d350283fb07762e4",
+            "min_Amount": 10.9,
+            "max_Amount": 13.3,
+            "endAt": "2021-07-13T16:22:40.571Z",
+            "Time_remaining": "09 day 06 hours"
+        },
+        "__v": 0,
+        "meta": {
+            "_id": "60e2b4290acaca0015b6f25c",
+            "assetId": "60e2b4290acaca0015b6f25a",
+            "properties": [
+                {
+                    "name": "height",
+                    "value": "24"
+                },
+                {
+                    "name": "abc",
+                    "value": "35"
+                }
+            ],
+            "stats": [
+                {
+                    "name": "abc",
+                    "value": 3,
+                    "max": 4
+                },
+                {
+                    "name": "rating",
+                    "value": 9,
+                    "max": 10
+                }
+            ],
+            "levels": [],
+            "createdAt": "2021-07-05T07:26:33.273Z",
+            "updatedAt": "2021-07-05T07:26:33.273Z",
+            "__v": 0
+        }
+    }
+}
