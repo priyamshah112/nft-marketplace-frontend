@@ -1,0 +1,30 @@
+{
+    "status": 1,
+    "message": "Success",
+    "data": [
+        {
+            "assetId": "60e2b4290acaca0015b6f25a",
+            "From": "User_1553a",
+            "Price": "11.0",
+            "Expiration_date": "2021-07-02T11:27:12.152Z"
+        },
+        {
+            "assetId": "60e2b4290acaca0015b6f25a",
+            "From": "User_7782e",
+            "Price": "11.5",
+            "Expiration_date": "2021-07-03T11:27:12.152Z"
+        },
+        {
+            "assetId": "60e2b4290acaca0015b6f25a",
+            "From": "User_988ba",
+            "Price": "11.0",
+            "Expiration_date": "2021-07-05T11:27:12.152Z"
+        },
+        {
+            "assetId": "60e2b4290acaca0015b6f25a",
+            "From": "User_11qw2",
+            "Price": "11.1",
+            "Expiration_date": "2021-07-01T11:27:12.152Z"
+        }
+    ]
+}
