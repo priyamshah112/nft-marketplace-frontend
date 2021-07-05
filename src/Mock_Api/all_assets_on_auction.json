@@ -1,0 +1,1491 @@
+{
+    "status": 1,
+    "message": "Success",
+    "data": [
+        {
+            "likes": 14,
+            "views": 63,
+            "_id": "60d35fd086c6910913247c3f",
+            "assetUrl": "https://ipfs.io/ipfs/QmfQQeqXCiW8rA17wnWK7QUxnGjYev6Fcduwa4UbB9da6B",
+            "assetName": "Lasers",
+            "description": "Lasers in a dark room",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "_id": "60d48545923af30ea4245c62"
+            },
+            "createdAt": "2021-06-23T16:22:40.442Z",
+            "updatedAt": "2021-06-23T16:22:40.571Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "Asset_id": [
+                    "60d35fd086c6910913247c3f"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "03 day 12 hours"
+            }
+        },
+        {
+            "likes": 18,
+            "views": 43,
+            "_id": "60d3608f59c6990a9fb2951b",
+            "assetUrl": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "2",
+            "ownerId": {
+                "account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "_id": "60d48545923af30ea4245c63"
+            },
+            "createdAt": "2021-06-23T16:25:51.804Z",
+            "updatedAt": "2021-06-23T16:25:51.906Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "Asset_id": [
+                    "60d3608f59c6990a9fb2951b"
+                ],
+                "current_Bid": 2.6,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 1.0,
+                "max_Amount": 4.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "06 day 02 hours"
+            }
+        },
+        {
+            "likes": 10,
+            "views": 30,
+            "_id": "60d4153e819c270015a3fd2b",
+            "assetUrl": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "_id": "60d48545923af30ea4245c64"
+            },
+            "createdAt": "2021-06-24T05:16:46.924Z",
+            "updatedAt": "2021-06-24T05:16:47.399Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "Asset_id": [
+                    "60d4153e819c270015a3fd2b"
+                ],
+                "current_Bid": 5.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 5.0,
+                "max_Amount": 7.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "11 day 11 hours"
+            }
+        },
+        {
+            "likes": 11,
+            "views": 15,
+            "_id": "60d479d4cc150e3db8acdf99",
+            "assetUrl": "https://ipfs.io/ipfs/QmTudZ7p5EftYP3eK9zd7dypdPCBUqLShL3o5w1SfGhnAX",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "_id": "60d48545923af30ea4245c65"
+            },
+            "createdAt": "2021-06-24T12:25:56.659Z",
+            "updatedAt": "2021-06-24T12:25:56.704Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "Asset_id": [
+                    "60d479d4cc150e3db8acdf99"
+                ],
+                "current_Bid": 4.4,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 4.0,
+                "max_Amount": 5.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "07 day 12 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d47c9bcb095b15287b10b2",
+            "assetUrl": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "1",
+            "ownerId": {
+                "account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "_id": "60d48545923af30ea4245c66"
+            },
+            "createdAt": "2021-06-24T12:37:47.271Z",
+            "updatedAt": "2021-06-24T12:37:47.397Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "Asset_id": [
+                    "60d47c9bcb095b15287b10b2"
+                ],
+                "current_Bid": 7.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 7.0,
+                "max_Amount": 7.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "03 day 12 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d480f92862302d7c243755",
+            "assetUrl": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x1593475937495749"
+                ],
+                "_id": "60d480c42862302d7c243754"
+            },
+            "createdAt": "2021-06-24T12:56:25.924Z",
+            "updatedAt": "2021-06-24T12:56:25.993Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x1593475937495749"
+                ],
+                "Asset_id": [
+                    "60d480f92862302d7c243755"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "09 day 06 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d48276e4bb00406c3cbb5c",
+            "assetUrl": "https://ipfs.io/ipfs/QmTudZ7p5EftYP3eK9zd7dypdPCBUqLShL3o5w1SfGhnAX",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "2",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-24T13:02:46.932Z",
+            "updatedAt": "2021-06-24T13:02:47.022Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d48276e4bb00406c3cbb5c"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "09 day 06 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d484df96f0fd00155e13b0",
+            "assetUrl": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "3",
+            "ownerId": {
+                "account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "_id": "60d48545923af30ea4245c67"
+            },
+            "createdAt": "2021-06-24T13:13:03.633Z",
+            "updatedAt": "2021-06-24T13:13:04.088Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "Asset_id": [
+                    "60d484df96f0fd00155e13b0"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "01 day 08 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d486001b518657476fa246",
+            "assetUrl": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "4",
+            "ownerId": {
+                "account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "_id": "60d48545923af30ea4245c68"
+            },
+            "createdAt": "2021-06-24T13:17:52.989Z",
+            "updatedAt": "2021-06-24T13:17:53.030Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "Asset_id": [
+                    "60d486001b518657476fa246"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "01 day 08 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d4867c7c026757e241c66e",
+            "assetUrl": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "6",
+            "ownerId": {
+                "account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "_id": "60d48545923af30ea4245c69"
+            },
+            "createdAt": "2021-06-24T13:19:56.702Z",
+            "updatedAt": "2021-06-24T13:19:56.743Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "Asset_id": [
+                    "60d4867c7c026757e241c66e"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "01 day 08 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d48817e1e267463846e34f",
+            "assetUrl": "https://ipfs.io/ipfs/QmdkNnb7p8h6VD9gCtavsj2NBZMAAGgKKPbunapzgob14T",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "8",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-24T13:26:47.562Z",
+            "updatedAt": "2021-06-24T13:26:47.618Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d48817e1e267463846e34f"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "01 day 08 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d496279bcb071a3098b76d",
+            "assetUrl": "https://ipfs.io/ipfs/QmX7Nokfk9Gq4JonjjpA5XhToXhXzB92TLSmNVu76tHUUY",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "5",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-24T14:26:47.924Z",
+            "updatedAt": "2021-06-24T14:26:47.968Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d496279bcb071a3098b76d"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "09 day 06 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d4be8f3fe8152a383689c1",
+            "assetUrl": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "4",
+            "ownerId": {
+                "account_address": [
+                    "0x7803475937495749"
+                ],
+                "_id": "60d4af3f3fe8152a383689bd"
+            },
+            "createdAt": "2021-06-24T17:19:11.546Z",
+            "updatedAt": "2021-06-24T17:19:11.577Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x7803475937495749"
+                ],
+                "Asset_id": [
+                    "60d4be8f3fe8152a383689c1"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "09 day 06 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d4bf523fe8152a383689c3",
+            "assetUrl": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "3",
+            "ownerId": {
+                "account_address": [
+                    "0x7483475937495749"
+                ],
+                "_id": "60d4be863fe8152a383689c0"
+            },
+            "createdAt": "2021-06-24T17:22:26.549Z",
+            "updatedAt": "2021-06-24T17:22:26.583Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x7483475937495749"
+                ],
+                "Asset_id": [
+                    "60d4bf523fe8152a383689c3"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "09 day 06 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d4c44bd73d46741c7e8e21",
+            "assetUrl": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+            "assetName": "abcd",
+            "description": "This is a description of a avatar nft",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x7593475937495743"
+                ],
+                "_id": "60d4918184f4ac6303a9e8ac"
+            },
+            "createdAt": "2021-06-24T17:43:39.550Z",
+            "updatedAt": "2021-06-24T17:43:39.938Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x7593475937495743"
+                ],
+                "Asset_id": [
+                    "60d4c44bd73d46741c7e8e21"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "09 day 06 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d56e49ce0c706a648d0b02",
+            "assetUrl": "https://ipfs.io/ipfs/QmViUFY5g6JzKCa2HA9dYtY864YsHqFQaryAJhm2NijUti",
+            "assetName": "test2",
+            "description": "test456",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "_id": "60d48545923af30ea4245c70"
+            },
+            "createdAt": "2021-06-25T05:48:57.586Z",
+            "updatedAt": "2021-06-25T05:48:57.679Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "Asset_id": [
+                    "60d56e49ce0c706a648d0b02"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "01 day 08 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d574ca319fe15d8c162b46",
+            "assetUrl": "https://ipfs.io/ipfs/QmViUFY5g6JzKCa2HA9dYtY864YsHqFQaryAJhm2NijUti",
+            "assetName": "test4",
+            "description": "abcd",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "_id": "60d48545923af30ea4245c71"
+            },
+            "createdAt": "2021-06-25T06:16:42.119Z",
+            "updatedAt": "2021-06-25T06:16:42.230Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "Asset_id": [
+                    "60d574ca319fe15d8c162b46"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "03 day 12 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5a5ca8dd9421bd81386b4",
+            "assetUrl": "https://ipfs.io/ipfs/QmddEWp4GMDVSpAZ8ZmAeZcqQRMK1QJ3UJGXNcwqJt74pW",
+            "assetName": "bgcn",
+            "description": "mhvknjkk",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-25T09:45:46.423Z",
+            "updatedAt": "2021-06-25T09:45:46.468Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d5a5ca8dd9421bd81386b4"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "03 day 12 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5c05c309a754958aaaa3b",
+            "assetUrl": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+            "assetName": "Lasers",
+            "description": "Lasers in a dark room",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x1593475937495749"
+                ],
+                "_id": "60d480c42862302d7c243754"
+            },
+            "createdAt": "2021-06-25T11:39:08.256Z",
+            "updatedAt": "2021-06-25T11:39:08.306Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x1593475937495749"
+                ],
+                "Asset_id": [
+                    "60d5c05c309a754958aaaa3b"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "03 day 12 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5c38a20f1bc0520e1d371",
+            "assetUrl": "https://ipfs.io/ipfs/QmcLFzMbC83vB1LP2Uc4LvtSaM8mExbjT16vAEs2BKsNiw",
+            "assetName": "abc",
+            "description": "abcde34",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-25T11:52:42.281Z",
+            "updatedAt": "2021-06-25T11:52:42.313Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d5c38a20f1bc0520e1d371"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "03 day 12 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5c42c20f1bc0520e1d373",
+            "assetUrl": "https://ipfs.io/ipfs/QmcLFzMbC83vB1LP2Uc4LvtSaM8mExbjT16vAEs2BKsNiw",
+            "assetName": "Scenery",
+            "description": "sunset",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-25T11:55:24.066Z",
+            "updatedAt": "2021-06-25T11:55:24.155Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d5c42c20f1bc0520e1d373"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "09 day 06 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5c5b7a57acc5a74af029f",
+            "assetUrl": "https://ipfs.io/ipfs/QmdFJrYftkxtpi1ote3AN5AWuSwws2XnvwtcHt2V6u59ps",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76"
+                ],
+                "_id": "60d5c55fa57acc5a74af029e"
+            },
+            "createdAt": "2021-06-25T12:01:59.731Z",
+            "updatedAt": "2021-06-25T12:01:59.795Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76"
+                ],
+                "Asset_id": [
+                    "60d5c5b7a57acc5a74af029f"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "09 day 06 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5c6a2a57acc5a74af02a3",
+            "assetUrl": "https://ipfs.io/ipfs/QmXdqM4naZrBkYqiu5ygRhusP3E3WnSfY6kfCwr9vKDhMZ",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x69321a1231687c9d55bba0e37560a7058210b379"
+                ],
+                "_id": "60d5c628a57acc5a74af02a1"
+            },
+            "createdAt": "2021-06-25T12:05:54.729Z",
+            "updatedAt": "2021-06-25T12:05:54.759Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x69321a1231687c9d55bba0e37560a7058210b379"
+                ],
+                "Asset_id": [
+                    "60d5c6a2a57acc5a74af02a3"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "09 day 06 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5c71ca57acc5a74af02a5",
+            "assetUrl": "https://ipfs.io/ipfs/QmdFJrYftkxtpi1ote3AN5AWuSwws2XnvwtcHt2V6u59ps",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x69321a1231687c9d55bba0e37560a7058210b379"
+                ],
+                "_id": "60d5c628a57acc5a74af02a1"
+            },
+            "createdAt": "2021-06-25T12:07:56.407Z",
+            "updatedAt": "2021-06-25T12:07:56.442Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x69321a1231687c9d55bba0e37560a7058210b379"
+                ],
+                "Asset_id": [
+                    "60d5c71ca57acc5a74af02a5"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "05 day 07 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5c87f115d97633ca30773",
+            "assetUrl": "https://ipfs.io/ipfs/QmdFJrYftkxtpi1ote3AN5AWuSwws2XnvwtcHt2V6u59ps",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76"
+                ],
+                "_id": "60d5c55fa57acc5a74af029e"
+            },
+            "createdAt": "2021-06-25T12:13:51.345Z",
+            "updatedAt": "2021-06-25T12:13:51.389Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76"
+                ],
+                "Asset_id": [
+                    "60d5c87f115d97633ca30773"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "05 day 07 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5c8d8115d97633ca30775",
+            "assetUrl": "https://ipfs.io/ipfs/QmXdqM4naZrBkYqiu5ygRhusP3E3WnSfY6kfCwr9vKDhMZ",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "3",
+            "ownerId": {
+                "account_address": [
+                    "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76"
+                ],
+                "_id": "60d5c55fa57acc5a74af029e"
+            },
+            "createdAt": "2021-06-25T12:15:20.530Z",
+            "updatedAt": "2021-06-25T12:15:20.554Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76"
+                ],
+                "Asset_id": [
+                    "60d5c8d8115d97633ca30775"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "05 day 07 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5c9e3115d97633ca30777",
+            "assetUrl": "https://ipfs.io/ipfs/QmeWyTcebooS5f4QGXnmuRLbkauZjMmvCAw2Byv1rENgMu",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "4",
+            "ownerId": {
+                "account_address": [
+                    "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76"
+                ],
+                "_id": "60d5c55fa57acc5a74af029e"
+            },
+            "createdAt": "2021-06-25T12:19:47.627Z",
+            "updatedAt": "2021-06-25T12:19:47.649Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76"
+                ],
+                "Asset_id": [
+                    "60d5c9e3115d97633ca30777"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "05 day 07 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5ca48115d97633ca30779",
+            "assetUrl": "https://ipfs.io/ipfs/QmXdqM4naZrBkYqiu5ygRhusP3E3WnSfY6kfCwr9vKDhMZ",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "5",
+            "ownerId": {
+                "account_address": [
+                    "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76"
+                ],
+                "_id": "60d5c55fa57acc5a74af029e"
+            },
+            "createdAt": "2021-06-25T12:21:28.279Z",
+            "updatedAt": "2021-06-25T12:21:28.313Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76"
+                ],
+                "Asset_id": [
+                    "60d5ca48115d97633ca30779"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "03 day 12 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5ca7a115d97633ca3077b",
+            "assetUrl": "https://ipfs.io/ipfs/QmXdqM4naZrBkYqiu5ygRhusP3E3WnSfY6kfCwr9vKDhMZ",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "6",
+            "ownerId": {
+                "account_address": [
+                    "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76"
+                ],
+                "_id": "60d5c55fa57acc5a74af029e"
+            },
+            "createdAt": "2021-06-25T12:22:18.635Z",
+            "updatedAt": "2021-06-25T12:22:18.662Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76"
+                ],
+                "Asset_id": [
+                    "60d5ca7a115d97633ca3077b"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "03 day 12 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5d78f42824545dc131bb7",
+            "assetUrl": "https://ipfs.io/ipfs/QmRyqDcWSNoCgvmaxoQANv4j5zij1GrhdcAvTG9mwgLvbX",
+            "assetName": "Snow",
+            "description": "abcde345",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-25T13:18:07.128Z",
+            "updatedAt": "2021-06-25T13:18:07.164Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d5d78f42824545dc131bb7"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "03 day 12 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5d88e42824545dc131bbb",
+            "assetUrl": "https://ipfs.io/ipfs/QmRyqDcWSNoCgvmaxoQANv4j5zij1GrhdcAvTG9mwgLvbX",
+            "assetName": "snow3",
+            "description": "abcdef",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-25T13:22:22.932Z",
+            "updatedAt": "2021-06-25T13:22:22.966Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d5d88e42824545dc131bbb"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "05 day 07 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5e2d10351663e6cf48d2e",
+            "assetUrl": "https://ipfs.io/ipfs/QmYFQKAWgf9shjNm5CetXz2r1vJ5FHd1FXaWh4votXNSN4",
+            "assetName": "lonely",
+            "description": "i m so lonely",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x45272da18ae4f68c0cbd1cd1f628764a808a64ae"
+                ],
+                "_id": "60d5e28c0351663e6cf48d0b"
+            },
+            "createdAt": "2021-06-25T14:06:09.198Z",
+            "updatedAt": "2021-06-25T14:06:09.253Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x45272da18ae4f68c0cbd1cd1f628764a808a64ae"
+                ],
+                "Asset_id": [
+                    "60d5e2d10351663e6cf48d2e"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "05 day 07 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d5e556ab37e063686298a7",
+            "assetUrl": "https://ipfs.io/ipfs/QmdFJrYftkxtpi1ote3AN5AWuSwws2XnvwtcHt2V6u59ps",
+            "assetName": "The Image",
+            "description": "This is the description",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0xccdb17b8ef68fffdbca4bf4ab6b765e41d61733a"
+                ],
+                "_id": "60d5e4edab37e063686298a6"
+            },
+            "createdAt": "2021-06-25T14:16:54.765Z",
+            "updatedAt": "2021-06-25T14:16:54.802Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0xccdb17b8ef68fffdbca4bf4ab6b765e41d61733a"
+                ],
+                "Asset_id": [
+                    "60d5e556ab37e063686298a7"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "04 day 11 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d835b83fef4700152927da",
+            "assetUrl": "https://ipfs.io/ipfs/QmfQQeqXCiW8rA17wnWK7QUxnGjYev6Fcduwa4UbB9da6B",
+            "assetName": "sample",
+            "description": "this is a sample",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-27T08:24:24.099Z",
+            "updatedAt": "2021-06-27T08:24:24.510Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d835b83fef4700152927da"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "04 day 11 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d8433f3fef470015292879",
+            "assetUrl": "https://ipfs.io/ipfs/QmUBcCAhgw72KBZoXPYekfpLE9jBPWzX1appZaJKw4nxuv",
+            "assetName": "pic",
+            "description": "pic123",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-27T09:22:07.284Z",
+            "updatedAt": "2021-06-27T09:22:07.670Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d8433f3fef470015292879"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "01 day 08 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d8514a3fef4700152929c2",
+            "assetUrl": "https://ipfs.io/ipfs/QmbLsAX69ePCNVVjWbRE2FjqWgm47xTXGHusEWG3GWvzW1",
+            "assetName": "new pic",
+            "description": "pic1234",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-27T10:22:02.094Z",
+            "updatedAt": "2021-06-27T10:22:02.504Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d8514a3fef4700152929c2"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "01 day 08 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d858683fef470015292a1e",
+            "assetUrl": "https://ipfs.io/ipfs/QmddEWp4GMDVSpAZ8ZmAeZcqQRMK1QJ3UJGXNcwqJt74pW",
+            "assetName": "abc",
+            "description": "abcde345",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-27T10:52:24.117Z",
+            "updatedAt": "2021-06-27T10:52:24.516Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d858683fef470015292a1e"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "05 day 07 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d8a4e5a19c7c0015348f67",
+            "assetUrl": "https://ipfs.io/ipfs/QmX7Nokfk9Gq4JonjjpA5XhToXhXzB92TLSmNVu76tHUUY",
+            "assetName": "test1",
+            "description": "test",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-27T16:18:45.750Z",
+            "updatedAt": "2021-06-27T16:18:46.142Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d8a4e5a19c7c0015348f67"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "05 day 07 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60d8afefa19c7c0015349145",
+            "assetUrl": "https://ipfs.io/ipfs/QmX7Nokfk9Gq4JonjjpA5XhToXhXzB92TLSmNVu76tHUUY",
+            "assetName": "test123",
+            "description": "test 123456",
+            "private": false,
+            "category": "2",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-06-27T17:05:51.877Z",
+            "updatedAt": "2021-06-27T17:05:52.272Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60d8afefa19c7c0015349145"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "05 day 07 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60db332fe7974000157d7bfe",
+            "assetUrl": "https://ipfs.io/ipfs/QmXF4Eussy1gQVDnuZY7Wi6rA6DWMqoGkKhsk5xgnvR7cK",
+            "assetName": "predator",
+            "description": "this is my laptopp wall",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x45272da18ae4f68c0cbd1cd1f628764a808a64ae"
+                ],
+                "_id": "60d5e28c0351663e6cf48d0b"
+            },
+            "createdAt": "2021-06-29T14:50:23.876Z",
+            "updatedAt": "2021-06-29T14:50:24.259Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x45272da18ae4f68c0cbd1cd1f628764a808a64ae"
+                ],
+                "Asset_id": [
+                    "60db332fe7974000157d7bfe"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "04 day 11 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60dc191999e1eb001554522c",
+            "assetUrl": "https://ipfs.io/ipfs/QmViUFY5g6JzKCa2HA9dYtY864YsHqFQaryAJhm2NijUti",
+            "assetName": "Test",
+            "description": "Testing",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "_id": "60d48545923af30ea4245c72"
+            },
+            "createdAt": "2021-06-30T07:11:21.361Z",
+            "updatedAt": "2021-06-30T07:11:21.758Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                ],
+                "Asset_id": [
+                    "60dc191999e1eb001554522c"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "04 day 11 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60ddbe038a751b00155e709e",
+            "assetUrl": "https://ipfs.io/ipfs/Qmdxb1g2v4NfquBY3cfTvxhTjUQvdbimJ5VbbnYYz74EzZ",
+            "assetName": "Wallpapers ",
+            "description": "This is a wallpapers ",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-07-01T13:07:15.586Z",
+            "updatedAt": "2021-07-01T13:07:15.984Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60ddbe038a751b00155e709e"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "04 day 11 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60e0498f0a42490015f0d191",
+            "assetUrl": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+            "assetName": "abcde4985",
+            "description": "This is a description of a avatar nft",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-07-03T11:27:11.935Z",
+            "updatedAt": "2021-07-03T11:27:12.352Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60e0498f0a42490015f0d191"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "09 day 06 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60e199a73ee60b00158a0043",
+            "assetUrl": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+            "assetName": "abcde4985",
+            "description": "This is a description of a avatar nft",
+            "private": false,
+            "category": "0",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-07-04T11:21:11.110Z",
+            "updatedAt": "2021-07-04T11:21:11.548Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60e199a73ee60b00158a0043"
+                ],
+                "current_Bid": 8.2,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 8.0,
+                "max_Amount": 8.9,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "09 day 06 hours"
+            }
+        },
+        {
+            "likes": 27,
+            "views": 54,
+            "_id": "60e2b4290acaca0015b6f25a",
+            "assetUrl": "https://ipfs.io/ipfs/QmUdK3joxQnLpPoTSPKGggYMv6kg5qYRiLieuSxXmENjtU",
+            "assetName": "Mountain",
+            "description": "this is a mountain",
+            "private": false,
+            "category": "6",
+            "ownerId": {
+                "account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "_id": "60d4590d99c9db3158dc3af8"
+            },
+            "createdAt": "2021-07-05T07:26:33.064Z",
+            "updatedAt": "2021-07-05T07:26:33.475Z",
+            "Auction_details": {
+                "Author_account_address": [
+                    "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                ],
+                "Asset_id": [
+                    "60e2b4290acaca0015b6f25a"
+                ],
+                "current_Bid": 11.3,
+                "Successfull_Bidder": [],
+                "_id": "60e19d33d350283fb07762e4",
+                "min_Amount": 10.9,
+                "max_Amount": 13.3,
+                "endAt": "2021-07-13T16:22:40.571Z",
+                "Time_remaining": "09 day 06 hours"
+            }
+        }
+    ]
+}
