@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import Card from './Card';
 import assets from '../Mock_Api/assets'
+//MochAPI import
+import asset from '../Mock_Api/all_assets_on_auction.json';
 import '../tailwind.css';
 
 
@@ -64,12 +66,19 @@ const DisplayCard = ()=>{
     const [cards,setCards] = useState([]);
     useEffect(()=>{
         const fetchAssets = async () =>{
-            
+            //Using MockAPI
+
+            /*
             const response = assets.get('/assets');
             const data = (await response).data
             const assetData = (await response).data.data
-            console.log(assetData);
+            console.log(assetData);*/
+            
+            //-------------------
+            //Data is direct imported here
+            const assetData = asset.data;
             setCards(assetData);
+            //----------------------
         }
         fetchAssets();
         console.log(cards);

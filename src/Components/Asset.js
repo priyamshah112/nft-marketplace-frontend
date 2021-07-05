@@ -5,8 +5,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const MessageExampleAttached = () => (
-    <div className="rounded-lg hidden">
+const MessageExampleAttached = () => {
+    return (
+    <div className="rounded-lg">
         <Message
             attached
             header='Welcome to our site!'
@@ -20,8 +21,8 @@ const MessageExampleAttached = () => (
                 <Button color='blue'>Buy Now</Button>
             </div>
         </Form>
-    </div>
-)
+    </div>)
+    }
 
 const Product_card = (props) => {
     return (
@@ -247,7 +248,6 @@ const Asset = (props) => {
                         </div>
                         <div className="message">
                             <MessageExampleAttached />
-
                         </div>
                         <div className="assetOffers my-7 tab w-full overflow-hidden border-2 rounded-md">
                             <input className="absolute opacity-0 margin-auto margin-r-0" id="tab-offers" type="checkbox" name="tabs"></input>
