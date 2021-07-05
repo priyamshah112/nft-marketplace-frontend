@@ -1,0 +1,104 @@
+{
+    "status": 1,
+    "message": "Success",
+    "data": {
+        "userId": "0x9ab6c8babe633a1d9e0b056fd34b90709691554a",
+        "Favourite_assets": [
+            {
+                "chainInfo": {
+                    "contract": "0x42b67365D11fFf9ACDE7b5d6202689F15BEEF275",
+                    "token": "109",
+                    "chain": "Ethereum"
+                },
+                "likes": 13,
+                "views": 42,
+                "_id": "60e2b4290acaca0015b6f25a",
+                "assetUrl": "https://ipfs.io/ipfs/QmUdK3joxQnLpPoTSPKGggYMv6kg5qYRiLieuSxXmENjtU",
+                "assetMime": "image/png",
+                "assetName": "Mountain",
+                "description": "this is a mountain",
+                "private": false,
+                "category": "6",
+                "ownerId": {
+                    "account_address": [
+                        "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+                    ],
+                    "_id": "60d4590d99c9db3158dc3af8"
+                },
+                "createdAt": "2021-07-05T07:26:33.064Z",
+                "updatedAt": "2021-07-05T07:26:33.475Z",
+                "__v": 0,
+                "meta": {
+                    "_id": "60e2b4290acaca0015b6f25c",
+                    "assetId": "60e2b4290acaca0015b6f25a",
+                    "properties": [
+                        {
+                            "name": "height",
+                            "value": "24"
+                        },
+                        {
+                            "name": "abc",
+                            "value": "35"
+                        }
+                    ],
+                    "stats": [
+                        {
+                            "name": "abc",
+                            "value": 3,
+                            "max": 4
+                        },
+                        {
+                            "name": "rating",
+                            "value": 9,
+                            "max": 10
+                        }
+                    ],
+                    "levels": [],
+                    "createdAt": "2021-07-05T07:26:33.273Z",
+                    "updatedAt": "2021-07-05T07:26:33.273Z",
+                    "__v": 0
+                }
+            },
+            {
+                "chainInfo": {
+                    "contract": "0x42b67365D11fFf9ACDE7b5d6202689F15BEEF275",
+                    "token": "107",
+                    "chain": "Ethereum"
+                },
+                "likes": 17,
+                "views": 33,
+                "_id": "60e286b53639fc001513186f",
+                "assetUrl": "https://ipfs.io/ipfs/QmXdqM4naZrBkYqiu5ygRhusP3E3WnSfY6kfCwr9vKDhMZ",
+                "assetMime": "image/png",
+                "assetName": "Fiestel",
+                "description": "Fiestel  Double Round",
+                "private": false,
+                "category": "0",
+                "ownerId": {
+                    "account_address": [
+                        "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+                    ],
+                    "_id": "60d48545923af30ea4245c62"
+                },
+                "createdAt": "2021-07-05T04:12:37.062Z",
+                "updatedAt": "2021-07-05T04:12:37.460Z",
+                "__v": 0,
+                "meta": {
+                    "_id": "60e286b53639fc0015131872",
+                    "assetId": "60e286b53639fc001513186f",
+                    "properties": [
+                        {
+                            "name": "Crypto",
+                            "value": "AES"
+                        }
+                    ],
+                    "stats": [],
+                    "levels": [],
+                    "createdAt": "2021-07-05T04:12:37.266Z",
+                    "updatedAt": "2021-07-05T04:12:37.266Z",
+                    "__v": 0
+                }
+            }
+        ]
+    }
+}
