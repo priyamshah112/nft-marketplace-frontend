@@ -4,6 +4,8 @@ import 'semantic-ui-css/semantic.min.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+//Import mock get_asset_by_id api
+import get_asset_byId from '../Mock_Api/get_asset_byId2.json';
 
 const MessageExampleAttached = () => {
     return (
@@ -107,6 +109,8 @@ const Asset = (props) => {
     const [chain, setChain] = useState("Etheruem")
     const [token, setToken] = useState(null)
     const [ownerId, setownerId] = useState("")
+    //Adding customer Type => Owner or viewer
+    const [customer,setcustomer]=useState("")
 
     useEffect(() => {
         axios.get('https://nft-api-1.herokuapp.com/api/assets/' + props.location.state.assetId.toString())
@@ -119,18 +123,43 @@ const Asset = (props) => {
                 setContract(response['data']['data']['chainInfo']['contract'])
                 setChain(response['data']['data']['chainInfo']['chain'])
                 setToken(response['data']['data']['chainInfo']['token'])
+                setownerId(props.location.state.ownerId);
             })
+            
     }, [])
 
+
+    const check_owner_of_Asset=()=>{
+        //Calling the mock api
+        const data=get_asset_byId;
+        if(ownerId==data.data.ownerId.account_address)
+        {
+            setcustomer("owner");
+        }
+        else{
+            setcustomer("viewer")
+        }
+
+    }
+
+    useEffect(()=>{
+        if(ownerId!="")
+        check_owner_of_Asset();
+
+    },[ownerId])
     return (
         <div class="flex flex-col">
-            <div class="md:w-11/12 m-5 md:m-10 flex flex-row-reverse bg-blue-50 rounded-md py-5 pr-4">
+            {
+                customer=="owner"?
+            (<div class="md:w-11/12 m-5 md:m-10 flex flex-row-reverse bg-blue-50 rounded-md py-5 pr-4">
                 <Link to={{
                     pathname: "/setassetprice"
                 }}>
                     <button class="bg-blue-500 rounded-md py-3 px-10 text-white font-bold ">Sell</button>
                 </Link>
-            </div>
+            </div>):""
+            }
+
             <div className="md:w-11/12 m-5 md:m-10 pb-10">
                 <div className=" flex flex-col gap-8 md:flex-row">
                     <div className="flex flex-col mt-15 md:w-1/3">
@@ -246,9 +275,12 @@ const Asset = (props) => {
                                 <p>60 favorites</p>
                             </div>
                         </div>
+                        {
+                            customer=="viewer"?
                         <div className="message">
                             <MessageExampleAttached />
-                        </div>
+                        </div>:""
+                        }
                         <div className="assetOffers my-7 tab w-full overflow-hidden border-2 rounded-md">
                             <input className="absolute opacity-0 margin-auto margin-r-0" id="tab-offers" type="checkbox" name="tabs"></input>
                             <label className="block p-8 leading-normal cursor-pointer text-xl" for="tab-offers"><i className="fas fa-info-circle mr-6 text-xl"></i>Offers</label>

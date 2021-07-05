@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Card = ({data}) => {
     const imageUrl = "https://robohash.org/evenietipsafuga.png?size=200x300&set=set1"
     const price = 4
-    console.log(data)
+    // console.log(data)
     // const[likes,name]=data;
     // const {imageUrl,likes,title,price} = props.data; 
     const [isLoaded,setLoaded] = useState(false);
@@ -17,7 +17,7 @@ const Card = ({data}) => {
                     ownerId: data.ownerId == null ? "": data.ownerId.account_address[0],
                     name: data.assetName,
                     descr: data.description,
-                    assetId: data.meta == null ? "" : data.meta.assetId
+                    assetId: data.Auction_details == null ? "" : data.Auction_details.Asset_id
                 }
             }}>
                 <div className="mb-4 p-4 bg-white rounded-md shadow-md w-96 border transform hover:-translate-y-1.5 hover:shadow-2xl duration-150 mx-2">
@@ -34,7 +34,7 @@ const Card = ({data}) => {
                     <div className="flex justify-between mt-2">
                         <div>
                             <span className="block text-gray-400">{data.assetName}</span>
-                            <span>{data.assetName}</span>
+                            <span>{data.description}</span>
                             {/* <span>Title</span> */}
                         </div>
                         <div>
