@@ -146,7 +146,6 @@ const Asset = (props) => {
         if(props.location.state.source === "profile")
             axios.get('https://nft-api-1.herokuapp.com/api/assets/' + props.location.state.assetId.toString())
                 .then(response => {
-                    console.log(assetHistory['data'])
                     setOffers(offersOnAsset['data'])
                     setAssetHistory(assetTradingHistory['data']['Trading_history'])
                     setAssetData(get_asset_byId['data'])
@@ -161,7 +160,6 @@ const Asset = (props) => {
         else
         axios.get('https://nft-api-1.herokuapp.com/api/assets/' + props.location.state.assetId.toString())
             .then(response => {
-                console.log(offersOnAsset['data'])
                 setOffers(offersOnAsset['data'])
                 setAssetHistory(assetTradingHistory['data']['Trading_history'])
                 setAssetData(individualAssetOnAuction['data'])
@@ -327,7 +325,7 @@ const Asset = (props) => {
                                     </tr>
                                     {
                                         offers.map((offer, ind) => {
-                                            <Offer_Entry from={offer['From']} price={offer['Price']} expiry={offer['Expiration_date']} />
+                                            return <Offer_Entry from={offer['From']} price={offer['Price']} expiry={offer['Expiration_date']} />
                                         }
                                         )
                                     }
@@ -366,7 +364,10 @@ const Asset = (props) => {
                                     <td className="p-4">Date</td>
                                 </tr>
                                 {assetHistory.map((trade, ind) => {
-                                    <Trading_Entry event={trade['Event_type']} from={trade['From']} to={trade['To']} price={trade['Price']} date={trade['date']} />
+                                    console.log(trade)
+                                })}
+                                {assetHistory.map((trade, ind) => {
+                                    return <Trading_Entry event={trade['Event_type']} from={trade['From']} to={trade['To']} price={trade['Price']} date={trade['date']} />
                                 })}
                             </table>
                         </div>

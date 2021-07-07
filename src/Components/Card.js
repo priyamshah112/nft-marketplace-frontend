@@ -42,7 +42,7 @@ const Card = ({data}) => {
                             <span className="block text-gray-400">Price</span>
                             <div className="flex flex-row flex-nowrap items-center justify-evenly">
                                 <span className="font-bold">Ξ</span>
-                                <span className="font-bold">{data.Auction_details.current_Bid == 0 ? data.Auction_details.min_Amount : data.Auction_details.current_Bid}</span>
+                                <span className="font-bold">{data.Auction_details == null ? 4 : data.Auction_details.current_Bid == 0 ? data.Auction_details.min_Amount : data.Auction_details.current_Bid}</span>
                             </div>
                         </div>
                     </div>

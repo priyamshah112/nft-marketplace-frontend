@@ -10,6 +10,8 @@ import {
 import axios from 'axios';
 import RedirectModal from './RedirectModal';
 import userActivity from "../Mock_Api/user_activity.json"
+import Card from "./Card"
+import favorite from "../Mock_Api/favourite_assets.json"
 
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
@@ -125,7 +127,7 @@ const Activity = (props) => {
     })
     return (
         // <div className="m-5 ">
-        <table className="table-auto m-5 p-5 bg-gray-50">
+        <table className="table-auto m-5 p-5 bg-gray-50 border-2">
             <thead>
                 <tr className="h-20 bg-gray-200">
                     <th>Event</th>
@@ -140,14 +142,14 @@ const Activity = (props) => {
             <tbody>
             {
                 props.activity.map((act, ind) => {
-                    <tr>
-                        <th>{act['Event_type'].toString()}</th>
-                        <th>{act['Asset']['AssetName'].toString()}</th>
-                        <th>{act['Price'].toString()}</th>
-                        <th>{act['Quantity'].toString()}</th>
-                        <th>{act['From'].toString()}</th>
-                        <th>{act['To'].toString()}</th>
-                        <th>{act['date'].toString()}</th>
+                    return <tr className="h-20 bg-blue-50">
+                        <th className="font-light">{act['Event_type'].toString()}</th>
+                        <th className="font-light">{act['Asset']['AssetName'].toString()}</th>
+                        <th className="font-light">{act['Price'].toString()}</th>
+                        <th className="font-light">{act['Quantity'].toString()}</th>
+                        <th className="font-light">{act['From'].toString()}</th>
+                        <th className="font-light">{act['To'].toString()}</th>
+                        <th className="font-light">{act['date'].toString()}</th>
                     </tr>
                 })
             }
@@ -157,7 +159,39 @@ const Activity = (props) => {
 }
 
 
+const Favorite = () => {
+    const DisplayCard = ()=>{
+        const [cards,setCards] = useState([]);
+        useEffect(()=>{
+            const fetchAssets = async () =>{
+                //Using MockAPI
+    
+                /*
+                const response = assets.get('/assets');
+                const data = (await response).data
+                const assetData = (await response).data.data
+                console.log(assetData);*/
+                
+                //-------------------
+                //Data is direct imported here
+                //----------------------
+            }
+            const asset = favorite.data.Favourite_assets
+            setCards(asset)
+            fetchAssets();
+            console.log(cards);
+        },[]);
+        return(
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                {cards && cards.length > 0 && cards.map((asset,assetIdx) => (<Card data={asset} />))}
+            </div>
+        )
+    }
+    return <div className="container mx-auto px-5">
+        <DisplayCard/>
+    </div>
 
+}
 
 
 const Profile = () => {
@@ -390,6 +424,7 @@ const Profile = () => {
 
                 }
                 {selectedTab == 1 ? <Activity activity={activity}/> : null}
+                {selectedTab == 3 ? <Favorite />: null}
                 {/* <Assets /> */}
                 <div className={loading ? "fixed z-10 inset-0 overflow-y-auto" : "hidden"} aria-labelledby="modal-title" role="dialog" aria-modal="true">
                     <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">

@@ -1,7 +1,5 @@
 import React,{useState,useEffect} from 'react';
 import Card from './Card';
-import assets from '../Mock_Api/assets'
-//MochAPI import
 import asset from '../Mock_Api/all_assets_on_auction.json';
 import '../tailwind.css';
 
