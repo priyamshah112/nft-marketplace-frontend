@@ -5,22 +5,26 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 //Import mock get_asset_by_id api
-import get_asset_byId from '../Mock_Api/get_asset_byId2.json';
+import get_asset_byId from '../Mock_Api/get_asset_byId1.json';
+import individualAssetOnAuction from "../Mock_Api/individual_asset_on_auction_1.json";
+import offersOnAsset from "../Mock_Api/offers_on_asset.json";
+import assetTradingHistory from "../Mock_Api/asset_trading_history.json";
+import PlaceBidModal from './PlaceBid';
 
-const MessageExampleAttached = () => {
+const MessageExampleAttached = (props) => {
     return (
     <div className="rounded-lg">
         <Message
             attached
             header='Welcome to our site!'
-            content=' 🕖 Sale ends today in 00:00:00'
+            content={' 🕖 Sale ends today in ' + props.timeRemaining + " (Ends at " + props.end + ")"}
             error
         />
         <Form className='attached fluid segment'>
             <div className="flex flex-col">
-                <p>Current Price</p>
-                <h1>0.5444</h1>
-                <Button color='blue'>Buy Now</Button>
+                <p>Current Min. Bid</p>
+                <h1>{props.currentBid}</h1>
+                <Button color='blue'><PlaceBidModal bid={props.currentBid}/></Button>
             </div>
         </Form>
     </div>)
@@ -79,12 +83,13 @@ const Listing_Entry = (props) => {
 }
 
 const Offer_Entry = (props) => {
+    console.log(props)
     return (
         <tr className="bg-blue-50">
             <td className="p-4">{props.from}</td>
             <td className="p-4">{props.price} ETH</td>
             <td className="p-4">{props.expiry}</td>
-        </tr>
+        </tr>   
     )
 }
 
@@ -111,22 +116,11 @@ const Asset = (props) => {
     const [ownerId, setownerId] = useState("")
     //Adding customer Type => Owner or viewer
     const [customer,setcustomer]=useState("")
-
-    useEffect(() => {
-        axios.get('https://nft-api-1.herokuapp.com/api/assets/' + props.location.state.assetId.toString())
-            .then(response => {
-                console.log(response['data']['data'])
-                setAssetData(response['data']['data'])
-                setproperties(response['data']['data']['meta']['properties'])
-                setlevels(response['data']['data']['meta']['levels'])
-                setstats(response['data']['data']['meta']['stats'])
-                setContract(response['data']['data']['chainInfo']['contract'])
-                setChain(response['data']['data']['chainInfo']['chain'])
-                setToken(response['data']['data']['chainInfo']['token'])
-                setownerId(props.location.state.ownerId);
-            })
-            
-    }, [])
+    const [timeRemaining, setTimeRemaining] = useState("")
+    const [currentBid, setCurrentBid] = useState(0)
+    const [end, setEnd] = useState("")
+    const [offers, setOffers ] = useState(offersOnAsset['data'])
+    const [assetHistory, setAssetHistory] = useState(assetTradingHistory['data']['Trading_history'])
 
 
     const check_owner_of_Asset=()=>{
@@ -147,6 +141,45 @@ const Asset = (props) => {
         check_owner_of_Asset();
 
     },[ownerId])
+
+    useEffect(() => {
+        if(props.location.state.source === "profile")
+            axios.get('https://nft-api-1.herokuapp.com/api/assets/' + props.location.state.assetId.toString())
+                .then(response => {
+                    console.log(assetHistory['data'])
+                    setOffers(offersOnAsset['data'])
+                    setAssetHistory(assetTradingHistory['data']['Trading_history'])
+                    setAssetData(get_asset_byId['data'])
+                    setproperties(get_asset_byId['data']['meta']['properties'])
+                    setlevels(get_asset_byId['data']['meta']['levels'])
+                    setstats(get_asset_byId['data']['meta']['stats'])
+                    setContract(get_asset_byId['data']['chainInfo']['contract'])
+                    setChain(get_asset_byId['data']['chainInfo']['chain'])
+                    setToken(get_asset_byId['data']['chainInfo']['token'])
+                    setownerId(props.location.state.ownerId);
+                })
+        else
+        axios.get('https://nft-api-1.herokuapp.com/api/assets/' + props.location.state.assetId.toString())
+            .then(response => {
+                console.log(offersOnAsset['data'])
+                setOffers(offersOnAsset['data'])
+                setAssetHistory(assetTradingHistory['data']['Trading_history'])
+                setAssetData(individualAssetOnAuction['data'])
+                setproperties(individualAssetOnAuction['data']['meta']['properties'])
+                setlevels(individualAssetOnAuction['data']['meta']['levels'])
+                setstats(individualAssetOnAuction['data']['meta']['stats'])
+                setContract(individualAssetOnAuction['data']['chainInfo']['contract'])
+                setChain(individualAssetOnAuction['data']['chainInfo']['chain'])
+                setToken(individualAssetOnAuction['data']['chainInfo']['token'])
+                setownerId(props.location.state.ownerId);
+                setTimeRemaining(individualAssetOnAuction['data']['Auction_details']['Time_remaining'])
+                setCurrentBid(individualAssetOnAuction['data']['Auction_details']['current_Bid'] == 0 ? individualAssetOnAuction['data']['Auction_details']['min_Amount'] : individualAssetOnAuction['data']['Auction_details']['current_Bid'])
+                setEnd(individualAssetOnAuction['data']['Auction_details']['endAt'])
+            })
+        
+            
+    }, [])
+
     return (
         <div class="flex flex-col">
             {
@@ -278,7 +311,7 @@ const Asset = (props) => {
                         {
                             customer=="viewer"?
                         <div className="message">
-                            <MessageExampleAttached />
+                            <MessageExampleAttached end={end} currentBid={currentBid} timeRemaining={timeRemaining}/>
                         </div>:""
                         }
                         <div className="assetOffers my-7 tab w-full overflow-hidden border-2 rounded-md">
@@ -292,8 +325,12 @@ const Asset = (props) => {
                                         <td className="p-4">Price</td>
                                         <td className="p-4">Expiration</td>
                                     </tr>
-                                    <Offer_Entry from={"ApeLife"} price={"0.12"} expiry={"03/08/2021"} />
-                                    <Offer_Entry from={"ApeLife"} price={"0.12"} expiry={"03/08/2021"} />
+                                    {
+                                        offers.map((offer, ind) => {
+                                            <Offer_Entry from={offer['From']} price={offer['Price']} expiry={offer['Expiration_date']} />
+                                        }
+                                        )
+                                    }
                                 </table>
                                 <hr />
                                 <div className="bg-blue-50 p-4">
@@ -328,8 +365,9 @@ const Asset = (props) => {
                                     <td className="p-4">To</td>
                                     <td className="p-4">Date</td>
                                 </tr>
-                                <Trading_Entry event={"Created"} from={"ApeLife"} to={"LazerViking"} price={"0.12"} date={"03/08/2021"} />
-                                <Trading_Entry event={"Created"} from={"ApeLife"} to={"LazerViking"} price={"0.12"} date={"03/08/2021"} />
+                                {assetHistory.map((trade, ind) => {
+                                    <Trading_Entry event={trade['Event_type']} from={trade['From']} to={trade['To']} price={trade['Price']} date={trade['date']} />
+                                })}
                             </table>
                         </div>
                     </div>

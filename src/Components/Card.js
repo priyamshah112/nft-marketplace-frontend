@@ -17,7 +17,8 @@ const Card = ({data}) => {
                     ownerId: data.ownerId == null ? "": data.ownerId.account_address[0],
                     name: data.assetName,
                     descr: data.description,
-                    assetId: data.Auction_details == null ? "" : data.Auction_details.Asset_id
+                    assetId: data.Auction_details == null ? "" : data.Auction_details.Asset_id,
+                    source: "browse"
                 }
             }}>
                 <div className="mb-4 p-4 bg-white rounded-md shadow-md w-96 border transform hover:-translate-y-1.5 hover:shadow-2xl duration-150 mx-2">
@@ -41,7 +42,7 @@ const Card = ({data}) => {
                             <span className="block text-gray-400">Price</span>
                             <div className="flex flex-row flex-nowrap items-center justify-evenly">
                                 <span className="font-bold">Ξ</span>
-                                <span className="font-bold">{price}</span>
+                                <span className="font-bold">{data.Auction_details.current_Bid == 0 ? data.Auction_details.min_Amount : data.Auction_details.current_Bid}</span>
                             </div>
                         </div>
                     </div>

@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import axios from 'axios';
 import RedirectModal from './RedirectModal';
+import userActivity from "../Mock_Api/user_activity.json"
 
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
@@ -42,7 +43,8 @@ const Product_card = (props) => {
                         ownerId: props.id.account_address[0],
                         name: props.name,
                         descr: props.descr,
-                        assetId: props.assetId
+                        assetId: props.assetId,
+                        source: "profile"
                     }
                 }}>
                     <button className="mr-2"><i className="fas fa-tag"></i></button>
@@ -116,14 +118,18 @@ const Assets = (props) => {
 }
 
 
-const Activity = () => {
+const Activity = (props) => {
+    props.activity.map((act, ind)=> {
+        if(ind == 0)
+            console.log(act)
+    })
     return (
         // <div className="m-5 ">
-
         <table className="table-auto m-5 p-5 bg-gray-50">
             <thead>
-                <tr className="bg-gray-200">
+                <tr className="h-20 bg-gray-200">
                     <th>Event</th>
+                    <th>Item</th>
                     <th>Unit Price</th>
                     <th>Quantity</th>
                     <th>From</th>
@@ -132,24 +138,21 @@ const Activity = () => {
                 </tr>
             </thead>
             <tbody>
-                {/* <tr>
-                    <td>Intro to CSS</td>
-                    <td>Adam</td>
-                    <td>858</td>
-                </tr>
-                <tr className="bg-emerald-200">
-                    <td>A Long and Winding Tour of the History of UI Frameworks and Tools and the Impact on Design</td>
-                    <td>Adam</td>
-                    <td>112</td>
-                </tr>
-                <tr>
-                    <td>Intro to JavaScript</td>
-                    <td>Chris</td>
-                    <td>1,280</td>
-                </tr> */}
+            {
+                props.activity.map((act, ind) => {
+                    <tr>
+                        <th>{act['Event_type'].toString()}</th>
+                        <th>{act['Asset']['AssetName'].toString()}</th>
+                        <th>{act['Price'].toString()}</th>
+                        <th>{act['Quantity'].toString()}</th>
+                        <th>{act['From'].toString()}</th>
+                        <th>{act['To'].toString()}</th>
+                        <th>{act['date'].toString()}</th>
+                    </tr>
+                })
+            }
             </tbody>
         </table>
-        // </div>
     )
 }
 
@@ -166,7 +169,7 @@ const Profile = () => {
     const [pfipfs, setpfipfs] = useState("");
     const [loading, setLoading] = useState(false);
     const [userName, setUsername] = useState("");
-
+    const [activity, setActivity] = useState([]);
     function createUser(accAd) {
         axios.get('https://nft-api-1.herokuapp.com/api/user/' + accAd)
             .then(res => {
@@ -244,10 +247,13 @@ const Profile = () => {
                     console.log(data);
                 }
             })
+            setActivity(userActivity['data']['activity'])
         }
-    }, [accountAd, iscreate])
+    }, [accountAd, iscreate, activity])
 
-
+    useEffect(() => {
+        setActivity(userActivity['data']['activity'])
+    },[activity])
 
     let fileSelector = null;
     const [selectedTab, setselectedTab] = useState(0);
@@ -383,7 +389,7 @@ const Profile = () => {
                     selectedTab == 0 ? <Assets loading={loading} setLoading={setLoading} accountAd={accountAd} /> : null
 
                 }
-                {selectedTab == 1 ? <Activity /> : null}
+                {selectedTab == 1 ? <Activity activity={activity}/> : null}
                 {/* <Assets /> */}
                 <div className={loading ? "fixed z-10 inset-0 overflow-y-auto" : "hidden"} aria-labelledby="modal-title" role="dialog" aria-modal="true">
                     <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
