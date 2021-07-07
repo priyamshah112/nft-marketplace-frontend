@@ -11,25 +11,6 @@ import offersOnAsset from "../Mock_Api/offers_on_asset.json";
 import assetTradingHistory from "../Mock_Api/asset_trading_history.json";
 import PlaceBidModal from './PlaceBid';
 
-const MessageExampleAttached = (props) => {
-    return (
-    <div className="rounded-lg">
-        <Message
-            attached
-            header='Welcome to our site!'
-            content={' 🕖 Sale ends today in ' + props.timeRemaining + " (Ends at " + props.end + ")"}
-            error
-        />
-        <Form className='attached fluid segment'>
-            <div className="flex flex-col">
-                <p>Current Min. Bid</p>
-                <h1>{props.currentBid}</h1>
-                <Button color='blue'><PlaceBidModal bid={props.currentBid}/></Button>
-            </div>
-        </Form>
-    </div>)
-    }
-
 const Product_card = (props) => {
     return (
         <div className="rounded flex flex-col justify-between shadow-md my-2">
@@ -115,19 +96,93 @@ const Asset = (props) => {
     const [token, setToken] = useState(null)
     const [ownerId, setownerId] = useState("")
     //Adding customer Type => Owner or viewer
-    const [customer,setcustomer]=useState("")
+    const [customer,setcustomer]=useState("viewer")
     const [timeRemaining, setTimeRemaining] = useState("")
     const [currentBid, setCurrentBid] = useState(0)
     const [end, setEnd] = useState("")
     const [offers, setOffers ] = useState(offersOnAsset['data'])
     const [assetHistory, setAssetHistory] = useState(assetTradingHistory['data']['Trading_history'])
 
+    //LOGIN  ==============================
+
+    const [accountAd, setaccountAd] = useState("")
+    const [iscreate, setiscreate] = useState(false)
+
+    function createUser(accAd) {
+        axios.get('https://nft-api-1.herokuapp.com/api/user/' + accAd)
+            .then(res => {
+                console.log(res)
+                if (res.data.data == null) {
+                    console.log({
+                        "username": "User_" + accAd.substring(accAd.length - 5),
+                        "account_address": [accAd],
+                        "user_type": "",
+                        "bio": "",
+                        "email_address": "",
+                        "bg_img_url": "https://ipfs.io/ipfs/QmTudZ7p5EftYP3eK9zd7dypdPCBUqLShL3o5w1SfGhnAX",
+                        "profile_pic_url": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+                        "is_verified": true,
+                        "is_deleted": false
+                    })
+                    axios.post('https://nft-api-1.herokuapp.com/api/user/',
+                        {
+                            "username": "User_" + accAd.substring(accAd.length - 5),
+                            "account_address": [accAd],
+                            "user_type": "",
+                            "bio": "",
+                            "email_address": "",
+                            "bg_img_url": "https://ipfs.io/ipfs/QmTudZ7p5EftYP3eK9zd7dypdPCBUqLShL3o5w1SfGhnAX",
+                            "profile_pic_url": "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
+                            "is_verified": true,
+                            "is_deleted": false
+                        }
+                    )
+                        .then(res => {
+                            console.log(res);
+                            setiscreate(true);
+                        })
+                        .catch(err => { console.log(err) });
+                }
+            })
+            .catch(err => { console.log(err) });
+    }
+
+    async function enableEthereum() {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const account = accounts[0];
+        setaccountAd(account);
+        createUser(account);
+        console.log(account);
+    }
+
+    function login() {
+        if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
+            enableEthereum()
+            window.ethereum.on('accountsChanged', function (accounts) {
+                window.location.reload()
+            })
+        }
+    }
+
+    useEffect(() => { }, [accountAd])
+
+    const getMetaMask = (event) => {
+        event.preventDefault()
+        if (typeof window.ethereum == 'undefined' || !window.ethereum.isMetaMask) {
+            //alert("This application requires MetaMask. Get MetaMask ?");
+            //window.location.href = "https://metamask.io/download.html";
+            window.location.href = "/profile"
+        }
+        else {
+            alert("Please log in to MetaMask");
+            window.location.reload()
+        }
+    }
+
+    //=====================================
 
     const check_owner_of_Asset=()=>{
-        //Calling the mock api
-        const data=get_asset_byId;
-        if(ownerId==data.data.ownerId.account_address)
-        {
+        if(ownerId === accountAd){
             setcustomer("owner");
         }
         else{
@@ -137,10 +192,10 @@ const Asset = (props) => {
     }
 
     useEffect(()=>{
-        if(ownerId!="")
-        check_owner_of_Asset();
-
-    },[ownerId])
+        if(ownerId!=""){
+            check_owner_of_Asset();
+        }
+    },[ownerId, accountAd])
 
     useEffect(() => {
         if(props.location.state.source === "profile")
@@ -309,7 +364,26 @@ const Asset = (props) => {
                         {
                             customer=="viewer"?
                         <div className="message">
-                            <MessageExampleAttached end={end} currentBid={currentBid} timeRemaining={timeRemaining}/>
+                            <div className="rounded-lg">
+                                <Message
+                                    attached
+                                    header='Welcome to our site!'
+                                    content={' 🕖 Sale ends today in ' + timeRemaining + " (Ends at " + end + ")"}
+                                    error
+                                />
+                                {login()}
+                                <Form className='attached fluid segment'>
+                                    <div className="flex flex-col">
+                                        <p>Current Min. Bid</p>
+                                        <h1>{currentBid}</h1>
+                                        {accountAd ?
+                                            <Button color='blue'><PlaceBidModal bid={currentBid}/></Button>
+                                            :
+                                            <Button color='blue' onClick={getMetaMask}>Place Bid</Button>
+                                        }
+                                    </div>
+                                </Form>
+                            </div>
                         </div>:""
                         }
                         <div className="assetOffers my-7 tab w-full overflow-hidden border-2 rounded-md">
