@@ -25,6 +25,8 @@ const SetPriceAsset = () => {
     const [unlockableContent, setunlockableContent] = useState(-1);
     const [value, onChange] = useState('10:00');
     const [priceType, setpriceType] = useState(1);
+    const [price, setPrice] = useState(null);
+    const [reservePrice, setReservePrice] = useState(null);
     return (
 
         <div class="flex flex-col">
@@ -44,7 +46,7 @@ const SetPriceAsset = () => {
                             Select your sell method
                 </div>
                         <div class="flex flex-row row2 gap-5">
-                            <Property_Card type="Set Price" name="Sell at a fixed or declining price" priceType={priceType} onClick={() => setpriceType(0)}></Property_Card>
+                            <Property_Card type="Set Price" name="Sell at a fixed or declining price" priceType={priceType} onClick={() => {setpriceType(0); setReservePrice(null)}}></Property_Card>
                             <Property_Card type="Heighest Price" name="Auction to the highest bidder" priceType={priceType} onClick={() => setpriceType(1)}></Property_Card>
                         </div>
                         {priceType == 0 ? (
@@ -60,7 +62,7 @@ const SetPriceAsset = () => {
 
                                     </div>
                                     <div class="input">
-                                        <input className="p-3 rounded-md bg-gray-50 border-2" placeholder="Amount"></input>
+                                        <input className="p-3 rounded-md bg-gray-50 border-2" type="number" placeholder="Amount" onChange={(e) => setPrice(e.target.value)}></input>
                                     </div>
                                 </div>
                                 <div style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "10px" }}>
@@ -94,7 +96,7 @@ const SetPriceAsset = () => {
                                         </div>
                                     </div>
                                     <div class="input">
-                                        <input className="p-3 rounded-md bg-gray-50 border-2 mt-2" placeholder="Amount"></input>
+                                        <input className="p-3 rounded-md bg-gray-50 border-2 mt-2" type="number" placeholder="Amount" onChange={(e) => setPrice(e.target.value)}></input>
                                     </div>
                                 </div>
                                 <div class="flex flex-col md:flex-row price justify-between" >
@@ -107,7 +109,7 @@ const SetPriceAsset = () => {
                                         </div>
                                     </div>
                                     <div class="input">
-                                        <input className="p-3 rounded-md bg-gray-50 border-2 mt-2" placeholder="Amount"></input>
+                                        <input className="p-3 rounded-md bg-gray-50 border-2 mt-2" type="number" placeholder="Amount" onChange={(e) => setReservePrice(e.target.value)}></input>
                                     </div>
                                 </div>
                                 <div class="flex flex-col md:flex-row price justify-between" >
@@ -150,7 +152,9 @@ const SetPriceAsset = () => {
                             </div>
                             <div class="row2 flex-row" style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "25px", fontWeight: "bold" }}>
                                 <p>Listing</p>
-                                <button className="bg-blue-600 p-5 rounded-md" style={{ color: "white", fontWeight: "bold" }}>Post Your Listing <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                                <p className={"font-light" + (price == null ? " hidden" : priceType == 1 ? " hidden" :price == "" ? " text-red-600" : " text-green-500")} >{price == "" ?  "Invalid price" : "The item will be sold for " + price + " ETH"}</p>
+                                <p className={"font-light" + (price == null || reservePrice == null ? " hidden" : priceType == 0 ? " hidden" : parseInt(price) > parseInt(reservePrice) ? " text-red-600" : " text-green-500")} >{price == "" ?  "Invalid price" : parseInt(price) > parseInt(reservePrice) ? "Minimum Price cannot be greater than reserve price" : "The item will be auctioned at a minimum price of " + price + " ETH"}</p>
+                                <button className="bg-blue-600 p-5 rounded-md mt-3" style={{ color: "white", fontWeight: "bold" }}>Post Your Listing <i class="fa fa-angle-right" aria-hidden="true"></i></button>
                             </div>
                             <div class="row3 flex-row" style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "25px" }}>
                                 <p style={{ fontWeight: "bold" }}>Fees</p>
