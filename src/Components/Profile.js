@@ -388,7 +388,7 @@ const Profile = () => {
         console.log(e);
         if (e.target.id != selectedTab) {
             e.target.classList.add('bg-gray-100');
-            setselectedTab(e.target.id);
+            setselectedTab(e.target.classList[0]);
             document.getElementById(selectedTab).classList.remove('bg-gray-100');
         }
 
@@ -436,24 +436,24 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="flex flex-row gap-4 md:gap-10 m-10 font-light" style={{ fontSize: "16px" }}>
-                    <div className="flex flex-row px-5 py-2 hover rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="0">
-                        <i className="fas fa-tag"></i>
-                        <p className="hidden sm:block">Assets</p>
+                    <div className="0 flex flex-row px-5 py-2 hover rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="0">
+                        <i className="0 fas fa-tag"></i>
+                        <p className="0 hidden sm:block">Assets</p>
                     </div>
-                    <div className="flex flex-row px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="1">
-                        <i className="fas fa-history"></i>
-                        <p className="hidden sm:block">Activity</p>
+                    <div className="1 flex flex-row px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="1">
+                        <i className="1 fas fa-history"></i>
+                        <p className="1 hidden sm:block">Activity</p>
                     </div>
-                    <div className="flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="2">
-                        <i className="fas fa-gift"></i>
-                        <p className="hidden sm:block">Offer</p>
+                    <div className="2 flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="2">
+                        <i className="2 fas fa-gift"></i>
+                        <p className="2 hidden sm:block">Offer</p>
                     </div>
-                    <div className="flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="3">
-                        <i className="far fa-heart"></i>
-                        <p className="hidden sm:block">Favourite</p>
+                    <div className="3 flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="3">
+                        <i className="3 far fa-heart"></i>
+                        <p className="3 hidden sm:block">Favourite</p>
                     </div>
-                    <div className="flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="4">
-                        <Button className="hidden sm:block"><ReferalModal url={referral['data']['ReferralUrls']}/></Button>
+                    <div className="4 flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="4">
+                        <Button className="4 hidden sm:block"><ReferalModal url={referral['data']['ReferralUrls']}/></Button>
                     </div>
                 </div>
                 <hr />
