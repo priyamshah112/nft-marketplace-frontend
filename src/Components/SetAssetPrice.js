@@ -26,7 +26,8 @@ const SetPriceAsset = () => {
     const [value, onChange] = useState('10:00');
     const [priceType, setpriceType] = useState(1);
     const [price, setPrice] = useState(null);
-    const [reservePrice, setReservePrice] = useState(null);
+    const [reservePrice, setReservePrice] = useState(null);  
+
     return (
 
         <div class="flex flex-col">
