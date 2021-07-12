@@ -12,6 +12,7 @@ import RedirectModal from './RedirectModal';
 import userActivity from "../Mock_Api/user_activity.json"
 import Card from "./Card"
 import favorite from "../Mock_Api/favourite_assets.json"
+import userOffers from "../Mock_Api/offer_to_user.json"
 
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
@@ -158,6 +159,38 @@ const Activity = (props) => {
     )
 }
 
+const Offers = (props) => {
+    props.offers.map((act, ind)=> {
+        if(ind == 0)
+            console.log(act)
+    })
+    return (
+        // <div className="m-5 ">
+        <table className="table-auto m-5 p-5 bg-gray-50 border-2">
+            <thead>
+                <tr className="h-20 bg-gray-200">
+                    <th>Asset</th>
+                    <th>Price</th>
+                    <th>From</th>
+                    <th>Expiration</th>
+                </tr>
+            </thead>
+            <tbody>
+            {
+                props.offers.map((offer, ind) => {
+                    return <tr className="h-20 bg-blue-50">
+                        <th className="font-light">{offer['assetDetails']['assetName'].toString()}</th>
+                        <th className="font-light">{offer['Price'].toString()}</th>
+                        <th className="font-light">{offer['From'].toString()}</th>
+                        <th className="font-light">{offer['Expiration_date'].toString()}</th>
+                    </tr>
+                })
+            }
+            </tbody>
+        </table>
+    )
+}
+
 
 const Favorite = () => {
     const DisplayCard = ()=>{
@@ -204,6 +237,7 @@ const Profile = () => {
     const [loading, setLoading] = useState(false);
     const [userName, setUsername] = useState("");
     const [activity, setActivity] = useState([]);
+    const [offers, setOffers] = useState([]);
     function createUser(accAd) {
         axios.get('https://nft-api-1.herokuapp.com/api/user/' + accAd)
             .then(res => {
@@ -282,12 +316,14 @@ const Profile = () => {
                 }
             })
             setActivity(userActivity['data']['activity'])
+            setOffers(userOffers['data']['offers'])
         }
-    }, [accountAd, iscreate, activity])
+    }, [accountAd, iscreate, activity, offers])
 
     useEffect(() => {
         setActivity(userActivity['data']['activity'])
-    },[activity])
+        setOffers(userOffers['data']['offers'])
+    },[activity, offers])
 
     let fileSelector = null;
     const [selectedTab, setselectedTab] = useState(0);
@@ -424,6 +460,7 @@ const Profile = () => {
 
                 }
                 {selectedTab == 1 ? <Activity activity={activity}/> : null}
+                {selectedTab == 2 ? <Offers offers={offers}/> : null}
                 {selectedTab == 3 ? <Favorite />: null}
                 {/* <Assets /> */}
                 <div className={loading ? "fixed z-10 inset-0 overflow-y-auto" : "hidden"} aria-labelledby="modal-title" role="dialog" aria-modal="true">
