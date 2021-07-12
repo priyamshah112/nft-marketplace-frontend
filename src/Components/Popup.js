@@ -127,11 +127,17 @@ const Popup1 = (props) => {
 
     }
 
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    var style = {}
+    if(isMobile)
+        style = {width: "80%"};
+
     return (
         <Popup className="rounded-md"
             trigger={<button style={{ outline: "none" }} className="button" type="button"><i className="fas fa-plus text-blue-500"></i></button>}
             modal
             nested
+            contentStyle={style}
         >
             {close => (
                 <div class=" flex flex-col mx-8 my-5" >

@@ -13,6 +13,9 @@ import userActivity from "../Mock_Api/user_activity.json"
 import Card from "./Card"
 import favorite from "../Mock_Api/favourite_assets.json"
 import userOffers from "../Mock_Api/offer_to_user.json"
+import ReferalModal from './ReferalModal';
+import { Button } from 'semantic-ui-react';
+import referral from "../Mock_Api/userReferrals.json";
 
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
@@ -450,8 +453,7 @@ const Profile = () => {
                         <p className="hidden sm:block">Favourite</p>
                     </div>
                     <div className="flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="4">
-                        <i className="fas fa-dollar-sign"></i>
-                        <p className="hidden sm:block">Referrals</p>
+                        <Button className="hidden sm:block"><ReferalModal url={referral['data']['ReferralUrls']}/></Button>
                     </div>
                 </div>
                 <hr />

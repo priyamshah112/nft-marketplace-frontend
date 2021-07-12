@@ -48,18 +48,6 @@ const Navbar = () => {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="rounded-t w-42 bg-gray-50 hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap">
-                                        <i class="fas fa-dollar-sign text-lg px-2 pr-7"></i>
-                                        <span className="text-lg">Sell</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" className="rounded-t w-42 bg-gray-50 hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap">
-                                        <i class="fas fa-exchange-alt text-lg px-2 pr-4"></i>
-                                        <span className="text-lg">Transfer</span>
-                                    </a>
-                                </li>
-                                <li>
                                     <a href="/settings" className="rounded-t w-42 bg-gray-50 hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap">
                                         <i class="fas fa-user-cog text-lg px-2 pr-4"></i>
                                         <span className="text-lg">Account Settings</span>
@@ -75,3 +63,20 @@ const Navbar = () => {
 }
 
 export default Navbar;
+
+/*
+
+<li>
+    <a href="#" className="rounded-t w-42 bg-gray-50 hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap">
+        <i class="fas fa-dollar-sign text-lg px-2 pr-7"></i>
+        <span className="text-lg">Sell</span>
+    </a>
+</li>
+<li>
+    <a href="#" className="rounded-t w-42 bg-gray-50 hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap">
+        <i class="fas fa-exchange-alt text-lg px-2 pr-4"></i>
+        <span className="text-lg">Transfer</span>
+    </a>
+</li>
+
+*/
