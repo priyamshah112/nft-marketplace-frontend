@@ -10,6 +10,7 @@ import CreateAsset from './Components/CreateAsset';
 import EditAsset from './Components/EditAsset';
 import Asset from './Components/Asset';
 import SetPriceAsset from './Components/SetAssetPrice';
+import Leaderboard from './Components/Leaderboard';
 
 const App = () => {
     return (
@@ -30,6 +31,7 @@ const App = () => {
                         <Route path="/setassetprice" component={SetPriceAsset} />
                         <Route path="/createAsset/" component={CreateAsset} />
                         <Route path='/editAsset/:id' component={EditAsset} />
+                        <Route path="/leaderboard" component={Leaderboard}/>
                     </Switch>
                 </div>
             </div>

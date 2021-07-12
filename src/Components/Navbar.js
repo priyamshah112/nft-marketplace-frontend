@@ -29,7 +29,7 @@ const Navbar = () => {
                             <a href="/browse" class="block mt-4 px-4 sm:inline-block sm:mt-1 text-white hover:text-white mr-4">
                                 Browse
                         </a>
-                            <a href="#" class="block mt-4 px-4 sm:inline-block sm:mt-1 text-white hover:text-white mr-4">
+                            <a href="/leaderboard" class="block mt-4 px-4 sm:inline-block sm:mt-1 text-white hover:text-white mr-4">
                                 Leaderboard
                         </a>
                             <a href="/createAsset" class="block mt-4 px-4 mr-5 sm:inline-block sm:mt-1 text-white hover:text-white">
