@@ -46,7 +46,7 @@ const Leaderboard=()=>{
     ]
 
     return(
-        <div className="w-screen  p-5">
+        <div className="w-screen  p-5 overflow-x-auto">
             <table className="w-full table-auto p-20 bg-gray-50 border-2" >
             <thead>
                 <tr className="h-20 bg-gray-200">

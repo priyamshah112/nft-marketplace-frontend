@@ -131,6 +131,7 @@ const Activity = (props) => {
     })
     return (
         // <div className="m-5 ">
+        <div className="overflow-x-auto">
         <table className="table-auto m-5 p-5 bg-gray-50 border-2">
             <thead>
                 <tr className="h-20 bg-gray-200">
@@ -159,6 +160,7 @@ const Activity = (props) => {
             }
             </tbody>
         </table>
+        </div>
     )
 }
 
@@ -169,6 +171,7 @@ const Offers = (props) => {
     })
     return (
         // <div className="m-5 ">
+        <div className="overflow-x-auto">
         <table className="table-auto m-5 p-5 bg-gray-50 border-2">
             <thead>
                 <tr className="h-20 bg-gray-200">
@@ -191,6 +194,7 @@ const Offers = (props) => {
             }
             </tbody>
         </table>
+        </div>
     )
 }
 
@@ -416,7 +420,7 @@ const Profile = () => {
 
                 </div>
                 <div className="flex flex-row-reverse gap-5 pr-5 py-4 relative">
-                    <i className="fas fa-cog" style={{ fontSize: "40px" }}></i>
+                    <a href="/settings"><i className="fas fa-cog cursor-pointer text-black" style={{ fontSize: "40px" }}></i></a>
                     <i className="fas fa-share-alt-square" style={{ fontSize: "40px" }}></i>
                     <div className="absolute flex flex-col bottom-4 right-1/2 justify-center items-center" style={{ left: "50%" }}>
 
@@ -435,7 +439,7 @@ const Profile = () => {
                         <h2>{userName}</h2>
                     </div>
                 </div>
-                <div className="flex flex-row gap-4 md:gap-10 m-10 font-light" style={{ fontSize: "16px" }}>
+                <div className="flex flex-row gap-2 md:gap-10 m-2 md:m-10 font-light" style={{ fontSize: "16px" }}>
                     <div className="0 flex flex-row px-5 py-2 hover rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="0">
                         <i className="0 fas fa-tag"></i>
                         <p className="0 hidden sm:block">Assets</p>
@@ -452,9 +456,8 @@ const Profile = () => {
                         <i className="3 far fa-heart"></i>
                         <p className="3 hidden sm:block">Favourite</p>
                     </div>
-                    <div className="4 flex flex-row  px-5 py-2 rounded-lg items-center gap-3" style={{ cursor: "pointer" }} onClick={toggleChange} id="4">
-                        <Button className="4 hidden sm:block"><ReferalModal url={referral['data']['ReferralUrls']}/></Button>
-                    </div>
+                    <Button className="4 hidden"><ReferalModal url={referral['data']['ReferralUrls']}/></Button>
+                    
                 </div>
                 <hr />
                 {

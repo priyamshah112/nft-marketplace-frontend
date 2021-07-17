@@ -391,6 +391,7 @@ const Asset = (props) => {
                             <label className="block p-8 leading-normal cursor-pointer text-xl" for="tab-offers"><i className="fas fa-info-circle mr-6 text-xl"></i>Offers</label>
                             <div className="offerContent tab-content overflow-hidden bg-blue-50 w-full leading-normal">
                                 <hr />
+                                <div className="overflow-x-auto">
                                 <table className="w-full">
                                     <tr className="bg-white">
                                         <td className="p-4">From</td>
@@ -404,6 +405,7 @@ const Asset = (props) => {
                                         )
                                     }
                                 </table>
+                                </div>
                                 <hr />
                                 <div className="bg-blue-50 p-4">
                                     <button className="bg-white rounded-md border-blue-500 border-2 px-8 py-4 text-blue-500 font-bold hover:shadow-lg">Make Offer</button>
@@ -428,7 +430,7 @@ const Asset = (props) => {
                             </select>
                         </div>
                         <hr />
-                        <div>
+                        <div className="overflow-x-auto">
                             <table className="w-full">
                                 <tr className="bg-white">
                                     <td className="p-4">Event</td>
