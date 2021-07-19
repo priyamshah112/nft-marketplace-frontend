@@ -131,8 +131,8 @@ const Activity = (props) => {
     })
     return (
         // <div className="m-5 ">
-        <div className="overflow-x-auto">
-        <table className="table-auto m-5 p-5 bg-gray-50 border-2">
+        <div className="overflow-x-auto m-5">
+        <table className="table-auto m-5 p-5 bg-gray-50 w-full border-2">
             <thead>
                 <tr className="h-20 bg-gray-200">
                     <th>Event</th>
@@ -171,8 +171,8 @@ const Offers = (props) => {
     })
     return (
         // <div className="m-5 ">
-        <div className="overflow-x-auto">
-        <table className="table-auto m-5 p-5 bg-gray-50 border-2">
+        <div className="overflow-x-auto m-5">
+        <table className="table-auto m-5 w-full p-5 bg-gray-50 border-2">
             <thead>
                 <tr className="h-20 bg-gray-200">
                     <th>Asset</th>
