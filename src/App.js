@@ -11,6 +11,7 @@ import EditAsset from './Components/EditAsset';
 import Asset from './Components/Asset';
 import SetPriceAsset from './Components/SetAssetPrice';
 import Leaderboard from './Components/Leaderboard';
+require("dotenv").config();
 
 const App = () => {
     return (

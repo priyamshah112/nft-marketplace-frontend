@@ -1,11 +1,12 @@
 import React,{useState} from "react";
 // import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { Link } from "react-router-dom";
+import { Button } from "semantic-ui-react";
 
 const Card = ({data}) => {
     const imageUrl = "https://robohash.org/evenietipsafuga.png?size=200x300&set=set1"
     const price = 4
-    // console.log(data)
+    console.log("======>", data);
     // const[likes,name]=data;
     // const {imageUrl,likes,title,price} = props.data; 
     const [isLoaded,setLoaded] = useState(false);
@@ -17,7 +18,7 @@ const Card = ({data}) => {
                     ownerId: data.ownerId == null ? "": data.ownerId.account_address[0],
                     name: data.assetName,
                     descr: data.description,
-                    assetId: data.Auction_details == null ? "" : data.Auction_details.Asset_id,
+                    assetId: "meta" in data ? data.meta.assetId : "",
                     source: "browse"
                 }
             }}>
@@ -34,6 +35,12 @@ const Card = ({data}) => {
                     </div>
                     <div className="flex justify-between mt-2">
                         <div>
+                            {data.isMinted? 
+                                <span className="block text-gray-400">Sold out!</span>
+                                :
+                                <div>
+                                <Button color='blue'>Buy</Button>
+                                </div>}
                             <span className="block text-gray-400">{data.assetName}</span>
                             <span>{data.description}</span>
                             {/* <span>Title</span> */}

@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import Card from './Card';
-import asset from '../Mock_Api/all_assets_on_auction.json';
+// import asset from '../Mock_Api/all_assets_on_auction.json';
+import * as assets from '../Mock_Api/assets';
 import '../tailwind.css';
 
 
@@ -16,7 +17,7 @@ const FilterBar = (props)=>{
 
     return(
         <div className="flex flex-row flex-nowrap justify-end pt-6 mr-5">
-            <div className="group">
+            {/* <div className="group">
                 <button id="price-button" type="button" class="w-56 bg-gray-50 border justify-between border-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md inline-flex items-center">
                     <span class="pr-8 inline-block">{props.currValue}</span>
                     <i class="fas fa-chevron-down "></i>
@@ -33,7 +34,7 @@ const FilterBar = (props)=>{
                         <span>None</span>
                     </li>
                 </ul>
-            </div>
+            </div> */}
         </div>
     )
 }
@@ -62,17 +63,15 @@ const DisplayCard = (props)=>{
     const [cards,setCards] = useState([]);
     useEffect(()=>{
         const fetchAssets = async () =>{
-            //Using MockAPI
-
-            /*
-            const response = assets.get('/assets');
-            const data = (await response).data
+            //fetching from mongodb
+            const response = assets.getData('/assets');
+            // const data = (await response).data
             const assetData = (await response).data.data
-            console.log(assetData);*/
             
             //-------------------
             //Data is direct imported here
-            const assetData = asset.data;    
+            // const assetData = asset.data;    
+            console.log(assetData);
             setCards(assetData)
             //----------------------
         }
