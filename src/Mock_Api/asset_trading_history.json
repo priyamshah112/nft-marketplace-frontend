@@ -1,0 +1,86 @@
+{
+    "status": 1,
+    "message": "Success",
+    "data": {
+        "assetId": "60e2b4290acaca0015b6f25a",
+        "Trading_history": [
+            {
+                "From": "0x0000000000000000000000000000000000000000",
+                "Price": "",
+                "date": "2021-07-01T11:27:12.152Z",
+                "Event_type": "Mint",
+                "To": "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76"
+            },
+            {
+                "From": "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76",
+                "Price": "10.0",
+                "date": "2021-07-02T11:27:12.152Z",
+                "Event_type": "List",
+                "To": ""
+            },
+            {
+                "From": "0x9ab6c8babe633a1d9e0b056fd34b90709691554a",
+                "Price": "10.7",
+                "date": "2021-07-02T11:27:12.152Z",
+                "Event_type": "Offer",
+                "To": ""
+            },
+            {
+                "From": "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76",
+                "Price": "10.7",
+                "date": "2021-07-03T11:27:12.152Z",
+                "Event_type": "transfer",
+                "To": "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+            },
+            {
+                "From": "0x382df0f2b7e646d877085e51bedc7dbbb81f0b76",
+                "Price": "10.7",
+                "date": "2021-07-03T11:27:12.152Z",
+                "Event_type": "Sale",
+                "To": "0x9ab6c8babe633a1d9e0b056fd34b90709691554a"
+            },
+            {
+                "From": "0x9ab6c8babe633a1d9e0b056fd34b90709691554a",
+                "Price": "10.9",
+                "date": "2021-07-02T11:27:12.152Z",
+                "Event_type": "List",
+                "To": ""
+            },
+            {
+                "From": "0x6ac6c8babe633a1d9e0b056fd34b907096915532b",
+                "Price": "10.5",
+                "date": "2021-07-03T11:27:12.152Z",
+                "Event_type": "Bid",
+                "To": "ethereum_id"
+            },
+            {
+                "From": "0x9ab6c8babe633a1d9e0b056fd34b90709691554a",
+                "Price": "11.0",
+                "date": "2021-07-03T11:27:12.152Z",
+                "Event_type": "List",
+                "To": ""
+            },
+            {
+                "From": "0x5aa3c8babe633a1d9e0b056fd34b90709691554a",
+                "Price": "12.3",
+                "date": "2021-07-03T11:27:12.152Z",
+                "Event_type": "Bid",
+                "To": ""
+            },
+            {
+                "From": "0x9ab6c8babe633a1d9e0b056fd34b90709691554a",
+                "Price": "12.3",
+                "date": "2021-07-03T11:27:12.152Z",
+                "Event_type": "Transfer",
+                "To": "0x5aa3c8babe633a1d9e0b056fd34b90709691554a"
+            },
+            {
+                "From": "0x9ab6c8babe633a1d9e0b056fd34b90709691554a",
+                "Price": "12.3",
+                "date": "2021-07-03T11:27:12.152Z",
+                "Event_type": "Sale",
+                "To": "0x5aa3c8babe633a1d9e0b056fd34b90709691554a"
+            }
+        ]
+    }
+}

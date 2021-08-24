@@ -1,0 +1,44 @@
+{
+    "status": 1,
+    "message": "Success",
+    "data": {
+        "chainInfo": {
+            "contract": "0x42b67365D11fFf9ACDE7b5d6202689F15BEEF275",
+            "token": "107",
+            "chain": "Ethereum"
+        },
+        "likes": 17,
+        "views": 33,
+        "_id": "60e286b53639fc001513186f",
+        "assetUrl": "https://ipfs.io/ipfs/QmXdqM4naZrBkYqiu5ygRhusP3E3WnSfY6kfCwr9vKDhMZ",
+        "assetMime": "image/png",
+        "assetName": "Fiestel",
+        "description": "Fiestel  Double Round",
+        "private": false,
+        "category": "0",
+        "ownerId": {
+            "account_address": [
+                "0xc88b197421e46336d1ff35b3dd001a005d97c145"
+            ],
+            "_id": "60d48545923af30ea4245c62"
+        },
+        "createdAt": "2021-07-05T04:12:37.062Z",
+        "updatedAt": "2021-07-05T04:12:37.460Z",
+        "__v": 0,
+        "meta": {
+            "_id": "60e286b53639fc0015131872",
+            "assetId": "60e286b53639fc001513186f",
+            "properties": [
+                {
+                    "name": "Crypto",
+                    "value": "AES"
+                }
+            ],
+            "stats": [],
+            "levels": [],
+            "createdAt": "2021-07-05T04:12:37.266Z",
+            "updatedAt": "2021-07-05T04:12:37.266Z",
+            "__v": 0
+        }
+    }
+}

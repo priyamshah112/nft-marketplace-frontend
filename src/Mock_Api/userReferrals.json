@@ -1,0 +1,8 @@
+{
+    "status": 1,
+    "message": "Success",
+    "data":{
+        "ownerId": "0x0000000000000000000000000000000000000000",
+        "ReferralUrls": "https://nft-frontend.com/abcd4567"
+    }
+}

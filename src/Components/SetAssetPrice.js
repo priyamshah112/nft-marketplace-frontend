@@ -13,7 +13,7 @@ const Property_Card = (props) => {
                     "border-blue-400 bg-blue-50" : "border-gray-200 bg-white"
     console.log(selected, props.priceType, props.type)
     return (
-        <div className={"rounded-lg border-2 px-6 py-3 cursor-pointer w-1/4 " + selected} onClick={props.onClick}>
+        <div className={"rounded-lg border-2 px-6 py-3 cursor-pointer md:w-1/4 " + selected} onClick={props.onClick}>
             <div className="text-blue-600 text-center" style={{ fontWeight: "bold" }}>{props.type}</div>
             <div className="text-center" style={{ color: "rgb(158, 158, 158)" }}>{props.name}</div>
         </div>
@@ -25,11 +25,14 @@ const SetPriceAsset = () => {
     const [unlockableContent, setunlockableContent] = useState(-1);
     const [value, onChange] = useState('10:00');
     const [priceType, setpriceType] = useState(1);
+    const [price, setPrice] = useState(null);
+    const [reservePrice, setReservePrice] = useState(null);  
+
     return (
 
         <div class="flex flex-col">
             <div class="flex flex-col bg-blue-50 py-2">
-                <div class="w-10/12 m-auto px-10 text-xs">
+                <div class="md:w-10/12 m-auto px-10 text-xs">
                     Treasure3242
                 </div>
                 <div class="w-10/12 m-auto px-10">
@@ -37,35 +40,35 @@ const SetPriceAsset = () => {
                 </div>
             </div>
 
-            <div class="w-10/12 m-auto p-10">
-                <div class=" flex flex-row gap-5 justify-between">
-                    <div class="w-2/3 flex flex-col gap-9">
+            <div class="md:w-10/12 m-auto p-10">
+                <div class=" flex flex-col md:flex-row gap-5 md:justify-between">
+                    <div class="md:w-2/3 flex flex-col gap-9">
                         <div class="row1" style={{ fontWeight: "bold" }}>
                             Select your sell method
                 </div>
                         <div class="flex flex-row row2 gap-5">
-                            <Property_Card type="Set Price" name="Sell at a fixed or declining price" priceType={priceType} onClick={() => setpriceType(0)}></Property_Card>
+                            <Property_Card type="Set Price" name="Sell at a fixed or declining price" priceType={priceType} onClick={() => {setpriceType(0); setReservePrice(null)}}></Property_Card>
                             <Property_Card type="Heighest Price" name="Auction to the highest bidder" priceType={priceType} onClick={() => setpriceType(1)}></Property_Card>
                         </div>
                         {priceType == 0 ? (
                             <div class="flex flex-col gap-9">
-                                <div class="flex flex-row price justify-between" >
-                                    <div class="flex flex-col gap-5">
+                                <div class="flex flex-col md:flex-row price justify-between" >
+                                    <div class="flex flex-col gap-2 md:gap-5">
                                         <div class="heading" style={{ fontWeight: "bold" }}>
                                             Price
-                        </div>
-                                        <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
+                                        </div>
+                                        <div class="normal mb-2" style={{ color: "rgb(158, 158, 158)" }}>
                                             Will be on the sale until you transfer this item
-                        </div>
+                                        </div>
 
                                     </div>
                                     <div class="input">
-                                        <input className="p-3 rounded-md bg-gray-50 border-2" placeholder="Amount"></input>
+                                        <input className="p-3 rounded-md bg-gray-50 border-2" type="number" placeholder="Amount" onChange={(e) => setPrice(e.target.value)}></input>
                                     </div>
                                 </div>
                                 <div style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "10px" }}>
                                     <label className="block mt-4 font-bold">Privacy</label>
-                                    <div class="flex flex-row justify-between align-items-center" style={{ alignItems: "center" }}>
+                                    <div class="flex flex-col md:flex-row md:justify-between md:align-items-center">
                                         <p className="mt-1 text-gray-400">You can keep your listing public, or your can specify one address that's allowed to buy it.</p>
                                         <form>
 
@@ -84,50 +87,44 @@ const SetPriceAsset = () => {
                                 </div>
                             </div>) : (
                             <div class="flex flex-col gap-9">
-                                <div class="flex flex-row price justify-between" >
-                                    <div class="flex flex-col gap-5">
+                                <div class="flex flex-col md:flex-row price justify-between" >
+                                    <div class="flex flex-col gap-2 md:gap-5">
                                         <div class="heading" style={{ fontWeight: "bold" }}>
                                             Minimum Bid
-                        </div>
+                                        </div>
                                         <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
                                             Set your starting bid price.Learn More
-
-                        </div>
-
+                                        </div>
                                     </div>
                                     <div class="input">
-                                        <input className="p-3 rounded-md bg-gray-50 border-2" placeholder="Amount"></input>
+                                        <input className="p-3 rounded-md bg-gray-50 border-2 mt-2" type="number" placeholder="Amount" onChange={(e) => setPrice(e.target.value)}></input>
                                     </div>
                                 </div>
-                                <div class="flex flex-row price justify-between" >
-                                    <div class="flex flex-col gap-5">
+                                <div class="flex flex-col md:flex-row price justify-between" >
+                                    <div class="flex flex-col gap-2 md:gap-5">
                                         <div class="heading" style={{ fontWeight: "bold" }}>
                                             Reserve Price
-                        </div>
+                                        </div>
                                         <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
                                             Create a hidden limit by setting a reserve price.
-
-                        </div>
-
+                                        </div>
                                     </div>
                                     <div class="input">
-                                        <input className="p-3 rounded-md bg-gray-50 border-2" placeholder="Amount"></input>
+                                        <input className="p-3 rounded-md bg-gray-50 border-2 mt-2" type="number" placeholder="Amount" onChange={(e) => setReservePrice(e.target.value)}></input>
                                     </div>
                                 </div>
-                                <div class="flex flex-row price justify-between" >
-                                    <div class="flex flex-col gap-5">
+                                <div class="flex flex-col md:flex-row price justify-between" >
+                                    <div class="flex flex-col gap-2 md:gap-5">
                                         <div class="heading" style={{ fontWeight: "bold" }}>
                                             Expiration Date
-
-                        </div>
+                                        </div>
                                         <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
                                             Your auction will automatically end at this time and the highest bidder will win. No need to cancel it!
-                        </div>
-
+                                        </div>
                                     </div>
                                     <div class="input">
                                         {/* <input  placeholder="Amount"></input> */}
-                                        <select className="p-3 rounded-md bg-gray-50 border-2" id="cars">
+                                        <select className="p-3 rounded-md bg-gray-50 border-2 mt-2" id="cars">
                                             <option value="in 5 Days">in 5 Days</option>
                                             <option value="in a week">in a week</option>
                                             <option value="in a month">in a month</option>
@@ -136,7 +133,7 @@ const SetPriceAsset = () => {
                                     </div>
                                 </div>
                                 {/* <div class="flex flex-row"></div> */}
-                                <div class=" flex flex-row input justify-end rounded-md gap-3 items-baseline">
+                                <div class=" flex flex-row input md:justify-end rounded-md gap-3 items-baseline">
                                     <p>At</p>
                                     {/* <input className="p-3 rounded-md bg-gray-50 border-2" placeholder="Time"></input> */}
                                     <TimePicker
@@ -148,15 +145,17 @@ const SetPriceAsset = () => {
                             </div>
                         )}
                     </div>
-                    <div class="w-1/3 p-5 my-7 rounded-lg border-2" style={{ backgroundColor: "rgb(251, 253, 255)" }}>
+                    <div class="md:w-1/3 p-5 my-7 rounded-lg border-2" style={{ backgroundColor: "rgb(251, 253, 255)" }}>
                         <div class="flex flex-col gap-5">
                             <div class="row1" style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "25px", fontWeight: "bold" }}>
                                 <i class="far fa-list-alt mr-3"></i>
-                        Summary
-                    </div>
+                                Summary
+                            </div>
                             <div class="row2 flex-row" style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "25px", fontWeight: "bold" }}>
                                 <p>Listing</p>
-                                <button className="bg-blue-600 p-5 rounded-md" style={{ color: "white", fontWeight: "bold" }}>Post Your Listing <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                                <p className={"font-light" + (price == null ? " hidden" : priceType == 1 ? " hidden" :price == "" ? " text-red-600" : " text-green-500")} >{price == "" ?  "Invalid price" : "The item will be sold for " + price + " ETH"}</p>
+                                <p className={"font-light" + (price == null || reservePrice == null ? " hidden" : priceType == 0 ? " hidden" : parseInt(price) > parseInt(reservePrice) ? " text-red-600" : " text-green-500")} >{price == "" ?  "Invalid price" : parseInt(price) > parseInt(reservePrice) ? "Minimum Price cannot be greater than reserve price" : "The item will be auctioned at a minimum price of " + price + " ETH"}</p>
+                                <button className="bg-blue-600 p-5 rounded-md mt-3" style={{ color: "white", fontWeight: "bold" }}>Post Your Listing <i class="fa fa-angle-right" aria-hidden="true"></i></button>
                             </div>
                             <div class="row3 flex-row" style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "25px" }}>
                                 <p style={{ fontWeight: "bold" }}>Fees</p>
@@ -170,12 +169,11 @@ const SetPriceAsset = () => {
                                     <p>2.5%</p>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="max-w-5xl mx-32 p-10">
+            <div className="md:max-w-5xl md:mx-32 p-10">
                 <div className="about tab w-full overflow-hidden border-2 border-gray-200 rounded-md">
                     <input className="absolute opacity-0 margin-auto margin-r-0" id="tab-about" type="checkbox" name="tabs"></input>
                     <label className="block p-8 leading-normal cursor-pointer text-xl" for="tab-about"><i className="fas fa-th mr-6 text-xl"></i>Instructions</label>

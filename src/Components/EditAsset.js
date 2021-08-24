@@ -110,7 +110,7 @@ const EditAsset = (props) => {
         })
 
         if (event.target.form[1].value.length > 2 && event.target.form[1].value.length < 19) {
-            axios.put('http://localhost:5000/api/assets', {
+            axios.put('https://nft-api-1.herokuapp.com/api/assets', {
                 "ownerId":assetData['ownerId'],
                 "_id":assetData['meta']['assetId'],
                 "asset":{
@@ -137,6 +137,63 @@ const EditAsset = (props) => {
         }
     }
 
+    const updatePropertyTag = () => {
+        if (properties.length != 0) {
+            var tag = [];
+            var data = properties;
+            console.log({ "length": data })
+            for (var i = 0; i < data.length; i++) {
+                // var data = properties[i];
+                // console.log(data);
+                tag.push(
+                    <button type="button" className="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].value}</button>
+                )
+            }
+            return tag
+        }
+    }
+
+    const updateLevelTag = () => {
+        if (level.length != 0) {
+            var tag = [];
+            var data = level;
+            console.log({ "length": data.length })
+            for (var i = 0; i < data.length; i++) {
+                // var data = properties[i];
+                // console.log(data);
+                tag.push(
+                    <button type="button" className="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].value} to {data[i].max}</button>
+                )
+            }
+            return tag
+        }
+    }
+    const updateStatsTag = () => {
+        if (stats.length != 0) {
+            var tag = [];
+            var data = stats;
+            console.log({ "length": data.length })
+            for (var i = 0; i < data.length; i++) {
+                // var data = properties[i];
+                // console.log(data);
+                tag.push(
+                    <button type="button" className="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>{data[i].name}:{data[i].value} to {data[i].max}</button>
+                )
+            }
+            return tag
+        }
+    }
+    const categoryType = {
+        "0":"Art",
+        "1":"Music",
+        "2":"Domain Name",
+        "3":"Sport",
+        "4":"Virtual Card",
+        "5": "Trading Card",
+        "6": "Collectibles",
+        "7": "GIFS",
+        "8": "Memes"
+    }
     const handleDelete = (event) => {
         event.preventDefault()
         setLoading(true)
@@ -144,7 +201,7 @@ const EditAsset = (props) => {
             "ownerId": props.location.state.ownerId,
             "assetId": assetData['meta']['assetId']
         })
-        axios.delete('http://localhost:5000/api/assets', {
+        axios.delete('https://nft-api-1.herokuapp.com/api/assets', {
             data: {
                 "ownerId": props.location.state.ownerId,
                 "assetId": assetData['meta']['assetId']
@@ -160,7 +217,7 @@ const EditAsset = (props) => {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/assets/' + assetId.toString())
+        axios.get('https://nft-api-1.herokuapp.com/api/assets/' + assetId.toString())
             .then(response => {
                 console.log(response['data']['data']['meta']['properties'])
                 setAssetData(response['data']['data'])
@@ -193,26 +250,23 @@ const EditAsset = (props) => {
                     </label>
                     <input className="opacity-0 absolute -z-10" id="upload-asset" type="file" onChange={uploadImage}></input>
                     <label className="block mt-4 font-bold">Name *</label>
-                    <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (assetName == null ? "border-gray-200" : assetName.length > 2 && assetName.length < 19 ? "border-gray-200" : "border-red-500")} type="text" defaultValue={props.location.state.name} onChange={(event) => setAssetName(event.target.value)}></input>
+                    <input className={"rounded-md border-2 mt-2 pl-2 py-2 w-full focus:shadow-lg focus:border-none focus:outline-none " + (assetName == null ? "border-gray-200" : assetName.length > 2 && assetName.length < 19 ? "border-gray-200" : "border-red-500")} type="text" value={props.location.state.name} onChange={(event) => setAssetName(event.target.value)}></input>
                     <div className={"mt-1 text-red-500 text-sm " + (assetName == null ? "hidden" : assetName.length > 2 && assetName.length < 20 ? "hidden" : "")}>Length of name should be from 3 to 18</div>
                     <label className="block mt-4 font-bold">Description</label>
                     <p className="mt-1 text-gray-400">The description will be included on the item's detail page underneath its image.</p>
-                    <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" defaultValue={props.location.state.descr}></textarea>
+                    <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" value={props.location.state.descr}></textarea>
                     <div class="flex flex-row py-4 price justify-between" >
                         <div class="flex flex-col gap-5">
                             <div class="heading" style={{ fontWeight: "bold" }}>
                                 Category
-
-
                             </div>
                             <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
                                 Select category of your asset
                             </div>
-
                         </div>
                         <div class="input">
                             {/* <input  placeholder="Amount"></input> */}
-                            <select className="p-3 rounded-md bg-gray-50 border-2" id="cars" value={category} onChange={(e) => { setcategory(e.target.value); }}>
+                            <select className="p-3 rounded-md bg-gray-50 border-2" id="cars" value={categoryType[category]} onChange={(e) => { setcategory(e.target.value); }}>
                                 <option value="Art">Art</option>
                                 <option value="Music">Music</option>
                                 <option value="Domain Name">Domain Name</option>
@@ -231,12 +285,14 @@ const EditAsset = (props) => {
                             <p className="ml-4 font-bold">Properties</p>
                             <p className="mt-1 ml-4 font-light">Textual traits</p>
                         </div>
-                        <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
+                        {false ? <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
                             <Popup1 choice={1} properties={properties} setproperties={(value) => setproperties(value)} />
-                        </button>
-
+                        </button>: null}
 
                     </div>
+                    {
+                            updatePropertyTag()
+                    }
                     <hr className="mt-4" />
                     <div className="mt-2 flex flex-column w-full">
                         <i className="p-1 mt-2 fas fa-star"></i>
@@ -244,10 +300,13 @@ const EditAsset = (props) => {
                             <p className="ml-4 font-bold">Levels</p>
                             <p className="mt-1 ml-4 font-light">Numerical traits that show as progress bars</p>
                         </div>
-                        <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
+                        {false ? <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
                             <Popup1 choice={2} properties={level} setproperties={(value) => setlevel(value)} />
-                        </button>
+                        </button>: null}
                     </div>
+                    {
+                            updateLevelTag()
+                    }
                     <hr className="mt-4" />
                     <div className="mt-2 flex flex-column w-full">
                         <i className="p-1 mt-2 fas fa-signal"></i>
@@ -255,11 +314,13 @@ const EditAsset = (props) => {
                             <p className="ml-4 font-bold">Stats</p>
                             <p className="mt-1 ml-4 font-light">Numerical traits that show as numbers</p>
                         </div>
-                        <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
+                        {false ? <button type="button" className="m-auto mr-2 border-2 border-blue-500 px-3 py-2 rounded-md hover:shadow-lg focus:outline-none">
                             <Popup1 choice={3} properties={stats} setproperties={(value) => setstats(value)} />
-                        </button>
+                        </button>: null}
                     </div>
-                    
+                    {
+                        updateStatsTag()
+                    }
                     <hr className="mt-4 mb-4" />
                     <div>
                         <p className="font-bold text-lg my-4">Chain Info</p>
