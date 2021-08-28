@@ -9,12 +9,12 @@ const Home = () => {
 
     return (
         <div>
-             <Header />
+            <Header />
             <div className="w-11/12 my-10 mx-auto">
                 <Carousel />
-                {Cards.map((card,cardIdx) => <CardsList title={card} />)}
+                {Cards.map((card,cardIdx) => <CardsList title={card} key={cardIdx}/>)}
             </div>
-                <Footer />
+            <Footer />
         </div>
     );
 };

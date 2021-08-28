@@ -8,7 +8,7 @@ const GeneralSettings = (props) => {
 
     function handleSubmit(event){
         event.preventDefault()
-        if(event.target.form[0].value.length > 2 && event.target.form[0].value.length < 29 && event.target.form[1] != event.target.form[2] != ""){
+        if(event.target.form[0].value.length > 2 && event.target.form[0].value.length < 29 && event.target.form[1] !== event.target.form[2] !== ""){
             axios.put('https://nft-api-1.herokuapp.com/api/user/'+props.accountAd,
                     {
                         "username":event.target.form[0].value,

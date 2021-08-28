@@ -14,7 +14,7 @@ const Links = ({ title, links }) => {
         <div className="flex flex-col p-t-8 h-1/2 w-1/2 text-center mt-2 mb-2">
             <div className="capitalize font-extrabold text-white text-lg">{title}</div>
             {links.map((link, linkIdx) => (
-                <a className="mt-2 capitalize font-thin text-white hover:text-blue-400" href={link.url}>{link.title}</a>
+                <a className="mt-2 capitalize font-thin text-white hover:text-blue-400" href={link.url} key={linkIdx}>{link.title}</a>
             ))}
         </div>
     );
@@ -23,7 +23,7 @@ const Links = ({ title, links }) => {
 
 const Footer = () => {
 
-    console.log(FOOTER_LINKS);
+    // console.log(FOOTER_LINKS);
     return (
         <div className="w-full h-auto relative mt-32 mb-0 mx-auto p-8 text-white" style={{ backgroundColor: '#1868b7' }}>
             <div>
@@ -41,29 +41,29 @@ const Footer = () => {
                     <div className="mt-5 md:mt-0 flex flex-col md:w-1/4 md:pb-8 md:text-left md:ml-40">
                         <div className="text-left text-white font-bold my-8 mx-0 text-2xl">Join the Community</div>
                         <div className="flex flex-wrap justify-start">
-                            <a href="https://twitter.com/" className="" target="_blank">
+                            <a href="https://twitter.com/" className="" target="_blank" rel="noreferrer">
                                 <div className="p-2 rounded sm:p-3" style={{ backgroundColor: "#2081e2" }}>
-                                    <i class="fab fa-twitter fa-2x px-2 pr-2" style={{ color: "white" }}></i>
+                                    <i className="fab fa-twitter fa-2x px-2 pr-2" style={{ color: "white" }}></i>
                                 </div>
                             </a>
-                            <a href="https://www.instagram.com/" className="ml-2" target="_blank">
+                            <a href="https://www.instagram.com/" className="ml-2" target="_blank" rel="noreferrer">
                                 <div className="p-2 rounded sm:p-3" style={{ backgroundColor: "#2081e2" }}>
-                                    <i class="fab fa-instagram fa-2x px-2 pr-2" style={{ color: "white" }}></i>
+                                    <i className="fab fa-instagram fa-2x px-2 pr-2" style={{ color: "white" }}></i>
                                 </div>
                             </a>
-                            <a href="https://www.google.com/gmail/" className="ml-2" target="_blank">
+                            <a href="https://www.google.com/gmail/" className="ml-2" target="_blank" rel="noreferrer">
                                 <div className="p-2 rounded sm:p-3" style={{ backgroundColor: "#2081e2" }}>
-                                    <i class="fas fa-envelope fa-2x px-2 pr-2" style={{ color: "white" }}></i>
+                                    <i className="fas fa-envelope fa-2x px-2 pr-2" style={{ color: "white" }}></i>
                                 </div>
                             </a>
-                            <a href="https://www.reddit.com/" className="ml-2" target="_blank">
+                            <a href="https://www.reddit.com/" className="ml-2" target="_blank" rel="noreferrer">
                                 <div className="p-2 rounded sm:p-3" style={{ backgroundColor: "#2081e2" }}>
-                                    <i class="fab fa-reddit-alien fa-2x px-2 pr-2" style={{ color: "white" }}></i>
+                                    <i className="fab fa-reddit-alien fa-2x px-2 pr-2" style={{ color: "white" }}></i>
                                 </div>
                             </a>
-                            <a href="https://discord.com/" className="ml-2" target="_blank">
+                            <a href="https://discord.com/" className="ml-2" target="_blank" rel="noreferrer">
                                 <div className="p-2 rounded sm:p-3 " style={{ backgroundColor: "#2081e2" }}>
-                                    <i class="fab fa-discord fa-2x px-2 pr-2" style={{ color: "white" }}></i>
+                                    <i className="fab fa-discord fa-2x px-2 pr-2" style={{ color: "white" }}></i>
                                 </div>
                             </a>
                         </div>

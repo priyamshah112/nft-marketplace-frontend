@@ -20,17 +20,17 @@ const PlaceBidModal = (props) => {
             contentStyle={style}
         >
             {close => (
-                <div class=" flex flex-col mx-8 my-5 " >
+                <div className=" flex flex-col mx-8 my-5 " >
                     <div className="modal">
-                        <div class="flex flex-row-reverse">
-                            <button id="closebutton" style={{ outline: "none" }} className="close m-2" onClick={close}><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <div className="flex flex-row-reverse">
+                            <button id="closebutton" style={{ outline: "none" }} className="close m-2" onClick={close}><i className="fa fa-times" aria-hidden="true"></i></button>
                         </div>
                         <div className="flex flex-col">
                             <div className="flex flex-row border-2 rounded-lg shadow-lg border-gray-200 h-15">
                                 <div className="align-middle mt-5 ml-5 mr-5">Price</div>
                                 <input id="bidvalue" className = "h-full w-full border-l-2 outline-none p-5 border-gray-200" placeholder="Enter Price" defaultValue={props.bid} type="number"></input>
                             </div>
-                            <button onClick={handleSubmit} class="bg-blue-500 font-bold w-32 px-3 py-2 rounded mt-5 justify-self-center hover:bg-blue-600" style={{ color: "white", outline: "none" }}>Place Bid</button>
+                            <button onClick={handleSubmit} className="bg-blue-500 font-bold w-32 px-3 py-2 rounded mt-5 justify-self-center hover:bg-blue-600" style={{ color: "white", outline: "none" }}>Place Bid</button>
                         </div>
                     </div>
                 </div>

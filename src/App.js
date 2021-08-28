@@ -18,10 +18,10 @@ const App = () => {
         <Router>
             <div>
 
-                <div class="sticky top-0 z-50">
+                <div className="sticky top-0 z-50">
                     <Navbar />
                 </div>
-                <div class="relative">
+                <div className="relative">
                     <Switch>
                         <Route path="/" exact component={Home} />
                         {/* <Route path="/login" component={Login} /> */}

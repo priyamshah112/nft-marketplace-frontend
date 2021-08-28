@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../tailwind.css';
-import profile_img from '../Images/profile.PNG'
+// import profile_img from '../Images/profile.PNG'
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link
 } from "react-router-dom";
 import axios from 'axios';
@@ -129,7 +126,7 @@ const Assets = (props) => {
 
 const Activity = (props) => {
     props.activity.map((act, ind)=> {
-        if(ind == 0)
+        if(ind === 0)
             console.log(act)
     })
     return (
@@ -169,7 +166,7 @@ const Activity = (props) => {
 
 const Offers = (props) => {
     props.offers.map((act, ind)=> {
-        if(ind == 0)
+        if(ind === 0)
             console.log(act)
     })
     return (
@@ -241,7 +238,7 @@ const Profile = () => {
 
     const [accountAd, setaccountAd] = useState("")
     const [iscreate, setiscreate] = useState(false)
-    const [buffer, setBuffer] = useState(null);
+    // const [buffer, setBuffer] = useState(null);
     const [bgipfs, setbgipfs] = useState("");
     const [pfipfs, setpfipfs] = useState("");
     const [loading, setLoading] = useState(false);
@@ -335,11 +332,11 @@ const Profile = () => {
         setOffers(userOffers['data']['offers'])
     },[activity, offers])
 
-    let fileSelector = null;
+    // let fileSelector = null;
     const [selectedTab, setselectedTab] = useState(0);
     //Background pic handler
     const fileSelectedHandler = (e) => {
-        const file = e.target.files[0]
+        // const file = e.target.files[0]
         const reader = new window.FileReader()
         reader.readAsArrayBuffer(e.target.files[0])
         reader.onloadend = () => {
@@ -362,7 +359,7 @@ const Profile = () => {
     }
     //Profile Pic Handler
     const fileSelectedHandler2 = (e) => {
-        const file = e.target.files[0]
+        // const file = e.target.files[0]
         const reader = new window.FileReader()
         reader.readAsArrayBuffer(e.target.files[0])
         reader.onloadend = () => {
@@ -393,7 +390,7 @@ const Profile = () => {
 
     const toggleChange = (e) => {
         console.log(e);
-        if (e.target.id != selectedTab) {
+        if (e.target.id !== selectedTab) {
             e.target.classList.add('bg-gray-100');
             setselectedTab(e.target.classList[0]);
             document.getElementById(selectedTab).classList.remove('bg-gray-100');
@@ -464,12 +461,12 @@ const Profile = () => {
                 </div>
                 <hr />
                 {
-                    selectedTab == 0 ? <Assets loading={loading} setLoading={setLoading} accountAd={accountAd} /> : null
+                    selectedTab === 0 ? <Assets loading={loading} setLoading={setLoading} accountAd={accountAd} /> : null
 
                 }
-                {selectedTab == 1 ? <Activity activity={activity}/> : null}
-                {selectedTab == 2 ? <Offers offers={offers}/> : null}
-                {selectedTab == 3 ? <Favorite />: null}
+                {selectedTab === 1 ? <Activity activity={activity}/> : null}
+                {selectedTab === 2 ? <Offers offers={offers}/> : null}
+                {selectedTab === 3 ? <Favorite />: null}
                 {/* <Assets /> */}
                 <div className={loading ? "fixed z-10 inset-0 overflow-y-auto" : "hidden"} aria-labelledby="modal-title" role="dialog" aria-modal="true">
                     <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">

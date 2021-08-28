@@ -2,8 +2,8 @@ const Web3 = require("web3");
 const AssetContract = require("../contracts/NFTOriginalsContract.json");
 
 let acct;
-var gas = 4712388;
-var gasPrice = 10000000000;
+// var gas = 4712388;
+// var gasPrice = 10000000000;
 let assetContractAddress;
 // let ropstenInfuraUrl = "https://ropsten.infura.io/v3/8d012749a8ae4ca1a238b25053109ffe";
 
@@ -35,7 +35,7 @@ export const getWeb3 = async () => {
 const getNFTInstance = async () => {
   const web3 = await getWeb3();
   const networkId = await web3.eth.net.getId();
-  assetContractAddress = AssetContract.networks[networkId].address;
+  assetContractAddress = AssetContract.networks[80001].address;
   const assetContract = new web3.eth.Contract(
     AssetContract.abi,
     assetContractAddress

@@ -1,15 +1,15 @@
 import axios from 'axios';
-const Web3 = require("web3");
+// const Web3 = require("web3");
 
 
 let baseURL = process.env.REACT_APP_SERVER;
 console.log('baseURL', baseURL);
 
-const getUserAddress = async () => {
-    const web3 = new Web3(window.ethereum);
-    const accounts = await Web3.eth.getAccounts(); 
-    return accounts[0];
-}
+// const getUserAddress = async () => {
+//     const web3 = new Web3(window.ethereum);
+//     const accounts = await Web3.eth.getAccounts(); 
+//     return accounts[0];
+// }
 
 
 export const getData = (path) => {

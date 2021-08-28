@@ -7,20 +7,20 @@ import '../tailwind.css';
 
 const FilterBar = (props)=>{
 
-    const LowToHigh = ()=>{
-        props.setValue(props.choiceArray[1])
-    }
+    // const LowToHigh = ()=>{
+    //     props.setValue(props.choiceArray[1])
+    // }
 
-    const HighToLow = ()=>{
-        props.setValue(props.choiceArray[2])
-    }
+    // const HighToLow = ()=>{
+    //     props.setValue(props.choiceArray[2])
+    // }
 
     return(
         <div className="flex flex-row flex-nowrap justify-end pt-6 mr-5">
             {/* <div className="group">
-                <button id="price-button" type="button" class="w-56 bg-gray-50 border justify-between border-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md inline-flex items-center">
-                    <span class="pr-8 inline-block">{props.currValue}</span>
-                    <i class="fas fa-chevron-down "></i>
+                <button id="price-button" type="button" className="w-56 bg-gray-50 border justify-between border-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md inline-flex items-center">
+                    <span className="pr-8 inline-block">{props.currValue}</span>
+                    <i className="fas fa-chevron-down "></i>
                 </button>
                 <ul className="w-56 z-30 absolute ml-4 shadow-xl hidden right-5 text-black-700 group-hover:block mr-5">
                     <li className="py-2 cursor-pointer rounded px-4 block bg-gray-50 w-42 hover:bg-gray-100" onClick={()=>LowToHigh()} id="menu-item-1">
@@ -45,7 +45,6 @@ const FilterBar = (props)=>{
 //         const fetchData = async () => {
 //             const response = await fetch(`/c_1.json`);
 //             const data = await response.json();
-//             console.log(data);
 //             // const Icon = await importIcon(data.iconName);
 //             setCards({...data});
 //         }
@@ -70,13 +69,11 @@ const DisplayCard = (props)=>{
             
             //-------------------
             //Data is direct imported here
-            // const assetData = asset.data;    
-            console.log(assetData);
+            // const assetData = asset.data;
             setCards(assetData)
             //----------------------
         }
         fetchAssets();
-        console.log(cards);
     },[]);
     function LowToHigh( a, b ) {
         if ( a.Auction_details.current_Bid < b.Auction_details.current_Bid ){
@@ -101,9 +98,9 @@ const DisplayCard = (props)=>{
     
     return(
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {cards && cards.length > 0 && props.currValue == props.choiceArray[0] && cards.map((asset,assetIdx) => (<Card data={asset} />))}
-            {cards && cards.length > 0 && props.currValue == props.choiceArray[1] && cards.sort(HighToLow).map((asset,assetIdx) => (<Card data={asset} />))}
-            {cards && cards.length > 0 && props.currValue == props.choiceArray[2] && cards.sort(LowToHigh).map((asset,assetIdx) => (<Card data={asset} />))}
+            {cards && cards.length > 0 && props.currValue === props.choiceArray[0] && cards.map((asset,assetIdx) => (<Card data={asset} />))}
+            {cards && cards.length > 0 && props.currValue === props.choiceArray[1] && cards.sort(HighToLow).map((asset,assetIdx) => (<Card data={asset} />))}
+            {cards && cards.length > 0 && props.currValue === props.choiceArray[2] && cards.sort(LowToHigh).map((asset,assetIdx) => (<Card data={asset} />))}
         </div>
     )
 }

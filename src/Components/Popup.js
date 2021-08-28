@@ -1,7 +1,7 @@
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import '../CSS/createasset.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 
 const PropertyType1 = (props) => {
@@ -12,7 +12,7 @@ const PropertyType1 = (props) => {
     }
 
     const handleChange = (e) => {
-        var id = String(e.target.id)[0];
+        // var id = String(e.target.id)[0];
 
 
     }
@@ -21,7 +21,7 @@ const PropertyType1 = (props) => {
 
     const items = []
 
-    for (var i = 0; i < props.count; i++) {
+    for (let i = 0; i < props.count; i++) {
         console.log(props.count);
 
         items.push(
@@ -96,11 +96,11 @@ const Popup1 = (props) => {
         console.log(numberProperty);
     }
     const handleSubmit = () => {
-        if (props.choice == 1) {
+        if (props.choice === 1) {
             //Adding data for property
             console.log({ 'Props choice1 =': numberProperty })
             //Push all data in props and lastly setproperties from props
-            var propss = [];
+            let propss = [];
             for (var i = 0; i < numberProperty; i++) {
                 var name = document.getElementById(i + 'name').value;
                 var value = document.getElementById(i + 'value').value;
@@ -112,8 +112,8 @@ const Popup1 = (props) => {
             //Adding data for stats and level
             console.log({ 'Props choice2 =': numberProperty })
             //Push all data in props and lastly setproperties from props
-            var propss = [];
-            for (var i = 0; i < numberProperty; i++) {
+            let propss = [];
+            for (let i = 0; i < numberProperty; i++) {
                 var name = document.getElementById(i + 'name').value;
                 var from = document.getElementById(i + 'from').value;
                 var to = document.getElementById(i + 'to').value;
@@ -140,16 +140,16 @@ const Popup1 = (props) => {
             contentStyle={style}
         >
             {close => (
-                <div class=" flex flex-col mx-8 my-5" >
+                <div className=" flex flex-col mx-8 my-5" >
                     <div className="modal">
-                        <div class="flex flex-row-reverse">
-                            <button id="closebutton" style={{ outline: "none" }} className="close m-2" onClick={close}><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <div className="flex flex-row-reverse">
+                            <button id="closebutton" style={{ outline: "none" }} className="close m-2" onClick={close}><i className="fa fa-times" aria-hidden="true"></i></button>
                         </div>
-                        <div class="flex justify-center">
+                        <div className="flex justify-center">
                             <h3 className="text-xl font-thin mt-2">Add Properties</h3>
 
                         </div>
-                        <div class="flex m-1 " style={{ fontSize: "12px" }}>
+                        <div className="flex m-1 " style={{ fontSize: "12px" }}>
 
 
                             {props.choice == 1 ? <p className="mt-2 ">Properties show up underneath your item, are clickable, and can be filtered in your collection's sidebar.</p> : null}
@@ -159,7 +159,7 @@ const Popup1 = (props) => {
 
                         </div>
 
-                        <table class="table-fixed inline-table w-full " style={{ fontSize: "12px" }}>
+                        <table className="table-fixed inline-table w-full " style={{ fontSize: "12px" }}>
                             <thead>
                                 {props.choice == 1 ? <tr className="head">
                                     <th className="w-1/12"></th>
@@ -195,12 +195,12 @@ const Popup1 = (props) => {
 
 
                         </table>
-                        <div class="flex flex-col">
-                            <div class="flex flex-row">
-                                <button onClick={addproperty} class="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>Add More</button>
+                        <div className="flex flex-col">
+                            <div className="flex flex-row">
+                                <button onClick={addproperty} className="bg-white-400 w-32 px-3 py-3 mx-1 my-2 rounded m-3  border-blue-400 font-bold" style={{ color: "rgb(32, 129, 226)", borderWidth: "1px", fontSize: "13px", outline: "none" }}>Add More</button>
                             </div>
-                            <div class="flex justify-center">
-                                <button onClick={handleSubmit} class="bg-blue-400 font-bold w-32 px-3 py-2  rounded m-3" style={{ color: "white", outline: "none" }}>Save</button>
+                            <div className="flex justify-center">
+                                <button onClick={handleSubmit} className="bg-blue-400 font-bold w-32 px-3 py-2  rounded m-3" style={{ color: "white", outline: "none" }}>Save</button>
                             </div>
                         </div>
                     </div>

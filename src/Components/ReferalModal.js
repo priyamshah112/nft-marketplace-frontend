@@ -1,13 +1,13 @@
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import '../CSS/createasset.css';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const ReferalModal = (props) => {
 
-    const handleSubmit = () => {
-        window.location.href = "/profile"
-    }
+    // const handleSubmit = () => {
+    //     window.location.href = "/profile"
+    // }
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     var style = {}
     if(isMobile)
@@ -20,10 +20,10 @@ const ReferalModal = (props) => {
             contentStyle={style}
         >
             {close => (
-                <div class=" flex flex-col mx-8 my-5 " >
+                <div className=" flex flex-col mx-8 my-5 " >
                     <div className="modal">
-                        <div class="flex flex-row-reverse">
-                            <button id="closebutton" style={{ outline: "none" }} className="close m-2" onClick={close}><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <div className="flex flex-row-reverse">
+                            <button id="closebutton" style={{ outline: "none" }} className="close m-2" onClick={close}><i className="fa fa-times" aria-hidden="true"></i></button>
                         </div>
                         <div className="font-bold text-xl text-center">Refer to more users</div>
                         <div className="m-5">

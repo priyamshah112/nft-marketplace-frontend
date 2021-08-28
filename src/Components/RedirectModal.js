@@ -16,12 +16,12 @@ export default function RedirectModal() {
                                         <img className="mx-auto pt-2" src={metamask} alt="metamask logo" width="60" height="60"/>
                                     </h3>
                                 </div>
-                                <p class="text-justify text-xl pt-3">This application requires MetaMask. <br/> Get MetaMask ?</p>
+                                <p className="text-justify text-xl pt-3">This application requires MetaMask. <br/> Get MetaMask ?</p>
                                 <div className="flex items-center justify-center">
-                                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mr-3 mb-1 rounded" onClick={() => setShowModal(false)}>
+                                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mr-3 mb-1 rounded" onClick={() => setShowModal(false)}>
                                         CLOSE
                                     </button>
-                                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-3 mb-1 rounded" onClick={() => window.open('https://metamask.io/download.html', '_blank')}>
+                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-3 mb-1 rounded" onClick={() => window.open('https://metamask.io/download.html', '_blank')}>
                                         OK
                                     </button>
                                 </div>

@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Popup1 from './Popup';
 import axios from 'axios';
 import { useParams } from 'react-router';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 
 const IPFS = require('ipfs-http-client')
 const ipfs = IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
 const EditAsset = (props) => {
-    const [unlockableContent, setunlockableContent] = useState(-1)
+    // const [unlockableContent, setunlockableContent] = useState(-1)
     const [buffer, setBuffer] = useState(null)
     const [ipfsHash, setIPFSHash] = useState("")
     const [properties, setproperties] = useState([])
@@ -72,73 +72,73 @@ const EditAsset = (props) => {
     }, [buffer])
 
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log("P:", properties[0])
-        console.log("L:", level[0])
-        console.log("S:", stats[0])
-        console.log({
-            "ownerId": assetData['ownerId'],
-            "assetId": assetData['meta']['assetId'],
-            "asset": {
-                "assetUrl": "https://ipfs.io/ipfs/" + ipfsHash,
-                "assetMime": "image/png",
-                "name": event.target.form[1].value,
-                "description": event.target.form[3].value,
-                "private": false,
-                "category": category,
-                "properties": properties.length == 0 ? [] : typeof (properties[0]) === 'object' ? properties : properties[0],
-                "levels": level.length == 0 ? [] : level[0],
-                "stats": stats.length == 0 ? [] : stats[0]
-            }
-        })
+    // const handleSubmit = (event) => {
+    //     event.preventDefault()
+    //     console.log("P:", properties[0])
+    //     console.log("L:", level[0])
+    //     console.log("S:", stats[0])
+    //     console.log({
+    //         "ownerId": assetData['ownerId'],
+    //         "assetId": assetData['meta']['assetId'],
+    //         "asset": {
+    //             "assetUrl": "https://ipfs.io/ipfs/" + ipfsHash,
+    //             "assetMime": "image/png",
+    //             "name": event.target.form[1].value,
+    //             "description": event.target.form[3].value,
+    //             "private": false,
+    //             "category": category,
+    //             "properties": properties.length == 0 ? [] : typeof (properties[0]) === 'object' ? properties : properties[0],
+    //             "levels": level.length == 0 ? [] : level[0],
+    //             "stats": stats.length == 0 ? [] : stats[0]
+    //         }
+    //     })
 
-        console.log({
-            "ownerId":assetData['ownerId'],
-            "_id":assetData['meta']['assetId'],
-            "asset":{
-                "assetUrl":"https://ipfs.io/ipfs/" + ipfsHash,
-                "category": category,
-                "assetName":event.target.form[1].value,
-                "assetMime":"image/png",
-                "description":event.target.form[3].value,
-                "private":false,
-                "properties":properties.length == 0 ? [] : typeof (properties[0]) === 'object' ? properties : properties[0],
-                "stats":stats.length == 0 ? [] : stats[0],
-                "levels":level.length == 0 ? [] : level[0]
-            }
-        })
+    //     console.log({
+    //         "ownerId":assetData['ownerId'],
+    //         "_id":assetData['meta']['assetId'],
+    //         "asset":{
+    //             "assetUrl":"https://ipfs.io/ipfs/" + ipfsHash,
+    //             "category": category,
+    //             "assetName":event.target.form[1].value,
+    //             "assetMime":"image/png",
+    //             "description":event.target.form[3].value,
+    //             "private":false,
+    //             "properties":properties.length == 0 ? [] : typeof (properties[0]) === 'object' ? properties : properties[0],
+    //             "stats":stats.length == 0 ? [] : stats[0],
+    //             "levels":level.length == 0 ? [] : level[0]
+    //         }
+    //     })
 
-        if (event.target.form[1].value.length > 2 && event.target.form[1].value.length < 19) {
-            axios.put('https://nft-api-1.herokuapp.com/api/assets', {
-                "ownerId":assetData['ownerId'],
-                "_id":assetData['meta']['assetId'],
-                "asset":{
-                    "assetUrl":"https://ipfs.io/ipfs/" + ipfsHash,
-                    "category": category,
-                    "assetName":event.target.form[1].value,
-                    "assetMime":"image/png",
-                    "description":event.target.form[3].value,
-                    "private":false,
-                    "properties":properties.length == 0 ? [] : typeof (properties[0]) === 'object' ? properties : properties[0],
-                    "stats":stats.length == 0 ? [] : stats[0],
-                    "levels":level.length == 0 ? [] : level[0]
-                }
-            }).then((result) => {
-                console.log(result.data);
-                window.location.href = "/profile";
-            })
-                .catch((error) => {
-                    throw console.log(error);
-                })
-        }
-        else {
-            console.log("Invalid asset/creator name entry")
-        }
-    }
+    //     if (event.target.form[1].value.length > 2 && event.target.form[1].value.length < 19) {
+    //         axios.put('https://nft-api-1.herokuapp.com/api/assets', {
+    //             "ownerId":assetData['ownerId'],
+    //             "_id":assetData['meta']['assetId'],
+    //             "asset":{
+    //                 "assetUrl":"https://ipfs.io/ipfs/" + ipfsHash,
+    //                 "category": category,
+    //                 "assetName":event.target.form[1].value,
+    //                 "assetMime":"image/png",
+    //                 "description":event.target.form[3].value,
+    //                 "private":false,
+    //                 "properties":properties.length == 0 ? [] : typeof (properties[0]) === 'object' ? properties : properties[0],
+    //                 "stats":stats.length == 0 ? [] : stats[0],
+    //                 "levels":level.length == 0 ? [] : level[0]
+    //             }
+    //         }).then((result) => {
+    //             console.log(result.data);
+    //             window.location.href = "/profile";
+    //         })
+    //             .catch((error) => {
+    //                 throw console.log(error);
+    //             })
+    //     }
+    //     else {
+    //         console.log("Invalid asset/creator name entry")
+    //     }
+    // }
 
     const updatePropertyTag = () => {
-        if (properties.length != 0) {
+        if (properties.length !== 0) {
             var tag = [];
             var data = properties;
             console.log({ "length": data })
@@ -154,7 +154,7 @@ const EditAsset = (props) => {
     }
 
     const updateLevelTag = () => {
-        if (level.length != 0) {
+        if (level.length !== 0) {
             var tag = [];
             var data = level;
             console.log({ "length": data.length })
@@ -169,7 +169,7 @@ const EditAsset = (props) => {
         }
     }
     const updateStatsTag = () => {
-        if (stats.length != 0) {
+        if (stats.length !== 0) {
             var tag = [];
             var data = stats;
             console.log({ "length": data.length })
@@ -211,8 +211,8 @@ const EditAsset = (props) => {
             window.location.href = "/profile";
         })
             .catch((error) => {
+                setLoading(false);
                 throw console.log(error);
-                setLoading(false)
             })
     }
 
@@ -230,7 +230,7 @@ const EditAsset = (props) => {
                 setToken(response['data']['data']['chainInfo']['token'])
                 setChain(response['data']['data']['chainInfo']['chain'])
             })
-    }, [])
+    }, [assetId])
     console.log(assetData)
     const [assetName, setAssetName] = useState(assetData['name'])
 
@@ -255,16 +255,16 @@ const EditAsset = (props) => {
                     <label className="block mt-4 font-bold">Description</label>
                     <p className="mt-1 text-gray-400">The description will be included on the item's detail page underneath its image.</p>
                     <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" type="text" value={props.location.state.descr}></textarea>
-                    <div class="flex flex-row py-4 price justify-between" >
-                        <div class="flex flex-col gap-5">
-                            <div class="heading" style={{ fontWeight: "bold" }}>
+                    <div className="flex flex-row py-4 price justify-between" >
+                        <div className="flex flex-col gap-5">
+                            <div className="heading" style={{ fontWeight: "bold" }}>
                                 Category
                             </div>
-                            <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
+                            <div className="normal" style={{ color: "rgb(158, 158, 158)" }}>
                                 Select category of your asset
                             </div>
                         </div>
-                        <div class="input">
+                        <div className="input">
                             {/* <input  placeholder="Amount"></input> */}
                             <select className="p-3 rounded-md bg-gray-50 border-2" id="cars" value={categoryType[category]} onChange={(e) => { setcategory(e.target.value); }}>
                                 <option value="Art">Art</option>

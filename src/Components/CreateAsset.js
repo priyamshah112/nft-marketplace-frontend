@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Popup1 from "./Popup";
 import axios from "axios";
-import { useParams } from "react-router";
+// import { useParams } from "react-router";
 import { Redirect } from "react-router-dom";
-import { render } from "@testing-library/react";
-import web3lib from "./web3lib";
+// import { render } from "@testing-library/react";
+// import web3lib from "./web3lib";
 import * as db from "./database";
 
 const IPFS = require("ipfs-http-client");
@@ -20,7 +20,7 @@ const CreateAsset = () => {
   );
   const [redirect, setredirect] = useState(null);
 
-  const [name, setname] = useState("");
+  // const [name, setname] = useState("");
   const [loading, setLoading] = useState(false);
   const [properties, setproperties] = useState([]);
   const [level, setlevel] = useState([]);
@@ -36,21 +36,7 @@ const CreateAsset = () => {
     axios
       .get(baseURL + "/user/" + accAd)
       .then((res) => {
-        // console.log(res);
         if (res.data.data == null) {
-          console.log({
-            username: "User_" + accAd.substring(accAd.length - 5),
-            account_address: [accAd],
-            user_type: "",
-            bio: "",
-            email_address: "",
-            bg_img_url:
-              "https://ipfs.io/ipfs/QmTudZ7p5EftYP3eK9zd7dypdPCBUqLShL3o5w1SfGhnAX",
-            profile_pic_url:
-              "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
-            is_verified: true,
-            is_deleted: false,
-          });
           axios
             .post(baseURL + "/user/", {
               username: "User_" + accAd.substring(accAd.length - 5),
@@ -66,7 +52,6 @@ const CreateAsset = () => {
               is_deleted: false,
             })
             .then((res) => {
-              console.log(res);
               setiscreate(true);
             })
             .catch((err) => {
@@ -86,7 +71,6 @@ const CreateAsset = () => {
     const account = accounts[0];
     setaccountAd(account);
     createUser(account);
-    // console.log(account);
   }
 
   function login() {
@@ -113,18 +97,13 @@ const CreateAsset = () => {
     };
   };
 
-  const updateValue = (event, name) => {
-    console.log(event.target.value);
-    console.log(name);
-    // `${name}` = event.target.value;
-
-    // console.log({ ...asset`${name}` = event.target.value });
-  };
+  // const updateValue = (event, name) => {
+  //   `${name}` = event.target.value;
+  // };
 
   useEffect(() => {
     if (buffer != null)
       ipfs.add(buffer).then((res) => {
-        console.log("ipfs add image result data:", res);
         setIPFSHash(res.path);
       });
   }, [buffer]);
@@ -134,18 +113,15 @@ const CreateAsset = () => {
   }, [properties, stats, level]);
 
   useEffect(() => {
-      console.log('redirecting to...', baseURL.replace('/api', '')+redirect);
     return <Redirect to={baseURL.replace('/api', '')+redirect} />;
   }, [redirect]);
 
   const updatePropertyTag = () => {
-    if (properties.length != 0) {
+    if (properties.length !== 0) {
       var tag = [];
       var data = properties[0];
-      console.log({ length: data.length });
       for (var i = 0; i < data.length; i++) {
         // var data = properties[i];
-        // console.log(data);
         tag.push(
           <button
             type="button"
@@ -165,13 +141,11 @@ const CreateAsset = () => {
     }
   };
   const updateLevelTag = () => {
-    if (level.length != 0) {
+    if (level.length !== 0) {
       var tag = [];
       var data = level[0];
-      console.log({ length: data.length });
       for (var i = 0; i < data.length; i++) {
         // var data = properties[i];
-        // console.log(data);
         tag.push(
           <button
             type="button"
@@ -191,13 +165,11 @@ const CreateAsset = () => {
     }
   };
   const updateStatsTag = () => {
-    if (stats.length != 0) {
+    if (stats.length !== 0) {
       var tag = [];
       var data = stats[0];
-      console.log({ length: data.length });
       for (var i = 0; i < data.length; i++) {
         // var data = properties[i];
-        // console.log(data);
         tag.push(
           <button
             type="button"
@@ -232,14 +204,6 @@ const CreateAsset = () => {
     try {
       event.preventDefault();
       setLoading(true);
-      // console.log(properties);
-      // console.log(level);
-      // console.log(stats);
-      // console.log(event.target.form[1].value)
-
-      properties.map((data) => console.log(data.name));
-      console.log(level);
-      console.log("User details -");
       let userData = {
         ownerId: accountAd,
         asset: {
@@ -254,8 +218,6 @@ const CreateAsset = () => {
           levels: level.length === 0 ? [] : level[0],
         },
       };
-
-      console.log(userData);
 
       if (
         event.target.form[1].value.length > 2 &&
@@ -281,11 +243,9 @@ const CreateAsset = () => {
 
         const added = await ipfs.add(data);
         const jsonurl = `https://ipfs.infura.io/ipfs/${added.path}`;
-        console.log("ipfs url:", jsonurl);
         /* after file is uploaded to IPFS, pass the URL to save it on Polygon */
 
         // let result = await web3lib.mintToken(jsonurl);
-        // console.log('result after minting: ', result);
         if (jsonurl) {
           // get tokenId of minted token
         //   let tokenId = result.tokenId;
@@ -299,7 +259,6 @@ const CreateAsset = () => {
           let dbstatus = await db.updateDBwithToken(userData, nftJson);
           if (dbstatus.status) {
             console.log('Success: DB updated success');
-            console.log(dbstatus.data);
             // setredirect("/");
             setLoading(false);
             window.location.href = "/profile";
@@ -322,7 +281,6 @@ const CreateAsset = () => {
         //   // updated db with the asset and tokenId
         //   let dbstatus = await db.updateDBwithToken(userData, nftJson);
         //   if (dbstatus.status) {
-        //     console.log(dbstatus.data);
         //     setredirect("/");
         //     setLoading(false);
         //   }

@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 
 const Card = ({data}) => {
-    const imageUrl = "https://robohash.org/evenietipsafuga.png?size=200x300&set=set1"
-    const price = 4
-    console.log("======>", data);
+    // const imageUrl = "https://robohash.org/evenietipsafuga.png?size=200x300&set=set1"
+    // const price = 4
+    // console.log("======>", data);
     // const[likes,name]=data;
     // const {imageUrl,likes,title,price} = props.data; 
     const [isLoaded,setLoaded] = useState(false);
@@ -25,7 +25,7 @@ const Card = ({data}) => {
                 <div className="mb-4 p-4 bg-white rounded-md shadow-md w-96 border transform hover:-translate-y-1.5 hover:shadow-2xl duration-150 mx-2">
                     <div className="flex flex-row justify-end p-1.5">
                         {/* <FavoriteBorderIcon className="hover:text-red-500" /> */}
-                        <i class="far fa-heart hover:text-red-500"></i>
+                        <i className="far fa-heart hover:text-red-500"></i>
                         <span className="pl-1">{data.likes}</span>
                         {/* <span className="pl-1">4</span> */}
                     </div>

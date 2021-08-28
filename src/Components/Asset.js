@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Icon, Message } from "semantic-ui-react";
+import { Button, Form, Message } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -8,8 +8,8 @@ import * as db from "./database";
 import web3lib from "./web3lib";
 
 //Import mock get_asset_by_id api
-import get_asset_byId from "../Mock_Api/get_asset_byId1.json";
-import * as assetsUtil from "../Mock_Api/assets";
+// import get_asset_byId from "../Mock_Api/get_asset_byId1.json";
+// import * as assetsUtil from "../Mock_Api/assets";
 
 import individualAssetOnAuction from "../Mock_Api/individual_asset_on_auction_1.json";
 import offersOnAsset from "../Mock_Api/offers_on_asset.json";
@@ -66,23 +66,22 @@ const Levels_Card = (props) => {
   );
 };
 
-const Listing_Entry = (props) => {
-  return (
-    <tr className="bg-blue-50">
-      <td className="p-4">{props.from}</td>
-      <td className="p-4">{props.price} ETH</td>
-      <td className="p-4">{props.expiry}</td>
-      <td className="p-4">
-        <button className="rounded-md p-2 border-2 border-green-400 bg-white text-green-400 hover:shadow-lg">
-          {props.transact}
-        </button>
-      </td>
-    </tr>
-  );
-};
+// const Listing_Entry = (props) => {
+//   return (
+//     <tr className="bg-blue-50">
+//       <td className="p-4">{props.from}</td>
+//       <td className="p-4">{props.price} ETH</td>
+//       <td className="p-4">{props.expiry}</td>
+//       <td className="p-4">
+//         <button className="rounded-md p-2 border-2 border-green-400 bg-white text-green-400 hover:shadow-lg">
+//           {props.transact}
+//         </button>
+//       </td>
+//     </tr>
+//   );
+// };
 
 const Offer_Entry = (props) => {
-  console.log(props);
   return (
     <tr className="bg-blue-50">
       <td className="p-4">{props.from}</td>
@@ -132,21 +131,7 @@ const Asset = (props) => {
     axios
       .get(serverAdd + "/user/" + accAd)
       .then((res) => {
-        console.log(res);
-        if (res.data.data == null) {
-          console.log({
-            username: "User_" + accAd.substring(accAd.length - 5),
-            account_address: [accAd],
-            user_type: "",
-            bio: "",
-            email_address: "",
-            bg_img_url:
-              "https://ipfs.io/ipfs/QmTudZ7p5EftYP3eK9zd7dypdPCBUqLShL3o5w1SfGhnAX",
-            profile_pic_url:
-              "https://ipfs.io/ipfs/QmaZS9UiC9vbxUaEze3Kt4dCLH74CUCb23YoSfxp1BzM2J",
-            is_verified: true,
-            is_deleted: false,
-          });
+        if (res.data.data === null) {
           axios
             .post("https://nft-api-1.herokuapp.com/api/user/", {
               username: "User_" + accAd.substring(accAd.length - 5),
@@ -162,7 +147,6 @@ const Asset = (props) => {
               is_deleted: false,
             })
             .then((res) => {
-              console.log(res);
               setiscreate(true);
             })
             .catch((err) => {
@@ -182,7 +166,6 @@ const Asset = (props) => {
     const account = accounts[0];
     setaccountAd(account);
     createUser(account);
-    console.log(account);
   }
 
   function login() {
@@ -194,11 +177,11 @@ const Asset = (props) => {
     }
   }
 
-  useEffect(() => {}, [accountAd]);
+  // useEffect(() => {}, [accountAd]);
 
   const getMetaMask = (event) => {
     event.preventDefault();
-    if (typeof window.ethereum == "undefined" || !window.ethereum.isMetaMask) {
+    if (typeof window.ethereum === "undefined" || !window.ethereum.isMetaMask) {
       //alert("This application requires MetaMask. Get MetaMask ?");
       //window.location.href = "https://metamask.io/download.html";
       window.location.href = "/profile";
@@ -209,12 +192,9 @@ const Asset = (props) => {
   };
 
   const buyAsset = async () => {
-    console.log("AssetData is : ", assetData);
     let result = await web3lib.buyToken(assetData);
-    console.log("result and tokenId: ", result, result.tokenId);
     assetData.tokenId = result.tokenId;
     let dbRes = await db.updateDBwithTokenId(assetData);
-    console.log("dbRes:", dbRes);
     if (dbRes.status) {
       // setLoading(false);
       window.location.href = "/profile";
@@ -224,10 +204,8 @@ const Asset = (props) => {
 
   const check_owner_of_Asset = () => {
     if (ownerId === accountAd) {
-      console.log("setCustomer as owner:", ownerId, accountAd);
       setcustomer("owner");
     } else {
-      console.log("setCustomer as viewer:", ownerId, accountAd);
       setcustomer("viewer");
     }
   };
@@ -239,16 +217,10 @@ const Asset = (props) => {
   }, [ownerId, accountAd]);
 
   useEffect(() => {
-    console.log(
-      "fetching asset: ",
-      props,
-      serverAdd + "/assets/" + props.location.state.assetId.toString()
-    );
     if (props.location.state.source === "profile")
       axios
         .get(serverAdd + "/assets/" + props.location.state.assetId.toString())
         .then((response) => {
-          console.log("Response from server: ", response);
           let data = response.data.data;
 
           setOffers(offersOnAsset["data"]);
@@ -266,7 +238,6 @@ const Asset = (props) => {
       axios
         .get(serverAdd + "/assets/" + props.location.state.assetId.toString())
         .then((response) => {
-          console.log("Response from server: ", response);
           let data = response.data.data;
 
           setOffers(offersOnAsset["data"]);
@@ -287,7 +258,7 @@ const Asset = (props) => {
           setCurrentBid(
             individualAssetOnAuction["data"]["Auction_details"][
               "current_Bid"
-            ] == 0
+            ] === 0
               ? individualAssetOnAuction["data"]["Auction_details"][
                   "min_Amount"
                 ]
@@ -300,15 +271,15 @@ const Asset = (props) => {
   }, []);
 
   return (
-    <div class="flex flex-col">
-      {customer == "owner" ? (
-        <div class="md:w-11/12 m-5 md:m-10 flex flex-row-reverse bg-blue-50 rounded-md py-5 pr-4">
+    <div className="flex flex-col">
+      {customer === "owner" ? (
+        <div className="md:w-11/12 m-5 md:m-10 flex flex-row-reverse bg-blue-50 rounded-md py-5 pr-4">
           <Link
             to={{
               pathname: "/setassetprice",
             }}
           >
-            <button class="bg-blue-500 rounded-md py-3 px-10 text-white font-bold ">
+            <button className="bg-blue-500 rounded-md py-3 px-10 text-white font-bold ">
               Sell
             </button>
           </Link>
@@ -331,7 +302,7 @@ const Asset = (props) => {
 
                 <div
                   className="flex flex-row gap-2 "
-                  style={{ "align-items": "center" }}
+                  style={{ "alignItems": "center" }}
                 >
                   <i className="far fa-eye"></i>
                   <p>7.8K views</p>
@@ -339,7 +310,7 @@ const Asset = (props) => {
 
                 <div
                   className="flex flex-row gap-2"
-                  style={{ "align-items": "center" }}
+                  style={{ "alignItems": "center" }}
                 >
                   <i className="fa fa-heart" aria-hidden="true"></i>
                   <p>60 favorites</p>
@@ -372,7 +343,7 @@ const Asset = (props) => {
                 ></input>
                 <label
                   className="block p-8 leading-normal cursor-pointer text-xl"
-                  for="tab-properties"
+                  htmlFor="tab-properties"
                 >
                   <i className="fas fa-list-ul mr-6 text-xl"></i>Properties
                 </label>
@@ -386,6 +357,7 @@ const Asset = (props) => {
                         <Property_Card
                           type={property["name"]}
                           name={property["value"]}
+                          key={index}
                         />
                       );
                     })}
@@ -402,7 +374,7 @@ const Asset = (props) => {
                 ></input>
                 <label
                   className="block p-8 leading-normal cursor-pointer text-xl"
-                  for="tab-levels"
+                  htmlFor="tab-levels"
                 >
                   <i className="fas fa-star mr-6 text-xl"></i>Levels
                 </label>
@@ -417,6 +389,7 @@ const Asset = (props) => {
                           name={level["name"]}
                           value={level["value"]}
                           max={level["max"]}
+                          key={index}
                         />
                       );
                     })}
@@ -433,7 +406,7 @@ const Asset = (props) => {
                 ></input>
                 <label
                   className="block p-8 leading-normal cursor-pointer text-xl"
-                  for="tab-stats"
+                  htmlFor="tab-stats"
                 >
                   <i className="fas fa-signal mr-6 text-xl"></i>Stats
                 </label>
@@ -448,6 +421,7 @@ const Asset = (props) => {
                           name={stat["name"]}
                           value={stat["value"]}
                           max={stat["max"]}
+                          key={index}
                         />
                       );
                     })}
@@ -464,7 +438,7 @@ const Asset = (props) => {
                 ></input>
                 <label
                   className="block p-8 leading-normal cursor-pointer text-xl"
-                  for="tab-details"
+                  htmlFor="tab-details"
                 >
                   <i className="fas fa-info-circle mr-6 text-xl"></i>Details
                 </label>
@@ -506,7 +480,7 @@ const Asset = (props) => {
 
               <div
                 className="flex flex-row gap-2 "
-                style={{ "align-items": "center" }}
+                style={{ "alignItems": "center" }}
               >
                 <i className="far fa-eye"></i>
                 <p>7.8K views</p>
@@ -514,13 +488,13 @@ const Asset = (props) => {
 
               <div
                 className="flex flex-row gap-2"
-                style={{ "align-items": "center" }}
+                style={{ "alignItems": "center" }}
               >
                 <i className="fa fa-heart" aria-hidden="true"></i>
                 <p>60 favorites</p>
               </div>
             </div>
-            {customer == "viewer" ? (
+            {customer === "viewer" ? (
               <div className="message">
                 <div className="rounded-lg">
                   {assetData["isMinted"] === false ? (
@@ -586,7 +560,7 @@ const Asset = (props) => {
               ></input>
               <label
                 className="block p-8 leading-normal cursor-pointer text-xl"
-                for="tab-offers"
+                htmlFor="tab-offers"
               >
                 <i className="fas fa-info-circle mr-6 text-xl"></i>Offers
               </label>
@@ -600,12 +574,13 @@ const Asset = (props) => {
                         <td className="p-4">Price</td>
                         <td className="p-4">Expiration</td>
                       </tr>
-                      {offers.map((offer, ind) => {
+                      {offers.map((offer, index) => {
                         return (
                           <Offer_Entry
                             from={offer["From"]}
                             price={offer["Price"]}
                             expiry={offer["Expiration_date"]}
+                            key={index}
                           />
                         );
                       })}
@@ -634,7 +609,7 @@ const Asset = (props) => {
           ></input>
           <label
             className="block p-8 leading-normal cursor-pointer text-xl"
-            for="tab-trading"
+            htmlFor="tab-trading"
           >
             <i className="fas fa-address-card mr-6 text-xl"></i>Trading History
           </label>
@@ -664,10 +639,7 @@ const Asset = (props) => {
                   <td className="p-4">To</td>
                   <td className="p-4">Date</td>
                 </tr>
-                {assetHistory.map((trade, ind) => {
-                  console.log(trade);
-                })}
-                {assetHistory.map((trade, ind) => {
+                {assetHistory.map((trade, index) => {
                   return (
                     <Trading_Entry
                       event={trade["Event_type"]}
@@ -675,6 +647,7 @@ const Asset = (props) => {
                       to={trade["To"]}
                       price={trade["Price"]}
                       date={trade["date"]}
+                      key={index}
                     />
                   );
                 })}

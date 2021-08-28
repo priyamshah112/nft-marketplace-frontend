@@ -15,8 +15,8 @@ const Card = ({ imgUrl }) => {
                             <a href="/browse">
                                 Explore
                             </a>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </div>
                     </div>
@@ -51,7 +51,7 @@ const Carousel = () => {
         const fetchCards = async () => {
             const response = await fetch('/carousel.json');
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             loadCards(data.cards);
         } 
         fetchCards();

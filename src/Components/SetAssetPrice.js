@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import TimePicker from 'react-time-picker';
 import '../CSS/createasset.css';
 
@@ -7,9 +7,9 @@ import '../CSS/createasset.css';
 
 
 const Property_Card = (props) => {
-    let selected = props.priceType == 0 && props.type == "Set Price" ? 
+    let selected = props.priceType === 0 && props.type === "Set Price" ? 
                     "border-blue-400 bg-blue-50" :
-                    props.priceType == 1 && props.type == "Heighest Price" ?
+                    props.priceType === 1 && props.type === "Heighest Price" ?
                     "border-blue-400 bg-blue-50" : "border-gray-200 bg-white"
     console.log(selected, props.priceType, props.type)
     return (
@@ -30,99 +30,99 @@ const SetPriceAsset = () => {
 
     return (
 
-        <div class="flex flex-col">
-            <div class="flex flex-col bg-blue-50 py-2">
-                <div class="md:w-10/12 m-auto px-10 text-xs">
+        <div className="flex flex-col">
+            <div className="flex flex-col bg-blue-50 py-2">
+                <div className="md:w-10/12 m-auto px-10 text-xs">
                     Treasure3242
                 </div>
-                <div class="w-10/12 m-auto px-10">
+                <div className="w-10/12 m-auto px-10">
                     Hacker
                 </div>
             </div>
 
-            <div class="md:w-10/12 m-auto p-10">
-                <div class=" flex flex-col md:flex-row gap-5 md:justify-between">
-                    <div class="md:w-2/3 flex flex-col gap-9">
-                        <div class="row1" style={{ fontWeight: "bold" }}>
+            <div className="md:w-10/12 m-auto p-10">
+                <div className=" flex flex-col md:flex-row gap-5 md:justify-between">
+                    <div className="md:w-2/3 flex flex-col gap-9">
+                        <div className="row1" style={{ fontWeight: "bold" }}>
                             Select your sell method
                 </div>
-                        <div class="flex flex-row row2 gap-5">
+                        <div className="flex flex-row row2 gap-5">
                             <Property_Card type="Set Price" name="Sell at a fixed or declining price" priceType={priceType} onClick={() => {setpriceType(0); setReservePrice(null)}}></Property_Card>
                             <Property_Card type="Heighest Price" name="Auction to the highest bidder" priceType={priceType} onClick={() => setpriceType(1)}></Property_Card>
                         </div>
-                        {priceType == 0 ? (
-                            <div class="flex flex-col gap-9">
-                                <div class="flex flex-col md:flex-row price justify-between" >
-                                    <div class="flex flex-col gap-2 md:gap-5">
-                                        <div class="heading" style={{ fontWeight: "bold" }}>
+                        {priceType === 0 ? (
+                            <div className="flex flex-col gap-9">
+                                <div className="flex flex-col md:flex-row price justify-between" >
+                                    <div className="flex flex-col gap-2 md:gap-5">
+                                        <div className="heading" style={{ fontWeight: "bold" }}>
                                             Price
                                         </div>
-                                        <div class="normal mb-2" style={{ color: "rgb(158, 158, 158)" }}>
+                                        <div className="normal mb-2" style={{ color: "rgb(158, 158, 158)" }}>
                                             Will be on the sale until you transfer this item
                                         </div>
 
                                     </div>
-                                    <div class="input">
+                                    <div className="input">
                                         <input className="p-3 rounded-md bg-gray-50 border-2" type="number" placeholder="Amount" onChange={(e) => setPrice(e.target.value)}></input>
                                     </div>
                                 </div>
                                 <div style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "10px" }}>
                                     <label className="block mt-4 font-bold">Privacy</label>
-                                    <div class="flex flex-col md:flex-row md:justify-between md:align-items-center">
+                                    <div className="flex flex-col md:flex-row md:justify-between md:align-items-center">
                                         <p className="mt-1 text-gray-400">You can keep your listing public, or your can specify one address that's allowed to buy it.</p>
                                         <form>
 
                                             <label className="flex items-center cursor-pointer mt-5">
                                                 <div className="relative">
                                                     <input type="checkbox" id="notificationToggle" className="sr-only toggleCheckBox" onChange={() => { setunlockableContent(unlockableContent * (-1)) }} />
-                                                    <div className={"block w-14 h-8 rounded-full " + (unlockableContent == -1 ? 'bg-gray-600' : 'bg-gray-200')}></div>
+                                                    <div className={"block w-14 h-8 rounded-full " + (unlockableContent === -1 ? 'bg-gray-600' : 'bg-gray-200')}></div>
                                                     <div className="toggle absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                                                 </div>
                                             </label>
                                         </form>
 
                                     </div>
-                                    {unlockableContent == 1 ? <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" placeholder="Enter Buyer address" type="text"></textarea> : null}
+                                    {unlockableContent === 1 ? <textarea className="rounded-md border-2 border-gray-200 mt-2 pl-2 py-2 h-20 w-full focus:shadow-lg focus:border-none focus:outline-none" placeholder="Enter Buyer address" type="text"></textarea> : null}
 
                                 </div>
                             </div>) : (
-                            <div class="flex flex-col gap-9">
-                                <div class="flex flex-col md:flex-row price justify-between" >
-                                    <div class="flex flex-col gap-2 md:gap-5">
-                                        <div class="heading" style={{ fontWeight: "bold" }}>
+                            <div className="flex flex-col gap-9">
+                                <div className="flex flex-col md:flex-row price justify-between" >
+                                    <div className="flex flex-col gap-2 md:gap-5">
+                                        <div className="heading" style={{ fontWeight: "bold" }}>
                                             Minimum Bid
                                         </div>
-                                        <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
+                                        <div className="normal" style={{ color: "rgb(158, 158, 158)" }}>
                                             Set your starting bid price.Learn More
                                         </div>
                                     </div>
-                                    <div class="input">
+                                    <div className="input">
                                         <input className="p-3 rounded-md bg-gray-50 border-2 mt-2" type="number" placeholder="Amount" onChange={(e) => setPrice(e.target.value)}></input>
                                     </div>
                                 </div>
-                                <div class="flex flex-col md:flex-row price justify-between" >
-                                    <div class="flex flex-col gap-2 md:gap-5">
-                                        <div class="heading" style={{ fontWeight: "bold" }}>
+                                <div className="flex flex-col md:flex-row price justify-between" >
+                                    <div className="flex flex-col gap-2 md:gap-5">
+                                        <div className="heading" style={{ fontWeight: "bold" }}>
                                             Reserve Price
                                         </div>
-                                        <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
+                                        <div className="normal" style={{ color: "rgb(158, 158, 158)" }}>
                                             Create a hidden limit by setting a reserve price.
                                         </div>
                                     </div>
-                                    <div class="input">
+                                    <div className="input">
                                         <input className="p-3 rounded-md bg-gray-50 border-2 mt-2" type="number" placeholder="Amount" onChange={(e) => setReservePrice(e.target.value)}></input>
                                     </div>
                                 </div>
-                                <div class="flex flex-col md:flex-row price justify-between" >
-                                    <div class="flex flex-col gap-2 md:gap-5">
-                                        <div class="heading" style={{ fontWeight: "bold" }}>
+                                <div className="flex flex-col md:flex-row price justify-between" >
+                                    <div className="flex flex-col gap-2 md:gap-5">
+                                        <div className="heading" style={{ fontWeight: "bold" }}>
                                             Expiration Date
                                         </div>
-                                        <div class="normal" style={{ color: "rgb(158, 158, 158)" }}>
+                                        <div className="normal" style={{ color: "rgb(158, 158, 158)" }}>
                                             Your auction will automatically end at this time and the highest bidder will win. No need to cancel it!
                                         </div>
                                     </div>
-                                    <div class="input">
+                                    <div className="input">
                                         {/* <input  placeholder="Amount"></input> */}
                                         <select className="p-3 rounded-md bg-gray-50 border-2 mt-2" id="cars">
                                             <option value="in 5 Days">in 5 Days</option>
@@ -132,8 +132,8 @@ const SetPriceAsset = () => {
                                         </select>
                                     </div>
                                 </div>
-                                {/* <div class="flex flex-row"></div> */}
-                                <div class=" flex flex-row input md:justify-end rounded-md gap-3 items-baseline">
+                                {/* <div className="flex flex-row"></div> */}
+                                <div className=" flex flex-row input md:justify-end rounded-md gap-3 items-baseline">
                                     <p>At</p>
                                     {/* <input className="p-3 rounded-md bg-gray-50 border-2" placeholder="Time"></input> */}
                                     <TimePicker
@@ -145,26 +145,26 @@ const SetPriceAsset = () => {
                             </div>
                         )}
                     </div>
-                    <div class="md:w-1/3 p-5 my-7 rounded-lg border-2" style={{ backgroundColor: "rgb(251, 253, 255)" }}>
-                        <div class="flex flex-col gap-5">
-                            <div class="row1" style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "25px", fontWeight: "bold" }}>
-                                <i class="far fa-list-alt mr-3"></i>
+                    <div className="md:w-1/3 p-5 my-7 rounded-lg border-2" style={{ backgroundColor: "rgb(251, 253, 255)" }}>
+                        <div className="flex flex-col gap-5">
+                            <div className="row1" style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "25px", fontWeight: "bold" }}>
+                                <i className="far fa-list-alt mr-3"></i>
                                 Summary
                             </div>
-                            <div class="row2 flex-row" style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "25px", fontWeight: "bold" }}>
+                            <div className="row2 flex-row" style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "25px", fontWeight: "bold" }}>
                                 <p>Listing</p>
-                                <p className={"font-light" + (price == null ? " hidden" : priceType == 1 ? " hidden" :price == "" ? " text-red-600" : " text-green-500")} >{price == "" ?  "Invalid price" : "The item will be sold for " + price + " ETH"}</p>
-                                <p className={"font-light" + (price == null || reservePrice == null ? " hidden" : priceType == 0 ? " hidden" : parseInt(price) > parseInt(reservePrice) ? " text-red-600" : " text-green-500")} >{price == "" ?  "Invalid price" : parseInt(price) > parseInt(reservePrice) ? "Minimum Price cannot be greater than reserve price" : "The item will be auctioned at a minimum price of " + price + " ETH"}</p>
-                                <button className="bg-blue-600 p-5 rounded-md mt-3" style={{ color: "white", fontWeight: "bold" }}>Post Your Listing <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                                <p className={"font-light" + (price === null ? " hidden" : priceType === 1 ? " hidden" :price === "" ? " text-red-600" : " text-green-500")} >{price === "" ?  "Invalid price" : "The item will be sold for " + price + " ETH"}</p>
+                                <p className={"font-light" + (price === null || reservePrice === null ? " hidden" : priceType === 0 ? " hidden" : parseInt(price) > parseInt(reservePrice) ? " text-red-600" : " text-green-500")} >{price === "" ?  "Invalid price" : parseInt(price) > parseInt(reservePrice) ? "Minimum Price cannot be greater than reserve price" : "The item will be auctioned at a minimum price of " + price + " ETH"}</p>
+                                <button className="bg-blue-600 p-5 rounded-md mt-3" style={{ color: "white", fontWeight: "bold" }}>Post Your Listing <i className="fa fa-angle-right" aria-hidden="true"></i></button>
                             </div>
-                            <div class="row3 flex-row" style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "25px" }}>
+                            <div className="row3 flex-row" style={{ borderBottom: "1px solid rgba(0,0,0,.1)", paddingBottom: "25px" }}>
                                 <p style={{ fontWeight: "bold" }}>Fees</p>
                                 <p style={{ fontWeight: "lighter" }}>Listing is free! At the time of the sale, the following fees will be deducted. Learn more.</p>
-                                <div class="flex flex-row justify-between">
+                                <div className="flex flex-row justify-between">
                                     <p>To OpenSea</p>
                                     <p>2.5%</p>
                                 </div>
-                                <div class="flex flex-row justify-between font-bold">
+                                <div className="flex flex-row justify-between font-bold">
                                     <p>Total</p>
                                     <p>2.5%</p>
                                 </div>

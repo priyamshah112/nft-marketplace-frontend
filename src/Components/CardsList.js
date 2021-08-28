@@ -1,4 +1,4 @@
-import React,{useState,useEffect,lazy} from 'react';
+import React,{useState,useEffect} from 'react';
 import Card from './Card';
 // import InsightsIcon from '@material-ui/icons/Insights';
 // import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
@@ -6,14 +6,13 @@ import Card from './Card';
 
 
 const CardsList = (props) => {
-    console.log(props);
+    // console.log(props);
     const [cards,setCards] = useState({});
     
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(`/${props.title}.json`);
             const data = await response.json();
-            console.log(data);
             // const Icon = await importIcon(data.iconName);
             setCards({...data});
         }
@@ -27,7 +26,7 @@ const CardsList = (props) => {
                 <div className="pb-2 flex">
                     {/* <InsightsIcon /> */}
                     {/* {cards.icon} */}
-                    <i class="fas fa-chart-line"></i>
+                    <i className="fas fa-chart-line"></i>
                     <span className="block uppercase font-bold">&nbsp; {cards.title} </span>
                 </div>
                 <div className="flex cursor-pointer">
@@ -36,7 +35,7 @@ const CardsList = (props) => {
                 </div>
             </div>
             <div className="mt-10 grid grid-flow-col overflow-auto">
-                {cards.assets && cards.assets.length > 0 && cards.assets.map((asset,assetIdx) => (<Card data={asset} />))}
+                {cards.assets && cards.assets.length > 0 && cards.assets.map((asset,assetIdx) => (<Card data={asset} key={assetIdx}/>))}
             </div>
         </div>
     );
